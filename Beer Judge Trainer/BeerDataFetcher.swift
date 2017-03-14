@@ -8,4 +8,15 @@
 
 import Foundation
 
-//this one
+public class BeerDataFetcher {
+    
+    func GetBreweryNames() {
+        print("you called get brewery names function")
+    
+    }
+}
+
+
+
+
+//Call your method like thi

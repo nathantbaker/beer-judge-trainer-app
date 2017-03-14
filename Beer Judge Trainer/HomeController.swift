@@ -10,6 +10,11 @@ import UIKit
 
 class HomeController: UIViewController {
 
+    @IBAction func GetBreweryNames(_ sender: Any) {
+        
+        BeerDataFetcher().GetBreweryNames()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
