@@ -13,15 +13,15 @@ public class BeerDataFetcher {
     func GetBreweryNames() {
         print("you called get brewery names function")
         
-        let userNameValue = "t=home+alone"
+        let apiResource = "breweries"
         
         // Send HTTP GET Request
         
 
         // Define server side script URL
-        let scriptUrl = "https://www.omdbapi.com/?"
+        let apiRoot = "http://api.cancanawards.com/"
         // Add one parameter
-        let urlWithParams = scriptUrl + userNameValue
+        let urlWithParams = apiRoot + apiResource + "/"
         // Create NSURL Ibject
         let myUrl = NSURL(string: urlWithParams);
         
