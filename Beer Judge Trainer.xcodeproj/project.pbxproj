@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */; };
-		CD0DC6C21E78398C007F6A63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6C11E78398C007F6A63 /* ViewController.swift */; };
+		CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6C11E78398C007F6A63 /* HomeController.swift */; };
 		CD0DC6C51E78398C007F6A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C31E78398C007F6A63 /* Main.storyboard */; };
 		CD0DC6C71E78398C007F6A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C61E78398C007F6A63 /* Assets.xcassets */; };
 		CD0DC6CA1E78398C007F6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */; };
+		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
+		CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */; };
+		CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */; };
+		CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE646751E7847EB0056050F /* BeerDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Judge Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD0DC6C11E78398C007F6A63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD0DC6C11E78398C007F6A63 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CD0DC6C41E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD0DC6C61E78398C007F6A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD0DC6C91E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD0DC6CB1E78398C007F6A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerScoresheet.swift; sourceTree = "<group>"; };
+		CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparisonBot.swift; sourceTree = "<group>"; };
+		CDE646751E7847EB0056050F /* BeerDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		CD0DC6BE1E78398C007F6A63 /* Beer Judge Trainer */ = {
 			isa = PBXGroup;
 			children = (
-				CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */,
-				CD0DC6C11E78398C007F6A63 /* ViewController.swift */,
+				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
+				CD85E0B81E7845B200FD1C62 /* Controllers */,
+				CDE646771E7848330056050F /* Models */,
 				CD0DC6C31E78398C007F6A63 /* Main.storyboard */,
+			);
+			path = "Beer Judge Trainer";
+			sourceTree = "<group>";
+		};
+		CD0DC6D11E7839EE007F6A63 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */,
 				CD0DC6C61E78398C007F6A63 /* Assets.xcassets */,
 				CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */,
 				CD0DC6CB1E78398C007F6A63 /* Info.plist */,
 			);
-			path = "Beer Judge Trainer";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD85E0B81E7845B200FD1C62 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD0DC6C11E78398C007F6A63 /* HomeController.swift */,
+				CD0DC6D41E783F80007F6A63 /* ResultsController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CDE646771E7848330056050F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
+				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
+				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +132,7 @@
 				TargetAttributes = {
 					CD0DC6BB1E78398B007F6A63 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = FD25JRYJXK;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -136,7 +173,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD0DC6C21E78398C007F6A63 /* ViewController.swift in Sources */,
+				CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */,
+				CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */,
+				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
+				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
+				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
 				CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +301,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FD25JRYJXK;
 				INFOPLIST_FILE = "Beer Judge Trainer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nathantbaker.Beer-Judge-Trainer";
@@ -272,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FD25JRYJXK;
 				INFOPLIST_FILE = "Beer Judge Trainer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nathantbaker.Beer-Judge-Trainer";
@@ -299,6 +342,7 @@
 				CD0DC6D01E78398C007F6A63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
