@@ -10,9 +10,12 @@ import UIKit
 
 class HomeController: UIViewController {
 
-    @IBAction func GetBreweryNames(_ sender: Any) {
-        
-        BeerDataFetcher().GetBreweryNames()
+    @IBAction func GetBreweriesJSON(_ sender: UIButton) {
+        BeerDataFetcher().GetResource(apiResource:"breweries")
+    }
+
+    @IBAction func GetBeersJSON(_ sender: UIButton) {
+        BeerDataFetcher().GetResource(apiResource:"beers")
     }
     
     override func viewDidLoad() {

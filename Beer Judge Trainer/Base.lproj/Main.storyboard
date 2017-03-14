@@ -36,12 +36,20 @@
                                     <segue destination="JBh-1w-cDD" kind="show" id="Zuw-k7-1mm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdL-DH-swh">
-                                <rect key="frame" x="110" y="222" width="137" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
+                                <rect key="frame" x="117" y="103" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Brewery Names"/>
+                                <state key="normal" title="Get Breweries JSON"/>
                                 <connections>
-                                    <action selector="GetBreweryNames:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzt-Fb-SMN"/>
+                                    <action selector="GetBreweriesJSON:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kyk-Wr-zws"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-F7-G4U">
+                                <rect key="frame" x="131" y="141" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get Beers JSON"/>
+                                <connections>
+                                    <action selector="GetBeersJSON:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BYr-V7-jqm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="47"/>
+            <point key="canvasLocation" x="328.80000000000001" y="46.326836581709152"/>
         </scene>
         <!--Results Controller-->
         <scene sceneID="Cel-g1-OkH">
