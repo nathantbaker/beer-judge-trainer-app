@@ -10,14 +10,10 @@ import Foundation
 
 public class BeerDataFetcher {
     
-    func GetResource(apiResource: String) {
-        print("you called get brewery names function")
+    func GetResource(completionHandler: @escaping (_ responseData: String) -> ()) {
+        print("GetResource function")
         
-        
-        // Send HTTP GET Request
-        
-
-        // Define server side script URL
+        let apiResource = "beers"
         let apiRoot = "http://api.cancanawards.com/"
         // Add one parameter
         let urlWithParams = apiRoot + apiResource + "/"
@@ -42,14 +38,21 @@ public class BeerDataFetcher {
             }
             
             // Print out response string
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             
-            
-            print(responseString!)
+            completionHandler(results as! String)
+        
         }
         task.resume()
         
         
+    }
+    
+    func viewDidLoad() {
+        self.GetResource {
+            responseData in
+            print("Data: \(responseData)")
+        }
     }
     
 }
