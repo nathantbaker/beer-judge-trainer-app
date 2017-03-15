@@ -39,17 +39,17 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
                                 <rect key="frame" x="117" y="103" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Breweries JSON"/>
+                                <state key="normal" title="Get Breweries"/>
                                 <connections>
-                                    <action selector="GetBreweriesJSON:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kyk-Wr-zws"/>
+                                    <action selector="GetBreweries:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTj-Iz-w4D"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-F7-G4U">
                                 <rect key="frame" x="131" y="141" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get Beers JSON"/>
+                                <state key="normal" title="Get Beers"/>
                                 <connections>
-                                    <action selector="GetBeersJSON:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BYr-V7-jqm"/>
+                                    <action selector="GetBeers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cf0-mn-Jul"/>
                                 </connections>
                             </button>
                         </subviews>

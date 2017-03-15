@@ -10,7 +10,7 @@ import Foundation
 
 public class BeerDataFetcher {
     
-    func PullDownJSON(endpoint: String, completionHandler: @escaping (_ responseData: String) -> ()) {
+    func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: String) -> ()) {
         print("GetResource function")
         
         let apiRoot = "http://api.cancanawards.com/"
@@ -44,14 +44,6 @@ public class BeerDataFetcher {
         }
         task.resume()
         
-        
-    }
-    
-    func GetResource(endpoint: String) {
-        self.PullDownJSON(endpoint: endpoint) {
-            responseData in
-            print("Data: \(responseData)")
-        }
     }
     
 }

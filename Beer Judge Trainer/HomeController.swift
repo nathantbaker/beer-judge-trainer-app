@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeController.swift
 //  Beer Judge Trainer
 //
 //  Created by Nate on 3/14/17.
@@ -9,16 +9,24 @@
 import UIKit
 
 class HomeController: UIViewController {
-
-    @IBAction func GetBreweriesJSON(_ sender: UIButton) {
-//        BeerDataFetcher().GetResource(apiResource:"breweries")
-        BeerDataFetcher().GetResource(endpoint: "breweries")
-    }
-
-    @IBAction func GetBeersJSON(_ sender: UIButton) {
-        BeerDataFetcher().GetResource(endpoint: "beers")
+    
+    let BeerData = BeerDataFetcher()
+    
+    @IBAction func GetBreweries(_ sender: UIButton) {
+        
+        BeerData.GetResource(endpoint: "breweries") {
+            breweryJSON in
+            print("Data: \(breweryJSON)")
+        }
     }
     
+    @IBAction func GetBeers(_ sender: UIButton) {
+        BeerData.GetResource(endpoint: "beers") {
+            beerJSON in
+            print("Data: \(beerJSON)")
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
