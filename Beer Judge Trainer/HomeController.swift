@@ -13,18 +13,11 @@ class HomeController: UIViewController {
     let BeerData = BeerDataFetcher()
     
     @IBAction func GetBreweries(_ sender: UIButton) {
-        
-        BeerData.GetResource(endpoint: "breweries") {
-            breweryJSON in
-            print("Data: \(breweryJSON)")
-        }
+        BeerData.GetBreweryList()
     }
     
     @IBAction func GetBeers(_ sender: UIButton) {
-        BeerData.GetResource(endpoint: "beers") {
-            beerJSON in
-            print("Data: \(beerJSON)")
-        }
+        BeerData.GetBeerList()
     }
 
     override func viewDidLoad() {
