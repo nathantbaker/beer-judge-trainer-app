@@ -33,8 +33,17 @@ public class BeerDataFetcher {
             }
             
             // parse results as a string
+            
+            // I should call a function here that converts JSON string to a dictionary
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             
+//            let resultString = results as! String
+//            
+//            let dataDictionary = self.convertStringToDictionary(text: resultString)
+            
+//            let type = type(of: dataDictionary)
+//            print("dataDictionary is a \(type)")
+
             // return data
             completionHandler(results as! String)
         
@@ -56,12 +65,15 @@ public class BeerDataFetcher {
         }
     }
     
-    func ReturnString() -> ((String) -> String) {
-
-        func stringBuilder(input: String) -> String {
-            return input + "!!!"
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: String.Encoding.utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
         }
-        return stringBuilder
+        return nil
     }
 }
 
