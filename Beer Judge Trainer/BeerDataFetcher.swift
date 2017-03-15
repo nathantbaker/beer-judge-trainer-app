@@ -10,6 +10,9 @@ import Foundation
 
 public class BeerDataFetcher {
     
+    var breweries = ""
+    var beer = ""
+    
     func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: String) -> ()) {
         
         //  build url
@@ -41,16 +44,24 @@ public class BeerDataFetcher {
     
     func GetBreweryList() {
         self.GetResource(endpoint: "breweries") {
-            data in
-            print(data)
+            // when brewery data is fetched, store it locally
+            data in self.breweries = data
         }
     }
     
     func GetBeerList() {
         self.GetResource(endpoint: "beers") {
-            data in
-            print(data)
+            // when beer data is fetched, store it locally
+            data in self.beer = data
         }
+    }
+    
+    func ReturnString() -> ((String) -> String) {
+
+        func stringBuilder(input: String) -> String {
+            return input + "!!!"
+        }
+        return stringBuilder
     }
 }
 

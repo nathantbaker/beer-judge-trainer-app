@@ -13,15 +13,20 @@ class HomeController: UIViewController {
     let BeerData = BeerDataFetcher()
     
     @IBAction func GetBreweries(_ sender: UIButton) {
-        BeerData.GetBreweryList()
+        print(BeerData.breweries)
+        
     }
     
     @IBAction func GetBeers(_ sender: UIButton) {
-        BeerData.GetBeerList()
+        print(BeerData.beer)
+//        let string = BeerData.ReturnString()
+//        print(string("hello"))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        BeerData.GetBeerList()
+        BeerData.GetBreweryList()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
