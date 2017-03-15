@@ -10,13 +10,12 @@ import Foundation
 
 public class BeerDataFetcher {
     
-    func GetResource(completionHandler: @escaping (_ responseData: String) -> ()) {
+    func PullDownJSON(endpoint: String, completionHandler: @escaping (_ responseData: String) -> ()) {
         print("GetResource function")
         
-        let apiResource = "beers"
         let apiRoot = "http://api.cancanawards.com/"
         // Add one parameter
-        let urlWithParams = apiRoot + apiResource + "/"
+        let urlWithParams = apiRoot + endpoint + "/"
         // Create NSURL Ibject
         let myUrl = NSURL(string: urlWithParams);
         
@@ -37,7 +36,7 @@ public class BeerDataFetcher {
                 return
             }
             
-            // Print out response string
+            // Parse results as a string
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             
             completionHandler(results as! String)
@@ -48,8 +47,8 @@ public class BeerDataFetcher {
         
     }
     
-    func viewDidLoad() {
-        self.GetResource {
+    func GetResource(endpoint: String) {
+        self.PullDownJSON(endpoint: endpoint) {
             responseData in
             print("Data: \(responseData)")
         }

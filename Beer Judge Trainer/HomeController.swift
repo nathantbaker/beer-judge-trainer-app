@@ -12,11 +12,11 @@ class HomeController: UIViewController {
 
     @IBAction func GetBreweriesJSON(_ sender: UIButton) {
 //        BeerDataFetcher().GetResource(apiResource:"breweries")
-        BeerDataFetcher().viewDidLoad()
+        BeerDataFetcher().GetResource(endpoint: "breweries")
     }
 
     @IBAction func GetBeersJSON(_ sender: UIButton) {
-        BeerDataFetcher().viewDidLoad()
+        BeerDataFetcher().GetResource(endpoint: "beers")
     }
     
     override func viewDidLoad() {
