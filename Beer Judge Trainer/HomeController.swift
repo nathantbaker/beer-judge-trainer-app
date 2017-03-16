@@ -18,7 +18,7 @@ class HomeController: UIViewController {
     }
     
     @IBAction func getBeers(_ sender: UIButton) {
-        print(beerData.beer)
+        print(beerData.beers)
     }
 
     override func viewDidLoad() {

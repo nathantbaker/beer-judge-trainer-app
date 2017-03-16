@@ -12,7 +12,7 @@ import Foundation
 public class BeerDataFetcher {
     
     // properies on the class where beer resources are stored
-    var beer = [[String: AnyObject]]()
+    var beers = [[String: AnyObject]]()
     var breweries = [[String: AnyObject]]()
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
@@ -34,7 +34,7 @@ public class BeerDataFetcher {
             data, response, error in
             
             // error handling
-            if error != nil {
+            if let error = error {
                 print("error=\(error)")
                 return
             }
@@ -61,12 +61,17 @@ public class BeerDataFetcher {
         task.resume()
     }
     
-    // fetch all resources needed from the API
+    // fetch all resources needed from the API, then store them locally
     func fetchAllBeerResources() {
-        getResource(endpoint: "breweries")   { data in self.breweries = data }
-        getResource(endpoint: "beers")       { data in self.beer = data }
-        getResource(endpoint: "scoresheets") { data in self.scoresheets = data }
-        getResource(endpoint: "categories")  { data in self.categories = data }
+        getResource(endpoint: "breweries")   { [weak self](data) in self?.breweries = data }
+        getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
+        getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
+        getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
+                                             // using weak self to reduce likelihood of memory leaks
+        
+        
+        
+
     }
     
     // function to convert JSON strings to dictionaries
