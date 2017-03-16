@@ -17,16 +17,8 @@ public class BeerDataFetcher {
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
-    // fetch all resources needed from the API, then save it locally
-    func FetchAllBeerResources() {
-        self.GetResource(endpoint: "breweries")   { data in self.breweries = data }
-        self.GetResource(endpoint: "beers")       { data in self.beer = data }
-        self.GetResource(endpoint: "scoresheets") { data in self.scoresheets = data }
-        self.GetResource(endpoint: "categories")  { data in self.categories = data }
-    }
-    
     // function to get a resource from the API
-    func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
+    func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
         //  build url
         let apiRoot = "http://api.cancanawards.com/"
@@ -57,6 +49,14 @@ public class BeerDataFetcher {
         
         }
         task.resume()
+    }
+    
+    // fetch all resources needed from the API
+    func fetchAllBeerResources() {
+        getResource(endpoint: "breweries")   { data in self.breweries = data }
+        getResource(endpoint: "beers")       { data in self.beer = data }
+        getResource(endpoint: "scoresheets") { data in self.scoresheets = data }
+        getResource(endpoint: "categories")  { data in self.categories = data }
     }
     
     // function to convert JSON strings to dictionaries

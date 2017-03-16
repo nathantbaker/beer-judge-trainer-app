@@ -10,14 +10,14 @@ import UIKit
 
 class HomeController: UIViewController {
     
-    let BeerData = BeerDataFetcher()
+    let beerData = BeerDataFetcher()
     
     // some buttons for testing
-    @IBAction func GetBreweries(_ sender: UIButton) {
+    @IBAction func getBreweries(_ sender: UIButton) {
         print(BeerData.breweries)
     }
     
-    @IBAction func GetBeers(_ sender: UIButton) {
+    @IBAction func getBeers(_ sender: UIButton) {
         print(BeerData.beer)
     }
 
@@ -25,7 +25,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // fetch all beer resources on load
         print("GATHERING RESOURCES")
-        BeerData.FetchAllBeerResources()
+        beerData.fetchAllBeerResources()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
