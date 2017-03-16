@@ -37,13 +37,20 @@ public class BeerDataFetcher {
             // I should call a function here that converts JSON string to a dictionary
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             
-//            let resultString = results as! String
-//            
-//            let dataDictionary = self.convertStringToDictionary(text: resultString)
-            
-//            let type = type(of: dataDictionary)
-//            print("dataDictionary is a \(type)")
+            let resultString = results as! String
+            let typeOfResultString = type(of: resultString)
+            print("resultString is a \(typeOfResultString)")
 
+            let dataDictionary = self.convertStringToDictionary(text: resultString)
+            
+            let type = type(of: dataDictionary)
+            print("The \(endpoint) dictionary is of this type... \(type)")
+            
+            let numberOfKeys = dataDictionary?.count
+            print("The \(endpoint) JSON file has \(numberOfKeys) items")
+            print("")
+
+            
             // return data
             completionHandler(results as! String)
         
@@ -65,15 +72,21 @@ public class BeerDataFetcher {
         }
     }
     
-    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+    // take a JSON string and return
+    // a dictionary of dictionaries
+    // that have strings as keys and other stuff as values
+    
+    func convertStringToDictionary(text: String) -> [[String: AnyObject]]? {
+        
         if let data = text.data(using: String.Encoding.utf8) {
             do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [[String:AnyObject]]
             } catch let error as NSError {
                 print(error)
             }
         }
         return nil
+
     }
 }
 
