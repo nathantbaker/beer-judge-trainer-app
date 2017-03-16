@@ -17,6 +17,10 @@ public class BeerDataFetcher {
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
+    // boolean to track when all resources are fetched
+    var allResourcesFetched = false
+    var resourcesFetchedCounter = 0
+    
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
@@ -40,7 +44,15 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = self.convertStringToDictionary(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print("The \(endpoint) dictionary has \(numberOfKeys!) items")
+            print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
+            
+            // track when all resources are fetched
+            self.resourcesFetchedCounter += 1
+            if self.resourcesFetchedCounter == 4 {
+                self.allResourcesFetched = true
+                print("✓ All resources fetched")
+                print("")
+            }
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
