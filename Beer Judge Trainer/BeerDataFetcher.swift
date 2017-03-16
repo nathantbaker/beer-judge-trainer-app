@@ -17,10 +17,10 @@ public class BeerDataFetcher {
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
-    // fetch all resources needed from the API
+    // fetch all resources needed from the API, then save it locally
     func FetchAllBeerResources() {
-        self.GetResource(endpoint: "beers")       { data in self.beer = data }
         self.GetResource(endpoint: "breweries")   { data in self.breweries = data }
+        self.GetResource(endpoint: "beers")       { data in self.beer = data }
         self.GetResource(endpoint: "scoresheets") { data in self.scoresheets = data }
         self.GetResource(endpoint: "categories")  { data in self.categories = data }
     }
