@@ -12,21 +12,21 @@ class HomeController: UIViewController {
     
     let BeerData = BeerDataFetcher()
     
+    // some buttons for testing
     @IBAction func GetBreweries(_ sender: UIButton) {
         print(BeerData.breweries)
-        
     }
     
     @IBAction func GetBeers(_ sender: UIButton) {
         print(BeerData.beer)
-//        let string = BeerData.ReturnString()
-//        print(string("hello"))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        BeerData.GetBeerList()
-        BeerData.GetBreweryList()
+        // fetch all beer resources on load
+        print("GATHERING RESOURCES")
+        BeerData.FetchAllBeerResources()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

@@ -8,12 +8,24 @@
 
 import Foundation
 
+// The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
     
-//    properies on the class so other classes can access this stuff
-    var breweries = [[String: AnyObject]]()
+    // properies on the class where beer resources are stored
     var beer = [[String: AnyObject]]()
+    var breweries = [[String: AnyObject]]()
+    var scoresheets = [[String: AnyObject]]()
+    var categories = [[String: AnyObject]]()
     
+    // fetch all resources needed from the API
+    func FetchAllBeerResources() {
+        self.GetResource(endpoint: "beers")       { data in self.beer = data }
+        self.GetResource(endpoint: "breweries")   { data in self.breweries = data }
+        self.GetResource(endpoint: "scoresheets") { data in self.scoresheets = data }
+        self.GetResource(endpoint: "categories")  { data in self.categories = data }
+    }
+    
+    // function to get a resource from the API
     func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
         //  build url
@@ -38,8 +50,7 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = self.convertStringToDictionary(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print("The \(endpoint) JSON file has \(numberOfKeys) items")
-            print("")
+            print("The \(endpoint) dictionary has \(numberOfKeys!) items")
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
@@ -48,35 +59,19 @@ public class BeerDataFetcher {
         task.resume()
     }
     
-    func GetBreweryList() {
-        self.GetResource(endpoint: "breweries") {
-            // when brewery data is fetched, store it locally
-            data in self.breweries = data
-        }
-    }
-    
-    func GetBeerList() {
-        self.GetResource(endpoint: "beers") {
-            // when beer data is fetched, store it locally
-            data in self.beer = data
-        }
-    }
-    
-    // take a JSON string and return
-    // a dictionary of dictionaries
-    // that have strings as keys and other stuff as values
-    
+    // function to convert JSON strings to dictionaries
     func convertStringToDictionary(text: String) -> [[String: AnyObject]]? {
         
         if let data = text.data(using: String.Encoding.utf8) {
             do {
+                // return a dictionary of dictionaries
+                // with strings as keys and whatevs as values
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [[String:AnyObject]]
             } catch let error as NSError {
                 print(error)
             }
         }
         return nil
-
     }
 }
 
