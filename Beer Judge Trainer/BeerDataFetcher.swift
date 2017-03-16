@@ -21,12 +21,10 @@ public class BeerDataFetcher {
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
         //  build url
-        let apiRoot = "http://api.cancanawards.com/"
-        let urlWithParams = apiRoot + endpoint + "/"
-        let myUrl = NSURL(string: urlWithParams);
+        let myUrl = NSURL(string: "http://api.cancanawards.com/\(endpoint)/")
         
         // build request
-        let request = NSMutableURLRequest(url:myUrl! as URL);
+        let request = NSMutableURLRequest(url:myUrl! as URL)
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in

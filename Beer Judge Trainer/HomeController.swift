@@ -14,11 +14,11 @@ class HomeController: UIViewController {
     
     // some buttons for testing
     @IBAction func getBreweries(_ sender: UIButton) {
-        print(BeerData.breweries)
+        print(beerData.breweries)
     }
     
     @IBAction func getBeers(_ sender: UIButton) {
-        print(BeerData.beer)
+        print(beerData.beer)
     }
 
     override func viewDidLoad() {

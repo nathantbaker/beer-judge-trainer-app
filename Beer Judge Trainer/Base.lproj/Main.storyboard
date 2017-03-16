@@ -41,7 +41,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Breweries"/>
                                 <connections>
-                                    <action selector="GetBreweries:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTj-Iz-w4D"/>
+                                    <action selector="getBreweries:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FJl-KO-2Zx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-F7-G4U">
@@ -49,7 +49,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Beers"/>
                                 <connections>
-                                    <action selector="GetBeers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cf0-mn-Jul"/>
+                                    <action selector="getBeers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sbj-tj-a8w"/>
                                 </connections>
                             </button>
                         </subviews>
