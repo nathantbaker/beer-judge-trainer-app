@@ -7,3 +7,5 @@
 //
 
 import Foundation
+
+// class that gathers and stores user inputs
