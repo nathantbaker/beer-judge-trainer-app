@@ -23,9 +23,11 @@ class HomeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // fetch all beer resources on load
-        print("GATHERING RESOURCES")
-        beerData.fetchAllBeerResources()
+        // fetch all beer resources on home view load if they haven't been gathered yet 
+        if allResourcesFetched == false {
+            beerData.fetchAllBeerResources()
+            print("GATHERING RESOURCES")
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
     }

@@ -8,6 +8,10 @@
 
 import Foundation
 
+// boolean to track when all resources are fetched
+var allResourcesFetched = false
+var resourcesFetchedCounter = 0
+
 // The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
     
@@ -16,10 +20,6 @@ public class BeerDataFetcher {
     var breweries = [[String: AnyObject]]()
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
-    
-    // boolean to track when all resources are fetched
-    var allResourcesFetched = false
-    var resourcesFetchedCounter = 0
     
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
@@ -47,9 +47,9 @@ public class BeerDataFetcher {
             print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
             
             // track when all resources are fetched
-            self.resourcesFetchedCounter += 1
-            if self.resourcesFetchedCounter == 4 {
-                self.allResourcesFetched = true
+            resourcesFetchedCounter += 1
+            if resourcesFetchedCounter == 4 {
+                allResourcesFetched = true
                 print("✓ All resources fetched")
                 print("")
             }
