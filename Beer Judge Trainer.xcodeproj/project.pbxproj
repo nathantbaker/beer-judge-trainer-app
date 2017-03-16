@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */; };
 		CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */; };
 		CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6C11E78398C007F6A63 /* HomeController.swift */; };
 		CD0DC6C51E78398C007F6A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C31E78398C007F6A63 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsLanguageBot.swift; sourceTree = "<group>"; };
 		CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Judge Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD0DC6C11E78398C007F6A63 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -96,8 +98,9 @@
 		CDE646771E7848330056050F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
+				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
+				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
 				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
 			);
 			name = Models;
@@ -182,6 +185,7 @@
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
 				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
+				CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */,
 				CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
