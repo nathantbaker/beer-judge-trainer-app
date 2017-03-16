@@ -10,10 +10,11 @@ import Foundation
 
 public class BeerDataFetcher {
     
-    var breweries = ""
-    var beer = ""
+//    properies on the class so other classes can access this stuff
+    var breweries = [[String: AnyObject]]()
+    var beer = [[String: AnyObject]]()
     
-    func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: String) -> ()) {
+    func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
         //  build url
         let apiRoot = "http://api.cancanawards.com/"
@@ -32,27 +33,16 @@ public class BeerDataFetcher {
                 return
             }
             
-            // parse results as a string
-            
-            // I should call a function here that converts JSON string to a dictionary
+            // parse results into dictionary
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            
             let resultString = results as! String
-            let typeOfResultString = type(of: resultString)
-            print("resultString is a \(typeOfResultString)")
-
             let dataDictionary = self.convertStringToDictionary(text: resultString)
-            
-            let type = type(of: dataDictionary)
-            print("The \(endpoint) dictionary is of this type... \(type)")
-            
             let numberOfKeys = dataDictionary?.count
             print("The \(endpoint) JSON file has \(numberOfKeys) items")
             print("")
-
             
             // return data
-            completionHandler(results as! String)
+            completionHandler(dataDictionary! as [[String: AnyObject]])
         
         }
         task.resume()
