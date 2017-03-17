@@ -11,30 +11,21 @@ import UIKit
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     let beerData = BeerDataFetcher()
+    let helperBot = HelperFunctions()
     
     var brewerySelectOptions = ["Select Brewery"]
     
     func loadBreweryPickerData() {
+        
         print("load that menu")
         
         BeerDataFetcher().getResource(endpoint: "breweries") { [weak self](data) in
             
-            var arrayOfBreweries = [String]()
-            
-            for i in 0 ..< data.count {                 // iterate over brewery array
-                for (key, value) in data[i] {           // iterate over each dictionary
-                    if key == "brewery_name" {                    // filter to just key "brewery_name"
-                        arrayOfBreweries.append(value as! String) // push value to array
-                    }
-                }
-            }
-            
-            print(arrayOfBreweries)
-            let alphabeticalArray = arrayOfBreweries.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
-
-            self?.brewerySelectOptions = alphabeticalArray;
-            self?.SelectBrewery.reloadAllComponents();
-        }        
+            let breweryData = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data)
+            self?.brewerySelectOptions = breweryData!
+            self?.SelectBrewery.reloadAllComponents()
+        
+        }
     }
     
     // select brewery picker
