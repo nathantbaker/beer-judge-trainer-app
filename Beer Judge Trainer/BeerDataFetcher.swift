@@ -96,23 +96,7 @@ public class BeerDataFetcher {
 //        [
 //    ]
     
-    // return array of breweries
-    func returnArrayOfBreweries() -> Array<String> {
-        
-        var arrayOfBreweries = [String]()
-        
-        for i in 0 ..< self.breweries.count {                 // iterate over brewery array
-            for (key, value) in self.breweries[i] {           // iterate over each dictionary
-                if key == "brewery_name" {                    // filter to just key "brewery_name"
-                    arrayOfBreweries.append(value as! String) // push value to array
-                }
-            }
-        }
-        
-        print(arrayOfBreweries)
-        return arrayOfBreweries
-        
-    }
+
     
 
     
