@@ -8,26 +8,64 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+
+    let beerData = BeerDataFetcher()
     
-    let BeerData = BeerDataFetcher()
+    var brewerySelectOptions = [String]()
     
-    // some buttons for testing
-    @IBAction func GetBreweries(_ sender: UIButton) {
-        print(BeerData.breweries)
+    func createBreweryPicker() {
+        print("load that menu")
+        
+        // select brewery picker data
+        brewerySelectOptions = BeerDataFetcher().returnArrayOfBreweries()
+        
     }
     
-    @IBAction func GetBeers(_ sender: UIButton) {
-        print(BeerData.beer)
+    // select brewery picker
+    @IBOutlet weak var SelectBrewery: UIPickerView!
+    
+    // sets number picker columns
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    // brewery picker methods
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return brewerySelectOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return brewerySelectOptions[row]
+    }
+    
+    // store value selected
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let valueSelected = brewerySelectOptions[row] as String
+        print(valueSelected)
+    }
+    
+    // some buttons for testing
+    @IBAction func getBreweries(_ sender: UIButton) {
+        print(beerData.breweries)
+    }
+    
+    @IBAction func getBeers(_ sender: UIButton) {
+        print(beerData.beers)
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // fetch all beer resources on load
-        print("GATHERING RESOURCES")
-        BeerData.FetchAllBeerResources()
         
-        // Do any additional setup after loading the view, typically from a nib.
+        super.viewDidLoad()
+        
+        // fetch all beer resources on home view load if they haven't been gathered yet
+        if allResourcesFetched == false {
+            beerData.fetchAllBeerResources()
+            print("GATHERING RESOURCES")
+        }
+        
+        // load brewery picker data
+            self.SelectBrewery.dataSource = self
+            self.SelectBrewery.delegate = self
     }
 
     override func didReceiveMemoryWarning() {

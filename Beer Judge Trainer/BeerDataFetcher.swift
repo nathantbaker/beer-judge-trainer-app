@@ -8,39 +8,33 @@
 
 import Foundation
 
+// boolean to track when all resources are fetched
+var allResourcesFetched = false
+var resourcesFetchedCounter = 0
+
 // The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
     
     // properies on the class where beer resources are stored
-    var beer = [[String: AnyObject]]()
+    var beers = [[String: AnyObject]]()
     var breweries = [[String: AnyObject]]()
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
-    // fetch all resources needed from the API, then save it locally
-    func FetchAllBeerResources() {
-        self.GetResource(endpoint: "breweries")   { data in self.breweries = data }
-        self.GetResource(endpoint: "beers")       { data in self.beer = data }
-        self.GetResource(endpoint: "scoresheets") { data in self.scoresheets = data }
-        self.GetResource(endpoint: "categories")  { data in self.categories = data }
-    }
-    
     // function to get a resource from the API
-    func GetResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
+    func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
         //  build url
-        let apiRoot = "http://api.cancanawards.com/"
-        let urlWithParams = apiRoot + endpoint + "/"
-        let myUrl = NSURL(string: urlWithParams);
+        let myUrl = NSURL(string: "http://api.cancanawards.com/\(endpoint)/")
         
         // build request
-        let request = NSMutableURLRequest(url:myUrl! as URL);
+        let request = NSMutableURLRequest(url:myUrl! as URL)
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             
             // error handling
-            if error != nil {
+            if let error = error {
                 print("error=\(error)")
                 return
             }
@@ -50,13 +44,35 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = self.convertStringToDictionary(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print("The \(endpoint) dictionary has \(numberOfKeys!) items")
+            print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
+            
+            // track when all resources are fetched
+            resourcesFetchedCounter += 1
+            if resourcesFetchedCounter == 4 {
+                allResourcesFetched = true
+                print("✓ All resources fetched")
+                print("")
+            }
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
         
         }
         task.resume()
+    }
+    
+    // fetch all resources needed from the API, then store them locally
+    func fetchAllBeerResources() {
+        getResource(endpoint: "breweries")   {
+            [weak self](data) in self?.breweries = data
+            // once brewery data is fetch, build the menu
+            let home = HomeController()
+            home.createBreweryPicker()
+        }
+        getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
+        getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
+        getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
+                                             // using weak self to reduce likelihood of memory leaks
     }
     
     // function to convert JSON strings to dictionaries
@@ -73,5 +89,36 @@ public class BeerDataFetcher {
         }
         return nil
     }
+    
+    
+//    [
+//        [
+//            "url": http://api.cancanawards.com/breweries/1/,
+//            "brewery_name": Oskar Blues
+//        ],
+//        [
+//            "url": http://api.cancanawards.com/breweries/2/,
+//            "brewery_name": Tin Man],
+//        [
+//    ]
+    
+    // return array of breweries
+    func returnArrayOfBreweries() -> Array<String> {
+        
+        var arrayOfBreweries = [String]()
+        
+        for i in 0 ..< self.breweries.count {                 // iterate over brewery array
+            for (key, value) in self.breweries[i] {           // iterate over each dictionary
+                if key == "brewery_name" {                    // filter to just key "brewery_name"
+                    arrayOfBreweries.append(value as! String) // push value to array
+                }
+            }
+        }
+        
+        print(arrayOfBreweries)
+        
+        
+        return arrayOfBreweries
+        
+    }
 }
-

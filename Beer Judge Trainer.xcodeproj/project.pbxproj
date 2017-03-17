@@ -16,6 +16,7 @@
 		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
 		CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */; };
 		CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */; };
+		CDADDE331E7C766D00200292 /* Breweries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE321E7C766D00200292 /* Breweries.swift */; };
 		CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE646751E7847EB0056050F /* BeerDataFetcher.swift */; };
 		CDE6467F1E788BCE0056050F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE6467E1E788BCE0056050F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
 		CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerScoresheet.swift; sourceTree = "<group>"; };
 		CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparisonBot.swift; sourceTree = "<group>"; };
+		CDADDE321E7C766D00200292 /* Breweries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breweries.swift; sourceTree = "<group>"; };
 		CDE646751E7847EB0056050F /* BeerDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerDataFetcher.swift; sourceTree = "<group>"; };
 		CDE6467E1E788BCE0056050F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
+				CDADDE321E7C766D00200292 /* Breweries.swift */,
 				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
 				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
 				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
@@ -182,6 +185,7 @@
 			files = (
 				CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */,
 				CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */,
+				CDADDE331E7C766D00200292 /* Breweries.swift in Sources */,
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
 				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
