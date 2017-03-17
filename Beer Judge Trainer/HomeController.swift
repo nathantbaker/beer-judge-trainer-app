@@ -11,8 +11,9 @@ import UIKit
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     let beerData = BeerDataFetcher()
+    
+    var brewerySelectOptions = BeerDataFetcher().returnArrayOfBreweries()
 
-    var brewerySelectOptions = ["White", "Red", "Green", "Blue"]
 
     // select brewery picker
     @IBOutlet weak var SelectBrewery: UIPickerView!
@@ -37,8 +38,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-
-    
     // some buttons for testing
     @IBAction func getBreweries(_ sender: UIButton) {
         print(beerData.breweries)
@@ -61,7 +60,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // brewery picker
         self.SelectBrewery.dataSource = self
         self.SelectBrewery.delegate = self
-        
+
     }
 
     override func didReceiveMemoryWarning() {

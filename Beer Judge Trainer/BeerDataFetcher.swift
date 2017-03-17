@@ -63,7 +63,11 @@ public class BeerDataFetcher {
     
     // fetch all resources needed from the API, then store them locally
     func fetchAllBeerResources() {
-        getResource(endpoint: "breweries")   { [weak self](data) in self?.breweries = data }
+        getResource(endpoint: "breweries")   {
+            [weak self](data) in self?.breweries = data
+            // once brewery data is fetch, build the menu
+            self?.returnArrayOfBreweries()
+        }
         getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
         getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
         getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
@@ -84,5 +88,34 @@ public class BeerDataFetcher {
         }
         return nil
     }
+    
+    
+//    [
+//        [
+//            "url": http://api.cancanawards.com/breweries/1/,
+//            "brewery_name": Oskar Blues
+//        ],
+//        [
+//            "url": http://api.cancanawards.com/breweries/2/,
+//            "brewery_name": Tin Man],
+//        [
+//    ]
+    
+    
+    // return array of breweries
+    func returnArrayOfBreweries() -> Array<String> {
+        
+        var arrayOfBreweries = [String]()
+        
+        for i in 0 ..< self.breweries.count {                 // iterate over brewery array
+            for (key, value) in self.breweries[i] {           // iterate over each dictionary
+                if key == "brewery_name" {                    // filter to just key "brewery_name"
+                    arrayOfBreweries.append(value as! String) // push value to array
+                }
+            }
+        }
+        
+        return arrayOfBreweries
+        
+    }
 }
-
