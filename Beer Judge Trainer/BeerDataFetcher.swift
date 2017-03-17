@@ -63,12 +63,6 @@ public class BeerDataFetcher {
     
     // fetch all resources needed from the API, then store them locally
     func fetchAllBeerResources() {
-        getResource(endpoint: "breweries")   {
-            [weak self](data) in self?.breweries = data
-            // once brewery data is fetch, build the menu
-            let home = HomeController()
-            home.createBreweryPicker()
-        }
         getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
         getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
         getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
@@ -116,9 +110,11 @@ public class BeerDataFetcher {
         }
         
         print(arrayOfBreweries)
-        
-        
         return arrayOfBreweries
         
     }
+    
+
+    
+    
 }
