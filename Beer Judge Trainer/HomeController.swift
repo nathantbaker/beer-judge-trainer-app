@@ -29,9 +29,12 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 }
             }
             
-            self?.brewerySelectOptions = arrayOfBreweries;
+            print(arrayOfBreweries)
+            let alphabeticalArray = arrayOfBreweries.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+
+            self?.brewerySelectOptions = alphabeticalArray;
             self?.SelectBrewery.reloadAllComponents();
-        }
+        }        
     }
     
     // select brewery picker

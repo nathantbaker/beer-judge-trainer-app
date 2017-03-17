@@ -109,7 +109,8 @@ public class BeerDataFetcher {
             }
         }
         
-        print(arrayOfBreweries)
+
+
         return arrayOfBreweries
         
     }
