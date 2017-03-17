@@ -12,9 +12,16 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     let beerData = BeerDataFetcher()
     
-    var brewerySelectOptions = BeerDataFetcher().returnArrayOfBreweries()
-
-
+    var brewerySelectOptions = [String]()
+    
+    func createBreweryPicker() {
+        print("load that menu")
+        
+        // select brewery picker data
+        brewerySelectOptions = BeerDataFetcher().returnArrayOfBreweries()
+        
+    }
+    
     // select brewery picker
     @IBOutlet weak var SelectBrewery: UIPickerView!
     
@@ -35,7 +42,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let valueSelected = brewerySelectOptions[row] as String
         print(valueSelected)
-        
     }
     
     // some buttons for testing
@@ -51,16 +57,15 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         super.viewDidLoad()
         
-        // fetch all beer resources on home view load if they haven't been gathered yet 
+        // fetch all beer resources on home view load if they haven't been gathered yet
         if allResourcesFetched == false {
             beerData.fetchAllBeerResources()
             print("GATHERING RESOURCES")
         }
         
-        // brewery picker
-        self.SelectBrewery.dataSource = self
-        self.SelectBrewery.delegate = self
-
+        // load brewery picker data
+            self.SelectBrewery.dataSource = self
+            self.SelectBrewery.delegate = self
     }
 
     override func didReceiveMemoryWarning() {

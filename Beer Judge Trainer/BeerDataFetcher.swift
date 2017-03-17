@@ -66,7 +66,8 @@ public class BeerDataFetcher {
         getResource(endpoint: "breweries")   {
             [weak self](data) in self?.breweries = data
             // once brewery data is fetch, build the menu
-            self?.returnArrayOfBreweries()
+            let home = HomeController()
+            home.createBreweryPicker()
         }
         getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
         getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
@@ -101,7 +102,6 @@ public class BeerDataFetcher {
 //        [
 //    ]
     
-    
     // return array of breweries
     func returnArrayOfBreweries() -> Array<String> {
         
@@ -114,6 +114,9 @@ public class BeerDataFetcher {
                 }
             }
         }
+        
+        print(arrayOfBreweries)
+        
         
         return arrayOfBreweries
         
