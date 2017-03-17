@@ -12,14 +12,26 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     let beerData = BeerDataFetcher()
     
-    var brewerySelectOptions = [String]()
+    var brewerySelectOptions = ["Select Brewery"]
     
-    func createBreweryPicker() {
+    func loadBreweryPickerData() {
         print("load that menu")
         
-        // select brewery picker data
-        brewerySelectOptions = BeerDataFetcher().returnArrayOfBreweries()
-        
+        BeerDataFetcher().getResource(endpoint: "breweries") { [weak self](data) in
+            
+            var arrayOfBreweries = [String]()
+            
+            for i in 0 ..< data.count {                 // iterate over brewery array
+                for (key, value) in data[i] {           // iterate over each dictionary
+                    if key == "brewery_name" {                    // filter to just key "brewery_name"
+                        arrayOfBreweries.append(value as! String) // push value to array
+                    }
+                }
+            }
+            
+            self?.brewerySelectOptions = arrayOfBreweries;
+            self?.SelectBrewery.reloadAllComponents();
+        }
     }
     
     // select brewery picker
@@ -58,6 +70,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.viewDidLoad()
         
         // fetch all beer resources on home view load if they haven't been gathered yet
+        
+        loadBreweryPickerData()
         if allResourcesFetched == false {
             beerData.fetchAllBeerResources()
             print("GATHERING RESOURCES")
