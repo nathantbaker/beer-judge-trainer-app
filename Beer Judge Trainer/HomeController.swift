@@ -12,7 +12,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     let beerData = BeerDataFetcher()
 
-    var pickerDataSource = ["White", "Red", "Green", "Blue"]
+    var brewerySelectOptions = ["White", "Red", "Green", "Blue"]
 
     // select brewery picker
     @IBOutlet weak var SelectBrewery: UIPickerView!
@@ -21,36 +21,23 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-//     brewery picker methods
+    // brewery picker methods
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerDataSource.count
+        return brewerySelectOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerDataSource[row]
+        return brewerySelectOptions[row]
+    }
+    
+    // store value selected
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let valueSelected = brewerySelectOptions[row] as String
+        print(valueSelected)
+        
     }
     
 
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        if(row == 0)
-        {
-            self.view.backgroundColor = UIColor.white;
-        }
-        else if(row == 1)
-        {
-            self.view.backgroundColor = UIColor.red
-        }
-        else if(row == 2)
-        {
-            self.view.backgroundColor =  UIColor.green
-        }
-        else
-        {
-            self.view.backgroundColor = UIColor.blue
-        }
-    }
     
     // some buttons for testing
     @IBAction func getBreweries(_ sender: UIButton) {
@@ -72,8 +59,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
         
         // brewery picker
-            self.SelectBrewery.dataSource = self
-            self.SelectBrewery.delegate = self
+        self.SelectBrewery.dataSource = self
+        self.SelectBrewery.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
