@@ -68,10 +68,6 @@ public class BeerDataFetcher {
         getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
         getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
                                              // using weak self to reduce likelihood of memory leaks
-        
-        
-        
-
     }
     
     // function to convert JSON strings to dictionaries
