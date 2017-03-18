@@ -77,24 +77,23 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             
             if( pickerView == SelectBrewery ) {
-                let brewerySelected = brewerySelectOptions[row] as String
-                userSelectedBrewery = brewerySelected
+                userSelectedBrewery = brewerySelectOptions[row] as String
                 beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
                 // store current beer row as user select in case users presses Rate before selecting the auto selected beer
-                if userSelectedBeer != "none" {
-                    userSelectedBeer = beerSelectOptions[0] as String; setTextofRateButton()
-                    print("User selected brewery: \(userSelectedBrewery)")
-                }
+                userSelectedBeer = beerSelectOptions[0] as String
+                setTextofRateButton()
+                print("User selected brewery: \(userSelectedBrewery)")
 
             }
             
             if( pickerView == SelectBeer ) {
-                let valueSelected = beerSelectOptions[row] as String
-                userSelectedBeer = valueSelected
-                setTextofRateButton() // dynamically change Rate button
+                userSelectedBeer = beerSelectOptions[row] as String
                 brewerySelectOptions = filterBreweryBasedOnBeer()
                 self.SelectBrewery.reloadAllComponents() // redraw beer picker
+                // store current brewery row as user select in case users presses Rate before selecting the auto selected brewery
+                userSelectedBrewery = brewerySelectOptions[0] as String
+                setTextofRateButton() // dynamically change Rate button
                 print("User selected beer: \(userSelectedBeer)")
             }
         }
@@ -146,32 +145,28 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // dynamically set Rate button and helper info
 
     @IBOutlet weak var rateBeerButton: UIButton!
-    
     @IBOutlet weak var fullBeerNameLabel: UILabel!
     @IBOutlet weak var beerCategoryLabel: UILabel!
     
+    // by the time this runs, there is a default selected beer and brewery
     func setTextofRateButton() {
-//        if userSelectedBrewery != "none" && userSelectedBeer != "none"{
-//            
-//            rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
-//        }
-//            rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
-        beerCategoryLabel.text = "Red Ale"
+        rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
+        fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
+        fullBeerNameLabel.text = "\(userSelectedBrewery)'s \(userSelectedBeer)"
+        beerCategoryLabel.text = "Red Ale" // need to make this dynamic still
     }
 
     //  don't allow users to click Rate Beer if they didn't select anything
-
     @IBAction func rateBeerOrError(_ sender: UIButton) {
-        
-        if userSelectedBrewery == "none" && userSelectedBeer == "none" {print("need brewery and beer")}
-        else if userSelectedBrewery == "none" {print("need brewery")}
-        else if userSelectedBeer == "none" {print("need beer")}
-        else {
-            print("you're good")
-            
+        // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
+        if userSelectedBrewery == "none" && userSelectedBeer == "none" {
+            // error message
+            fullBeerNameLabel.textColor = UIColor.red
+            fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
+        } else {
+            // send them to the rating view
             self.performSegue(withIdentifier: "RateBeerSegue", sender: self)
         }
-    
     }
 
     override func viewDidLoad() {

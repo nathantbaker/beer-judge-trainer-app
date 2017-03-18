@@ -111,6 +111,7 @@
                         <outlet property="SelectBrewery" destination="ggv-wn-IJs" id="8OT-PA-SAj"/>
                         <outlet property="beerCategoryLabel" destination="iNv-t1-aDe" id="u28-7N-gzR"/>
                         <outlet property="fullBeerNameLabel" destination="gmc-ZS-6ED" id="0wI-bW-CI5"/>
+                        <outlet property="rateBeerButton" destination="wfM-oC-mSl" id="f69-jG-2lg"/>
                         <segue destination="AKn-c2-0U0" kind="show" identifier="RateBeerSegue" id="hBA-JL-8QW"/>
                     </connections>
                 </viewController>
