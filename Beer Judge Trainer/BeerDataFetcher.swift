@@ -12,11 +12,10 @@ import Foundation
 var allResourcesFetched = false
 var resourcesFetchedCounter = 0
 
+
 // The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
-    
-    let helperBot = HelperFunctions()
-    
+
     // properies on the class where beer resources are stored
     var beers = [[String: AnyObject]]()
     var breweries = [[String: AnyObject]]()
@@ -52,7 +51,7 @@ public class BeerDataFetcher {
             // parse results into dictionary
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             let resultString = results as! String
-            let dataDictionary = self.helperBot.convertStringToDictionaryOfDictionaries(text: resultString)
+            let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
             let numberOfKeys = dataDictionary?.count
             print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
             

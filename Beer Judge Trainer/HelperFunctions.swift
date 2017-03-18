@@ -44,5 +44,30 @@ class HelperFunctions {
         }
         return nil
     }
+    
+    // function to return an array of values which are tied to another value (beers of a brewery, etc)
+    public func returnArrayBasedOnFiltering(dataSet: [[String:AnyObject]], filter: String) -> [String] {
+        
+        for brewery in dataSet {                    // iterate over brewery array
+            print(brewery)
+//            for (key, value) in brewery[i] {                  // iterate over each dictionary
+//                if key == filterKey {                         // filter to just key like "brewery_name" etc
+//                    arrayOfBreweries.append(value as! String) // push value to array
+//                }
+//            }
+        }
 
+        
+        
+        
+        // find id for provided brewery
+        
+        // find beers that have the same brewery id
+        
+        // format to an array
+        
+        return ["Best Beer Eva", "Second Best"]
+    }
+        
+    
 }
