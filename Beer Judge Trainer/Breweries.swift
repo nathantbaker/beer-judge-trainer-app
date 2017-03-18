@@ -9,11 +9,18 @@
 import Foundation
 
 class Breweries {
+
+    var list: [[String: AnyObject]] {
+        get { return self.list }
+        set { self.list = newValue }
+    }
     
-    private var _name: String = ""
+//    let = [
+//        ["jackalope":
+//            
+//        ]
+//    
+//    
+//    ]
     
-    var name: String {
-            set { _name = newValue }
-            get { return _name }
-        }
 }

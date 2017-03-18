@@ -23,6 +23,14 @@ public class BeerDataFetcher {
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
+    // setters
+    func setBreweryData (breweryData: [[String: AnyObject]]) {
+        self.breweries = breweryData
+    }
+    func setBeerData (beerData: [[String: AnyObject]]) {
+        self.beers = beerData
+    }
+    
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
@@ -48,14 +56,6 @@ public class BeerDataFetcher {
             let numberOfKeys = dataDictionary?.count
             print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
             
-            // track when all resources are fetched
-            resourcesFetchedCounter += 1
-            if resourcesFetchedCounter == 4 {
-                allResourcesFetched = true
-                print("✓ All resources fetched")
-                print("")
-            }
-            
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
         
@@ -63,12 +63,15 @@ public class BeerDataFetcher {
         task.resume()
     }
     
-    // fetch all resources needed from the API, then store them locally
+    // get scoresheet and categories data.
+    // beers and breweries initially fetched in home view controller
     func fetchAllBeerResources() {
-        getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
-        getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
-        getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
-                                             // using weak self to reduce likelihood of memory leaks
+        getResource(endpoint: "scoresheets") {
+            // using weak self to reduce likelihood of memory leaks
+            [weak self](data) in self?.scoresheets = data
+        }
+        getResource(endpoint: "categories") {
+            [weak self](data) in self?.categories = data
+        }
     }
-    
 }
