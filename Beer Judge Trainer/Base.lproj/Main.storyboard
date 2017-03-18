@@ -61,7 +61,7 @@
                                     <color key="titleColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JBh-1w-cDD" kind="show" id="Zuw-k7-1mm"/>
+                                    <segue destination="AKn-c2-0U0" kind="show" id="yuX-03-8xf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
@@ -134,6 +134,41 @@
             </objects>
             <point key="canvasLocation" x="-111" y="-372"/>
         </scene>
+        <!--Rate Beer-->
+        <scene sceneID="aG0-h5-kwN">
+            <objects>
+                <viewController id="AKn-c2-0U0" customClass="RateBeerController" customModule="Beer_Judge_Trainer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VsH-JL-SwY"/>
+                        <viewControllerLayoutGuide type="bottom" id="f26-Rz-GMC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k2V-Ud-8lD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agq-i4-KtC">
+                                <rect key="frame" x="50" y="592" width="274" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.50980392159999999" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Compare Export Scores">
+                                    <color key="titleColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JBh-1w-cDD" kind="show" id="W23-dQ-a7p"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Rate Beer" id="KMA-Ia-JST">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="V2r-XL-hik"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFv-5T-ozE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1621.5999999999999" y="-322.48875562218893"/>
+        </scene>
         <!--Results-->
         <scene sceneID="Cel-g1-OkH">
             <objects>
@@ -145,13 +180,39 @@
                     <view key="view" contentMode="scaleToFill" id="9Ae-WH-zml">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADf-Re-58U">
+                                <rect key="frame" x="50" y="560" width="274" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.50980392159999999" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Rate Another Beer">
+                                    <color key="titleColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="ZzB-D7-QKx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDW-aa-Dmm">
+                                <rect key="frame" x="29" y="617" width="316" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <state key="normal" title="You'll lose your results, so take a screenshoot!"/>
+                                <connections>
+                                    <action selector="takeScreenshot:" destination="JBh-1w-cDD" eventType="touchUpInside" id="S18-H1-Yn4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="fAc-6h-OBm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAn-bc-wVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831" y="-322"/>
+            <point key="canvasLocation" x="2344.8000000000002" y="-322.48875562218893"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZzB-D7-QKx"/>
+    </inferredMetricsTieBreakers>
 </document>
