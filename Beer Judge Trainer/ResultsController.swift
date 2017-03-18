@@ -10,6 +10,7 @@ import UIKit
 
 class ResultsController: UIViewController {
     
+    // BUG https://forums.developer.apple.com/thread/63189
     @IBAction func takeScreenshot(_ sender: Any) {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)

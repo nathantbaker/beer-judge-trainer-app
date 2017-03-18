@@ -61,7 +61,7 @@
                                     <color key="titleColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="AKn-c2-0U0" kind="show" id="yuX-03-8xf"/>
+                                    <action selector="rateBeerOrError:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HL2-vw-Ypc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
@@ -111,12 +111,12 @@
                         <outlet property="SelectBrewery" destination="ggv-wn-IJs" id="8OT-PA-SAj"/>
                         <outlet property="beerCategoryLabel" destination="iNv-t1-aDe" id="u28-7N-gzR"/>
                         <outlet property="fullBeerNameLabel" destination="gmc-ZS-6ED" id="0wI-bW-CI5"/>
-                        <outlet property="rateBeerButton" destination="wfM-oC-mSl" id="x9G-U0-e3t"/>
+                        <segue destination="AKn-c2-0U0" kind="show" identifier="RateBeerSegue" id="hBA-JL-8QW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.60000000000002" y="-322.48875562218893"/>
+            <point key="canvasLocation" x="927" y="-332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nkL-oV-y1Z">
@@ -167,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFv-5T-ozE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621.5999999999999" y="-322.48875562218893"/>
+            <point key="canvasLocation" x="1711" y="-322"/>
         </scene>
         <!--Results-->
         <scene sceneID="Cel-g1-OkH">

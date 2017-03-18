@@ -16,8 +16,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // intial data shown for pickers
     var brewerySelectOptions = ["Select Brewery"]
     var beerSelectOptions = ["Select Beer"]
-    var userSelectedBrewery = String()
-    var userSelectedBeer = String()
+    var userSelectedBrewery = "none"
+    var userSelectedBeer = "none"
     var breweryNames = [String]()
     var beerNames = [String]()
     
@@ -103,8 +103,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // function to filter beer picker by brewery selected
         func filterBeerBasedOnBrewery() -> [String] {
             
-            // dynamically change Rate button
-            setTextofRateButton()
+            setTextofRateButton() // dynamically change Rate button
             
             let breweries = apiData.getBreweryData()
             let beer = apiData.getBeerData()
@@ -151,13 +150,28 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var beerCategoryLabel: UILabel!
     
     func setTextofRateButton() {
-        rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
-        fullBeerNameLabel.text = "\(userSelectedBrewery)'s \(userSelectedBeer)"
+//        if userSelectedBrewery != "none" && userSelectedBeer != "none"{
+//            
+//            rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
+//        }
+//            rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
         beerCategoryLabel.text = "Red Ale"
     }
+
+    //  don't allow users to click Rate Beer if they didn't select anything
+
+    @IBAction func rateBeerOrError(_ sender: UIButton) {
+        
+        if userSelectedBrewery == "none" && userSelectedBeer == "none" {print("need brewery and beer")}
+        else if userSelectedBrewery == "none" {print("need brewery")}
+        else if userSelectedBeer == "none" {print("need beer")}
+        else {
+            print("you're good")
+            
+            self.performSegue(withIdentifier: "RateBeerSegue", sender: self)
+        }
     
-    // set beer info at bottom
-    
+    }
 
     override func viewDidLoad() {
         
