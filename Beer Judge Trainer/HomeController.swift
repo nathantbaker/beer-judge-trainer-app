@@ -76,7 +76,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             if( pickerView == SelectBrewery ) {
                 let valueSelected = brewerySelectOptions[row] as String
                 userSelectedBrewery = valueSelected
-                beerSelectOptions = returnAllBeersFromBrewery(brewery: userSelectedBrewery)
+                beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
                 print("User selected brewery: \(userSelectedBrewery)")
             }
@@ -84,6 +84,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             if( pickerView == SelectBeer ) {
                 let valueSelected = beerSelectOptions[row] as String
                 userSelectedBeer = valueSelected
+                brewerySelectOptions = filterBreweryBasedOnBeer()
+                self.SelectBrewery.reloadAllComponents() // redraw beer picker
                 print("User selected beer: \(userSelectedBeer)")
             }
         }
@@ -91,15 +93,28 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     //picker filtering functions
     
         // function to filter beer picker by brewery selected
-        func returnAllBeersFromBrewery( brewery: String ) -> [String] {
+        func filterBeerBasedOnBrewery() -> [String] {
             
             let breweries = apiData.getBreweryData()
             let beer = apiData.getBeerData()
             
-            return helperBot.returnArrayBasedOnFiltering(
+            return helperBot.returnAllBeersFromBrewery(
                 beerData: beer,
                 breweryData: breweries,
                 filterWord: userSelectedBrewery
+            )
+        }
+    
+        // function to filter brewery picker by beer selected
+        func filterBreweryBasedOnBeer() -> [String] {
+            
+            let breweries = apiData.getBreweryData()
+            let beer = apiData.getBeerData()
+            
+            return helperBot.returnBreweryOfBeer(
+                beerData: beer,
+                breweryData: breweries,
+                filterWord: userSelectedBeer
             )
         }
     

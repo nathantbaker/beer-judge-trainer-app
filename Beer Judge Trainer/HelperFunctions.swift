@@ -45,8 +45,8 @@ class HelperFunctions {
         return nil
     }
     
-    // function to return an array of values which are tied to another value (beers of a brewery, etc)
-    public func returnArrayBasedOnFiltering(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
+    // function to return an array of all beers from a specific brewery
+    public func returnAllBeersFromBrewery(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
         
         // placeholders
         var targetBreweryId = String()
@@ -70,9 +70,41 @@ class HelperFunctions {
             }
         }
         
-        print("Target Brewery Id: \(targetBreweryId)")
         return ArrayOfBeers
     }
+    
+    // function to return an array of the brewery associated with a beer
+    public func returnBreweryOfBeer(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
+        print("returnBreweryOfBeer function runs")
         
+        // placeholders
+        var targetBreweryId = String()
+        var ArrayOfBrewery = [String]()
+        
+        // target dictionary with the id
+        for beer in beerData {
+            for (_, value) in beer {                 // loop over brewery array
+                if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
+                    targetBreweryId = beer["idBreweries"] as! String   // capture brewery id for the brewery
+                    print("targetBreweryId: \(targetBreweryId)")
+                }
+            }
+        }
+        
+        // find brewery dictionaries with that id
+        for brewery in breweryData {
+            print(brewery)
+            for (_, value) in brewery {                 // loop over beer array
+                if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
+                    ArrayOfBrewery.append(brewery["brewery_name"] as! String)
+                }
+            }
+        }
+        
+//        print("ArrayOfBrewery: \(ArrayOfBrewery)")
+        return ArrayOfBrewery
+    }
+
+    
     
 }
