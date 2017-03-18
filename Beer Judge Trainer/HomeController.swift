@@ -92,8 +92,15 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
         // function to filter beer picker by brewery selected
         func returnAllBeersFromBrewery( brewery: String ) -> [String] {
-            let data = apiData.getBreweryData()
-            return helperBot.returnArrayBasedOnFiltering(dataSet: data, filterWord: userSelectedBrewery)
+            
+            let breweries = apiData.getBreweryData()
+            let beer = apiData.getBeerData()
+            
+            return helperBot.returnArrayBasedOnFiltering(
+                beerData: beer,
+                breweryData: breweries,
+                filterWord: userSelectedBrewery
+            )
         }
     
 

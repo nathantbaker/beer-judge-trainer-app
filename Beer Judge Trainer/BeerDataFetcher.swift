@@ -32,6 +32,9 @@ public class BeerDataFetcher {
     func setBeerData (beerData: [[String: AnyObject]]) {
         beers = beerData
     }
+    func getBeerData () -> [[String: AnyObject]] {
+        return beers
+    }
     
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {

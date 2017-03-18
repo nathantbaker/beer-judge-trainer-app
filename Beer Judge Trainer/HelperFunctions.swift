@@ -46,37 +46,32 @@ class HelperFunctions {
     }
     
     // function to return an array of values which are tied to another value (beers of a brewery, etc)
-    public func returnArrayBasedOnFiltering(dataSet: [[String:AnyObject]], filterWord: String) -> [String] {
+    public func returnArrayBasedOnFiltering(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
         
         // placeholders
-        var targetBreweryDictionary = [String: AnyObject]()
         var targetBreweryId = String()
+        var ArrayOfBeers = [String]()
         
         // target dictionary with the id
-        for brewery in dataSet {
+        for brewery in breweryData {
             for (_, value) in brewery {                 // loop over brewery array
                 if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
-                    targetBreweryDictionary = brewery   // capture the whole dictionary for the brewery
+                    targetBreweryId = brewery["url"] as! String   // capture brewery id for the brewery
+                }
+            }
+        }
+      
+        // find all beers dictionaries with that id
+        for beer in beerData {
+            for (_, value) in beer {                 // loop over beer array
+                if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
+                    ArrayOfBeers.append(beer["beer_name"] as! String)
                 }
             }
         }
         
-        // store the brewery id
-        for (key, value) in targetBreweryDictionary {
-            if key == "url" {
-                targetBreweryId = value as! String
-            }
-        }
-        
-        // find all beers dictionaries with that id
-        
         print("Target Brewery Id: \(targetBreweryId)")
-        
-        
-        
-        // format to an array
-        
-        return ["Best Beer Eva", "Second Best"]
+        return ArrayOfBeers
     }
         
     
