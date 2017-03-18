@@ -14,6 +14,7 @@
 		CD0DC6C71E78398C007F6A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C61E78398C007F6A63 /* Assets.xcassets */; };
 		CD0DC6CA1E78398C007F6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */; };
 		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
+		CD5129F71E7DDB4F000388E4 /* ExpertScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */; };
 		CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */; };
 		CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */; };
 		CDADDE331E7C766D00200292 /* Breweries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE321E7C766D00200292 /* Breweries.swift */; };
@@ -33,6 +34,7 @@
 		CD0DC6C91E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD0DC6CB1E78398C007F6A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpertScoresheet.swift; sourceTree = "<group>"; };
 		CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerScoresheet.swift; sourceTree = "<group>"; };
 		CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparisonBot.swift; sourceTree = "<group>"; };
 		CDADDE321E7C766D00200292 /* Breweries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breweries.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
 				CDADDE321E7C766D00200292 /* Breweries.swift */,
 				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
+				CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */,
 				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
 				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
 			);
@@ -198,6 +201,7 @@
 				CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */,
 				CDADDE391E7CF5A500200292 /* RateBeerController.swift in Sources */,
 				CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */,
+				CD5129F71E7DDB4F000388E4 /* ExpertScoresheet.swift in Sources */,
 				CDADDE371E7C905D00200292 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
