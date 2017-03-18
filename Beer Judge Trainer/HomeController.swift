@@ -8,6 +8,10 @@
 
 import UIKit
 
+//global variables available to other controllers
+var userSelectedBrewery = "none"
+var userSelectedBeer = "none"
+
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let apiData = BeerDataFetcher()
@@ -16,8 +20,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // intial data shown for pickers
     var brewerySelectOptions = ["Select Brewery"]
     var beerSelectOptions = ["Select Beer"]
-    var userSelectedBrewery = "none"
-    var userSelectedBeer = "none"
     var breweryNames = [String]()
     var beerNames = [String]()
     
@@ -81,9 +83,11 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
                 // store current beer row as user select in case users presses Rate before selecting the auto selected beer
-                userSelectedBeer = beerSelectOptions[0] as String
-                setTextofRateButton()
-                print("User selected brewery: \(userSelectedBrewery)")
+                if userSelectedBrewery != "none" { // dont' crash if still loading data
+                    userSelectedBeer = beerSelectOptions[0] as String
+                    setTextofRateButton()
+                    print("User selected brewery: \(userSelectedBrewery)")
+                }
 
             }
             
@@ -92,9 +96,11 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 brewerySelectOptions = filterBreweryBasedOnBeer()
                 self.SelectBrewery.reloadAllComponents() // redraw beer picker
                 // store current brewery row as user select in case users presses Rate before selecting the auto selected brewery
-                userSelectedBrewery = brewerySelectOptions[0] as String
-                setTextofRateButton() // dynamically change Rate button
-                print("User selected beer: \(userSelectedBeer)")
+                if userSelectedBeer != "none" { // dont' crash if still loading data
+                    userSelectedBrewery = brewerySelectOptions[0] as String
+                    setTextofRateButton() // dynamically change Rate button
+                    print("User selected beer: \(userSelectedBeer)")
+                }
             }
         }
     
@@ -160,7 +166,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func rateBeerOrError(_ sender: UIButton) {
         // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
         if userSelectedBrewery == "none" && userSelectedBeer == "none" {
-            // error message
             fullBeerNameLabel.textColor = UIColor.red
             fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
         } else {

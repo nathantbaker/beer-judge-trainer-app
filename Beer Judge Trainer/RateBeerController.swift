@@ -8,6 +8,16 @@
 
 import UIKit
 
-class RateBeerController: UIViewController  {    
+//create user scoresheet to store inputs
+let userInputs = TrainerScoreSheet(
+    beer: userSelectedBeer,
+    brewery: userSelectedBrewery
+)
+
+class RateBeerController: UIViewController  {
     
+    override func viewDidLoad() {
+        self.title = "Rate \(userInputs.beer_name)"
+    
+    }
 }
