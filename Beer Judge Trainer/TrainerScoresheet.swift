@@ -9,3 +9,17 @@
 import Foundation
 
 // class that gathers and stores user inputs
+public class TrainerScoreSheet {
+    
+    public var beer_name = ""
+    public var brewery_name = ""
+    
+    public var full_name: String {
+        return "\(brewery_name)'s \(beer_name)"
+    }
+    
+    init(beer: String, brewery: String) {
+        self.beer_name = beer
+        self.brewery_name = brewery
+    }
+}
