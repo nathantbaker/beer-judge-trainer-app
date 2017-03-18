@@ -11,20 +11,19 @@ import Foundation
 class HelperFunctions {
     
     // function to convert array of dictionarys to one array based on a key 
-    public func convertArrayOfDictionariesToArray( rawData:[[String: AnyObject]] ) -> [String] {
+    public func convertArrayOfDictionariesToArray( rawData:[[String: AnyObject]], filterKey: String ) -> [String] {
     
         var arrayOfBreweries = [String]()
     
         for i in 0 ..< rawData.count {                        // iterate over brewery array
             for (key, value) in rawData[i] {                  // iterate over each dictionary
-                if key == "brewery_name" {                    // filter to just key "brewery_name"
+                if key == filterKey {                         // filter to just key like "brewery_name" etc
                     arrayOfBreweries.append(value as! String) // push value to array
                     }
                 }
         }
-        
-        // alphabetize the results
-        let alphabeticalArray = arrayOfBreweries.sorted {
+    
+        let alphabeticalArray = arrayOfBreweries.sorted { // alphabetize the results
             $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending
         }
     

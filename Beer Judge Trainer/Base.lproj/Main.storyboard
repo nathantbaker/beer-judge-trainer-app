@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
-                                <rect key="frame" x="16" y="423" width="140" height="30"/>
+                                <rect key="frame" x="-7" y="528" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Breweries"/>
                                 <connections>
@@ -53,7 +53,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-F7-G4U">
-                                <rect key="frame" x="30" y="456" width="112" height="30"/>
+                                <rect key="frame" x="7" y="561" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Beers"/>
                                 <connections>
@@ -61,12 +61,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assign up to 50 points" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiL-zw-PLF">
-                                <rect key="frame" x="63" y="370" width="189" height="55"/>
+                                <rect key="frame" x="186" y="516" width="189" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ty4-R1-dAX">
+                                <rect key="frame" x="0.0" y="310" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -74,6 +78,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="FnV-Wo-n9m"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="SelectBeer" destination="ty4-R1-dAX" id="DGH-ws-AGv"/>
                         <outlet property="SelectBrewery" destination="ggv-wn-IJs" id="8OT-PA-SAj"/>
                     </connections>
                 </viewController>
