@@ -72,21 +72,26 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             if pickerView == SelectBeer { return beerSelectOptions[row] }
             return nil
         }
-        
+    
+ 
+    
         // store selected picker data
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             
             if( pickerView == SelectBrewery ) {
-                let valueSelected = brewerySelectOptions[row] as String
-                userSelectedBrewery = valueSelected
+                let brewerySelected = brewerySelectOptions[row] as String
+                userSelectedBrewery = brewerySelected
                 beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
+                // store current beer row as user select in case users presses Rate before selecting the auto selected beer
+                userSelectedBeer = beerSelectOptions[0] as String; setTextofRateButton()
                 print("User selected brewery: \(userSelectedBrewery)")
             }
             
             if( pickerView == SelectBeer ) {
                 let valueSelected = beerSelectOptions[row] as String
                 userSelectedBeer = valueSelected
+                setTextofRateButton() // dynamically change Rate button
                 brewerySelectOptions = filterBreweryBasedOnBeer()
                 self.SelectBrewery.reloadAllComponents() // redraw beer picker
                 print("User selected beer: \(userSelectedBeer)")
@@ -97,6 +102,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
         // function to filter beer picker by brewery selected
         func filterBeerBasedOnBrewery() -> [String] {
+            
+            // dynamically change Rate button
+            setTextofRateButton()
             
             let breweries = apiData.getBreweryData()
             let beer = apiData.getBeerData()
@@ -134,6 +142,21 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.SelectBeer.reloadAllComponents() // redraw beer picker
             print("reset beer picker")
         }
+    
+    // dynamically set Rate button and helper info
+
+    @IBOutlet weak var rateBeerButton: UIButton!
+    
+    @IBOutlet weak var fullBeerNameLabel: UILabel!
+    @IBOutlet weak var beerCategoryLabel: UILabel!
+    
+    func setTextofRateButton() {
+        rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
+        fullBeerNameLabel.text = "\(userSelectedBrewery)'s \(userSelectedBeer)"
+        beerCategoryLabel.text = "Red Ale"
+    }
+    
+    // set beer info at bottom
     
 
     override func viewDidLoad() {

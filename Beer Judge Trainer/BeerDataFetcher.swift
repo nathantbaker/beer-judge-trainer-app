@@ -59,7 +59,7 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
+            print(" • The \(endpoint) dictionary has \(numberOfKeys!) items")
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])

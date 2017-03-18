@@ -75,7 +75,6 @@ class HelperFunctions {
     
     // function to return an array of the brewery associated with a beer
     public func returnBreweryOfBeer(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
-        print("returnBreweryOfBeer function runs")
         
         // placeholders
         var targetBreweryId = String()
@@ -93,7 +92,6 @@ class HelperFunctions {
         
         // find brewery dictionaries with that id
         for brewery in breweryData {
-            print(brewery)
             for (_, value) in brewery {                 // loop over beer array
                 if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
                     ArrayOfBrewery.append(brewery["brewery_name"] as! String)
@@ -101,9 +99,11 @@ class HelperFunctions {
             }
         }
         
-//        print("ArrayOfBrewery: \(ArrayOfBrewery)")
         return ArrayOfBrewery
     }
+    
+    // function to return the beer category associated with a beer
+    // ...
 
     
     
