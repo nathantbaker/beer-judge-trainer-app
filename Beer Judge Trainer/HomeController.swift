@@ -18,6 +18,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var beerSelectOptions = ["Select Beer"]
     var userSelectedBrewery = String()
     var userSelectedBeer = String()
+    var breweryNames = [String]()
+    var beerNames = [String]()
+    
     
     // populate brewery picker with data
     func loadBreweryPickerData() {
@@ -25,9 +28,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         apiData.getResource(endpoint: "breweries") { [weak self](data) in
             // store it for later
             self?.apiData.setBreweryData(breweryData: data)
-            // format data for picker
-            let breweryData = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name")
-            self?.brewerySelectOptions = breweryData!
+            // format data for picker and store it for later
+            self?.breweryNames = (self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name"))!
+            self?.brewerySelectOptions = (self!.breweryNames)
             self?.SelectBrewery.reloadAllComponents()   // reload picker interface
         }
     }
@@ -38,9 +41,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         apiData.getResource(endpoint: "beers") { [weak self](data) in
             // store it for later
             self?.apiData.setBeerData(beerData: data)
-            // format data for picker
-            let BeerNames = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name")
-            self?.beerSelectOptions = BeerNames!
+            // format data for picker and store it for later
+            self?.beerNames = (self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name"))!
+            self?.beerSelectOptions = (self!.beerNames)
             self?.SelectBeer.reloadAllComponents()  // reload picker interface
         }
     }
@@ -118,15 +121,20 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             )
         }
     
+        // reset brewery picker
+        @IBAction func resetBreweryPicker(_ sender: UIButton) {
+            brewerySelectOptions = self.breweryNames
+            self.SelectBrewery.reloadAllComponents() // redraw brewery picker
+            print("reset brewery picker")
+        }
 
-
-    // some buttons for testing
-    @IBAction func getBreweries(_ sender: UIButton) {
-        print(apiData.scoresheets)
-    }
-    @IBAction func getBeers(_ sender: UIButton) {
-        print(apiData.categories)
-    }
+        // reset beer picker
+        @IBAction func resetBeerPicker(_ sender: UIButton) {
+            beerSelectOptions = self.beerNames
+            self.SelectBeer.reloadAllComponents() // redraw beer picker
+            print("reset beer picker")
+        }
+    
 
     override func viewDidLoad() {
         
