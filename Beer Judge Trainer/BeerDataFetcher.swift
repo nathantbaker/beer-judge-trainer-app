@@ -12,14 +12,26 @@ import Foundation
 var allResourcesFetched = false
 var resourcesFetchedCounter = 0
 
+
 // The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
-    
+
     // properies on the class where beer resources are stored
     var beers = [[String: AnyObject]]()
     var breweries = [[String: AnyObject]]()
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
+    
+    // setters and getters
+    func setBreweryData (breweryData: [[String: AnyObject]]) {
+        breweries = breweryData
+    }
+    func getBreweryData () -> [[String: AnyObject]] {
+        return breweries
+    }
+    func setBeerData (beerData: [[String: AnyObject]]) {
+        beers = beerData
+    }
     
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
@@ -42,17 +54,9 @@ public class BeerDataFetcher {
             // parse results into dictionary
             let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             let resultString = results as! String
-            let dataDictionary = self.convertStringToDictionary(text: resultString)
+            let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
             let numberOfKeys = dataDictionary?.count
             print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
-            
-            // track when all resources are fetched
-            resourcesFetchedCounter += 1
-            if resourcesFetchedCounter == 4 {
-                allResourcesFetched = true
-                print("✓ All resources fetched")
-                print("")
-            }
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
@@ -61,44 +65,15 @@ public class BeerDataFetcher {
         task.resume()
     }
     
-    // fetch all resources needed from the API, then store them locally
+    // get scoresheet and categories data.
+    // beers and breweries initially fetched in home view controller
     func fetchAllBeerResources() {
-        getResource(endpoint: "beers")       { [weak self](data) in self?.beers = data }
-        getResource(endpoint: "scoresheets") { [weak self](data) in self?.scoresheets = data }
-        getResource(endpoint: "categories")  { [weak self](data) in self?.categories = data }
-                                             // using weak self to reduce likelihood of memory leaks
-    }
-    
-    // function to convert JSON strings to dictionaries
-    func convertStringToDictionary(text: String) -> [[String: AnyObject]]? {
-        
-        if let data = text.data(using: String.Encoding.utf8) {
-            do {
-                // return a dictionary of dictionaries
-                // with strings as keys and whatevs as values
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [[String:AnyObject]]
-            } catch let error as NSError {
-                print(error)
-            }
+        getResource(endpoint: "scoresheets") {
+            // using weak self to reduce likelihood of memory leaks
+            [weak self](data) in self?.scoresheets = data
         }
-        return nil
+        getResource(endpoint: "categories") {
+            [weak self](data) in self?.categories = data
+        }
     }
-    
-    
-//    [
-//        [
-//            "url": http://api.cancanawards.com/breweries/1/,
-//            "brewery_name": Oskar Blues
-//        ],
-//        [
-//            "url": http://api.cancanawards.com/breweries/2/,
-//            "brewery_name": Tin Man],
-//        [
-//    ]
-    
-
-    
-
-    
-    
 }

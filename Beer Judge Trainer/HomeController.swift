@@ -9,71 +9,118 @@
 import UIKit
 
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
-    let beerData = BeerDataFetcher()
+    
+    let apiData = BeerDataFetcher()
     let helperBot = HelperFunctions()
     
+    // intial data shown for pickers
     var brewerySelectOptions = ["Select Brewery"]
+    var beerSelectOptions = ["Select Beer"]
+    var userSelectedBrewery = String()
+    var userSelectedBeer = String()
     
+    // populate brewery picker with data
     func loadBreweryPickerData() {
-        
-        print("load that menu")
-        
-        BeerDataFetcher().getResource(endpoint: "breweries") { [weak self](data) in
-            
-            let breweryData = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data)
+        // gather brewery data
+        apiData.getResource(endpoint: "breweries") { [weak self](data) in
+            // store it for later
+            self?.apiData.setBreweryData(breweryData: data)
+            // format data for picker
+            let breweryData = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name")
             self?.brewerySelectOptions = breweryData!
-            self?.SelectBrewery.reloadAllComponents()
-        
+            self?.SelectBrewery.reloadAllComponents()   // reload picker interface
         }
     }
     
-    // select brewery picker
-    @IBOutlet weak var SelectBrewery: UIPickerView!
-    
-    // sets number picker columns
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    // brewery picker methods
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return brewerySelectOptions.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return brewerySelectOptions[row]
+    // populate beer picker with data
+    func loadBeerPickerData() {
+        // gather beer data
+        apiData.getResource(endpoint: "beers") { [weak self](data) in
+            // store it for later
+            self?.apiData.setBeerData(beerData: data)
+            // format data for picker
+            let BeerNames = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name")
+            self?.beerSelectOptions = BeerNames!
+            self?.SelectBeer.reloadAllComponents()  // reload picker interface
+        }
     }
     
-    // store value selected
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let valueSelected = brewerySelectOptions[row] as String
-        print(valueSelected)
-    }
+    // picker settings
     
+        // pickers on home view
+        @IBOutlet weak var SelectBrewery: UIPickerView!
+        @IBOutlet weak var SelectBeer: UIPickerView!
+
+        // picker column number
+        public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+        
+        // show number of items based on current picker
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            if pickerView == SelectBrewery { return brewerySelectOptions.count }
+            if pickerView == SelectBeer { return beerSelectOptions.count }
+            return 0
+        }
+        
+        // get the values to display based on picker
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            if pickerView == SelectBrewery { return brewerySelectOptions[row] }
+            if pickerView == SelectBeer { return beerSelectOptions[row] }
+            return nil
+        }
+        
+        // store selected picker data
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+            
+            if( pickerView == SelectBrewery ) {
+                let valueSelected = brewerySelectOptions[row] as String
+                userSelectedBrewery = valueSelected
+                beerSelectOptions = returnAllBeersFromBrewery(brewery: userSelectedBrewery)
+                self.SelectBeer.reloadAllComponents() // redraw beer picker
+                print("User selected brewery: \(userSelectedBrewery)")
+            }
+            
+            if( pickerView == SelectBeer ) {
+                let valueSelected = beerSelectOptions[row] as String
+                userSelectedBeer = valueSelected
+                print("User selected beer: \(userSelectedBeer)")
+            }
+        }
+    
+    //picker filtering functions
+    
+        // function to filter beer picker by brewery selected
+        func returnAllBeersFromBrewery( brewery: String ) -> [String] {
+            let data = apiData.getBreweryData()
+            return helperBot.returnArrayBasedOnFiltering(dataSet: data, filterWord: userSelectedBrewery)
+        }
+    
+
+
     // some buttons for testing
     @IBAction func getBreweries(_ sender: UIButton) {
-        print(beerData.breweries)
+        print(apiData.scoresheets)
     }
-    
     @IBAction func getBeers(_ sender: UIButton) {
-        print(beerData.beers)
+        print(apiData.categories)
     }
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // fetch all beer resources on home view load if they haven't been gathered yet
-        
+        // fetch resources needed for pickers
         loadBreweryPickerData()
-        if allResourcesFetched == false {
-            beerData.fetchAllBeerResources()
-            print("GATHERING RESOURCES")
-        }
+        loadBeerPickerData()
+        // get the rest of it, except what we already have
+        apiData.fetchAllBeerResources()
         
-        // load brewery picker data
+        // set picker data and settings on load of home view
             self.SelectBrewery.dataSource = self
             self.SelectBrewery.delegate = self
+            self.SelectBeer.dataSource = self
+            self.SelectBeer.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
