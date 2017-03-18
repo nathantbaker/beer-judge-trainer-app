@@ -73,8 +73,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             return nil
         }
     
- 
-    
         // store selected picker data
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             
@@ -84,8 +82,11 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
                 // store current beer row as user select in case users presses Rate before selecting the auto selected beer
-                userSelectedBeer = beerSelectOptions[0] as String; setTextofRateButton()
-                print("User selected brewery: \(userSelectedBrewery)")
+                if userSelectedBeer != "none" {
+                    userSelectedBeer = beerSelectOptions[0] as String; setTextofRateButton()
+                    print("User selected brewery: \(userSelectedBrewery)")
+                }
+
             }
             
             if( pickerView == SelectBeer ) {
