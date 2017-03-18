@@ -32,6 +32,9 @@ public class BeerDataFetcher {
     func setBeerData (beerData: [[String: AnyObject]]) {
         beers = beerData
     }
+    func getBeerData () -> [[String: AnyObject]] {
+        return beers
+    }
     
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
@@ -56,7 +59,7 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print("  • The \(endpoint) dictionary has \(numberOfKeys!) items")
+            print(" • The \(endpoint) dictionary has \(numberOfKeys!) items")
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
