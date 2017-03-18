@@ -27,7 +27,6 @@ public class BeerDataFetcher {
         breweries = breweryData
     }
     func getBreweryData () -> [[String: AnyObject]] {
-        print(breweries)
         return breweries
     }
     func setBeerData (beerData: [[String: AnyObject]]) {

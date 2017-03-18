@@ -46,24 +46,33 @@ class HelperFunctions {
     }
     
     // function to return an array of values which are tied to another value (beers of a brewery, etc)
-    public func returnArrayBasedOnFiltering(dataSet: [[String:AnyObject]], filter: String) -> [String] {
-        print("filter: \(filter)")
-        print("data set: \(dataSet)")
-        for brewery in dataSet {                    // iterate over brewery array
-            print(brewery)
-//            for (key, value) in brewery[i] {                  // iterate over each dictionary
-//                if key == filterKey {                         // filter to just key like "brewery_name" etc
-//                    arrayOfBreweries.append(value as! String) // push value to array
-//                }
-//            }
+    public func returnArrayBasedOnFiltering(dataSet: [[String:AnyObject]], filterWord: String) -> [String] {
+        
+        // placeholders
+        var targetBreweryDictionary = [String: AnyObject]()
+        var targetBreweryId = String()
+        
+        // target dictionary with the id
+        for brewery in dataSet {
+            for (_, value) in brewery {                 // loop over brewery array
+                if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
+                    targetBreweryDictionary = brewery   // capture the whole dictionary for the brewery
+                }
+            }
         }
-
+        
+        // store the brewery id
+        for (key, value) in targetBreweryDictionary {
+            if key == "url" {
+                targetBreweryId = value as! String
+            }
+        }
+        
+        // find all beers dictionaries with that id
+        
+        print("Target Brewery Id: \(targetBreweryId)")
         
         
-        
-        // find id for provided brewery
-        
-        // find beers that have the same brewery id
         
         // format to an array
         

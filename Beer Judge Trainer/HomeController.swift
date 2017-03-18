@@ -78,13 +78,13 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 userSelectedBrewery = valueSelected
                 beerSelectOptions = returnAllBeersFromBrewery(brewery: userSelectedBrewery)
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
-                print(userSelectedBrewery)
+                print("User selected brewery: \(userSelectedBrewery)")
             }
             
             if( pickerView == SelectBeer ) {
                 let valueSelected = beerSelectOptions[row] as String
                 userSelectedBeer = valueSelected
-                print(userSelectedBeer)
+                print("User selected beer: \(userSelectedBeer)")
             }
         }
     
@@ -93,7 +93,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // function to filter beer picker by brewery selected
         func returnAllBeersFromBrewery( brewery: String ) -> [String] {
             let data = apiData.getBreweryData()
-            return helperBot.returnArrayBasedOnFiltering(dataSet: data, filter: "brewery")
+            return helperBot.returnArrayBasedOnFiltering(dataSet: data, filterWord: userSelectedBrewery)
         }
     
 
@@ -110,7 +110,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         super.viewDidLoad()
         
-        // fetch resources needed for home view pickers
+        // fetch resources needed for pickers
         loadBreweryPickerData()
         loadBeerPickerData()
         // get the rest of it, except what we already have
