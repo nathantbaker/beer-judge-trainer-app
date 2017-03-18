@@ -8,7 +8,7 @@
 
 import Foundation
 
-// class that gathers and stores user inputs
+// class that gathers and stores user inputs for a beer
 public class TrainerScoreSheet {
     
     public var beer_name = ""
