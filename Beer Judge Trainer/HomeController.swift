@@ -10,6 +10,9 @@ import UIKit
 
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    let apiData = BeerDataFetcher()
+    let helperBot = HelperFunctions()
+    
     // intial data shown for pickers
     var brewerySelectOptions = ["Select Brewery"]
     var beerSelectOptions = ["Select Beer"]
@@ -19,12 +22,12 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // populate brewery picker with data
     func loadBreweryPickerData() {
         // gather brewery data
-        BeerDataFetcher().getResource(endpoint: "breweries") { [weak self](data) in
+        apiData.getResource(endpoint: "breweries") { [weak self](data) in
             // store it for later
-            BeerDataFetcher().setBreweryData(breweryData: data)
+            self?.apiData.setBreweryData(breweryData: data)
             // format data for picker
-            let breweryData = HelperFunctions().convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name")
-            self?.brewerySelectOptions = breweryData
+            let breweryData = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name")
+            self?.brewerySelectOptions = breweryData!
             self?.SelectBrewery.reloadAllComponents()   // reload picker interface
         }
     }
@@ -32,12 +35,12 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // populate beer picker with data
     func loadBeerPickerData() {
         // gather beer data
-        BeerDataFetcher().getResource(endpoint: "beers") { [weak self](data) in
+        apiData.getResource(endpoint: "beers") { [weak self](data) in
             // store it for later
-            BeerDataFetcher().setBeerData(beerData: data)
+            self?.apiData.setBeerData(beerData: data)
             // format data for picker
-            let BeerNames = HelperFunctions().convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name")
-            self?.beerSelectOptions = BeerNames
+            let BeerNames = self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name")
+            self?.beerSelectOptions = BeerNames!
             self?.SelectBeer.reloadAllComponents()  // reload picker interface
         }
     }
@@ -89,17 +92,18 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
         // function to filter beer picker by brewery selected
         func returnAllBeersFromBrewery( brewery: String ) -> [String] {
-            return HelperFunctions().returnArrayBasedOnFiltering(dataSet: BeerDataFetcher().breweries, filter: brewery)
+            let data = apiData.getBreweryData()
+            return helperBot.returnArrayBasedOnFiltering(dataSet: data, filter: "brewery")
         }
     
 
 
     // some buttons for testing
     @IBAction func getBreweries(_ sender: UIButton) {
-        print(BeerDataFetcher().scoresheets)
+        print(apiData.scoresheets)
     }
     @IBAction func getBeers(_ sender: UIButton) {
-        print(BeerDataFetcher().categories)
+        print(apiData.categories)
     }
 
     override func viewDidLoad() {
@@ -110,7 +114,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         loadBreweryPickerData()
         loadBeerPickerData()
         // get the rest of it, except what we already have
-        BeerDataFetcher().fetchAllBeerResources()
+        apiData.fetchAllBeerResources()
         
         // set picker data and settings on load of home view
             self.SelectBrewery.dataSource = self

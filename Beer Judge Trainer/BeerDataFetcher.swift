@@ -22,12 +22,16 @@ public class BeerDataFetcher {
     var scoresheets = [[String: AnyObject]]()
     var categories = [[String: AnyObject]]()
     
-    // setters
+    // setters and getters
     func setBreweryData (breweryData: [[String: AnyObject]]) {
-        self.breweries = breweryData
+        breweries = breweryData
+    }
+    func getBreweryData () -> [[String: AnyObject]] {
+        print(breweries)
+        return breweries
     }
     func setBeerData (beerData: [[String: AnyObject]]) {
-        self.beers = beerData
+        beers = beerData
     }
     
     // function to get a resource from the API

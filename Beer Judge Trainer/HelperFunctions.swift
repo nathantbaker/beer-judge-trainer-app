@@ -47,7 +47,8 @@ class HelperFunctions {
     
     // function to return an array of values which are tied to another value (beers of a brewery, etc)
     public func returnArrayBasedOnFiltering(dataSet: [[String:AnyObject]], filter: String) -> [String] {
-        
+        print("filter: \(filter)")
+        print("data set: \(dataSet)")
         for brewery in dataSet {                    // iterate over brewery array
             print(brewery)
 //            for (key, value) in brewery[i] {                  // iterate over each dictionary
