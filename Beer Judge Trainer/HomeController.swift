@@ -24,6 +24,27 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var beerNames = [String]()
     
     
+    func fetchDataAndBuildInterface() {
+        
+        let beerData = BeerDataFetcher.sharedData
+        
+        // all api data has been parsed into objects within closure
+        beerData.FetchAllBeerResources() { completeMessage in
+            
+            print("Status of Parsing API Data: \(completeMessage)")
+            print("")
+            print("CATEGORIES")
+            print(beerData.categories[0].name)
+            print(beerData.categories[1].name)
+            print(beerData.categories[2].name)
+            print("")
+//            print("SCORESHEETS")
+//            print("Scoresheet 1 total: \(beerData.scoresheets[0].total)")
+//            print("Scoresheet 2 total: \(beerData.scoresheets[1].total)")
+        }
+    
+    }
+    
     // populate brewery picker with data
     func loadBreweryPickerData() {
         // gather brewery data
@@ -179,12 +200,12 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        fetchDataAndBuildInterface()
         
         // fetch resources needed for pickers
 //        loadBreweryPickerData()
 //        loadBeerPickerData()
         // get the rest of it, except what we already have
-        beerData.FetchAllBeerResources()
 
         // set picker data and settings on load of home view
             self.SelectBrewery.dataSource = self
