@@ -8,18 +8,13 @@
 
 import Foundation
 
-// boolean to track when all resources are fetched
-var allResourcesFetched = false
-var resourcesFetchedCounter = 0
-
-
-// The BeerDataFetcher gathers data from the API and stores it locally
+// The BeerDataFetcher gathers data from http://api.cancanawards.com/
 public class BeerDataFetcher {
     
-//    static let sharedData: BeerDataFetcher = BeerDataFetcher()
-//    usage: BeerDataFetcher.sharedData
+    // singleton to instanciate a single, shared class so all controllers have access to the same data
+    static let sharedData: BeerDataFetcher = BeerDataFetcher()
 
-    // properies on the class where beer resources are stored
+    // class properies where beer resources are stored
     var beers = [[String: AnyObject]]()
     var breweries = [[String: AnyObject]]()
     var scoresheets = [[String: AnyObject]]()

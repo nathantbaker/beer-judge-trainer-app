@@ -14,7 +14,7 @@ var userSelectedBeer = "none"
 
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let apiData = BeerDataFetcher()
+    let apiData = BeerDataFetcher.sharedData
     let helperBot = HelperFunctions()
     
     // intial data shown for pickers
