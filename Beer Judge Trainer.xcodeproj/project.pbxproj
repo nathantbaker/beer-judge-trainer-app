@@ -17,7 +17,7 @@
 		CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */; };
 		CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FB1E7EC708000388E4 /* Beer.swift */; };
 		CD5129FE1E7EDACB000388E4 /* BeerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */; };
-		CD85E0B51E78454200FD1C62 /* ScoresheetExpert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */; };
+		CD85E0B51E78454200FD1C62 /* Scoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* Scoresheet.swift */; };
 		CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */; };
 		CDADDE331E7C766D00200292 /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE321E7C766D00200292 /* Brewery.swift */; };
 		CDADDE371E7C905D00200292 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE361E7C905D00200292 /* HelperFunctions.swift */; };
@@ -39,7 +39,7 @@
 		CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetTrainer.swift; sourceTree = "<group>"; };
 		CD5129FB1E7EC708000388E4 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCategory.swift; sourceTree = "<group>"; };
-		CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetExpert.swift; sourceTree = "<group>"; };
+		CD85E0B41E78454200FD1C62 /* Scoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scoresheet.swift; sourceTree = "<group>"; };
 		CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparisonBot.swift; sourceTree = "<group>"; };
 		CDADDE321E7C766D00200292 /* Brewery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
 		CDADDE361E7C905D00200292 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				CD5129FB1E7EC708000388E4 /* Beer.swift */,
 				CDADDE321E7C766D00200292 /* Brewery.swift */,
 				CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */,
-				CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */,
+				CD85E0B41E78454200FD1C62 /* Scoresheet.swift */,
 				CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */,
 			);
 			name = "Object Types";
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */,
-				CD85E0B51E78454200FD1C62 /* ScoresheetExpert.swift in Sources */,
+				CD85E0B51E78454200FD1C62 /* Scoresheet.swift in Sources */,
 				CDADDE331E7C766D00200292 /* Brewery.swift in Sources */,
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,

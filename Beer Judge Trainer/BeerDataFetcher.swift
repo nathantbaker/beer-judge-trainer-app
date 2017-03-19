@@ -17,7 +17,7 @@ public class BeerDataFetcher {
     // class properies where beer objects are stored
     var beers = [Beer]()
     var breweries = [Brewery]()
-    var scoresheets = [ScoresheetExpert]()
+    var scoresheets = [Scoresheet]()
     var categories = [BeerCategory]()
 
     // function to get a resource from the API
@@ -62,7 +62,7 @@ public class BeerDataFetcher {
         // send mesage DONE after all data is parsed
         func checkIfAllDataFetched() {
             fetchCounter += 1
-            if fetchCounter != numberOfResourcesToFetch {
+            if fetchCounter == numberOfResourcesToFetch {
                 completionHandler("done")
             }
         }
@@ -79,25 +79,27 @@ public class BeerDataFetcher {
             }
             // push array to local property
             self.categories = tempCategories
-            // pass success message if this is the last one to fetch
             checkIfAllDataFetched()
         }
-        
+
         // scoresheets: parse into objects
         getResource(endpoint: "scoresheets") { arrayOfDictionaries in
-            var tempScoresheets = [ScoresheetExpert]()
+            var tempScoresheets = [Scoresheet]()
             for dictionary in arrayOfDictionaries {
-                if let scoresheet = ScoresheetExpert(data: dictionary) {
+                // instantiate new object with a dictionary
+                // item example: ["url": "http...", "category_name": "IPA"]
+                if let scoresheet = Scoresheet(data: dictionary) {
                     tempScoresheets.append(scoresheet)
                 }
             }
+            // push array to local property
             self.scoresheets = tempScoresheets
             checkIfAllDataFetched()
         }
         
-
-            
-
+        
     }
 
+    
+    
 }
