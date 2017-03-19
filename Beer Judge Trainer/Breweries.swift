@@ -14,13 +14,6 @@ class Breweries {
         get { return self.list }
         set { self.list = newValue }
     }
-    
-//    let = [
-//        ["jackalope":
-//            
-//        ]
-//    
-//    
-//    ]
+
     
 }
