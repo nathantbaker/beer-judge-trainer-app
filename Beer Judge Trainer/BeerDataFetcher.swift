@@ -19,7 +19,7 @@ public class BeerDataFetcher {
     var breweries = [Brewery]()
     var scoresheets = [ScoresheetExpert]()
     var categories = [BeerCategory]()
-    
+
     // function to get a resource from the API
     func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
         
@@ -57,15 +57,13 @@ public class BeerDataFetcher {
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {
         
         let numberOfResourcesToFetch = 2
-        var fetchCOunter = 0
+        var fetchCounter = 0
 
         // send mesage DONE after all data is parsed
         func checkIfAllDataFetched() {
-            fetchCOunter += 1
-            if fetchCOunter == numberOfResourcesToFetch {
-                completionHandler("✓ done")
-            } else {
-                print("waiting to download more data")
+            fetchCounter += 1
+            if fetchCounter != numberOfResourcesToFetch {
+                completionHandler("done")
             }
         }
         
@@ -73,14 +71,15 @@ public class BeerDataFetcher {
         getResource(endpoint: "categories") { arrayOfDictionaries in
             var tempCategories = [BeerCategory]()
             for dictionary in arrayOfDictionaries {
-                print(dictionary)
                 // instantiate new object with a dictionary
                 // item example: ["url": "http...", "category_name": "IPA"]
                 if let category = BeerCategory(data: dictionary) {
                     tempCategories.append(category)
                 }
             }
-            self.categories = tempCategories // push array to local property
+            // push array to local property
+            self.categories = tempCategories
+            // pass success message if this is the last one to fetch
             checkIfAllDataFetched()
         }
         
@@ -94,8 +93,9 @@ public class BeerDataFetcher {
             }
             self.scoresheets = tempScoresheets
             checkIfAllDataFetched()
-            
         }
+        
+
             
 
     }

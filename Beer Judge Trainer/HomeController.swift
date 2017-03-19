@@ -38,7 +38,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             print(beerData.categories[1].name)
             print(beerData.categories[2].name)
             print("")
-//            print("SCORESHEETS")
+            print("SCORESHEETS")
+            print("Scoresheets: \(beerData.scoresheets)")
 //            print("Scoresheet 1 total: \(beerData.scoresheets[0].total)")
 //            print("Scoresheet 2 total: \(beerData.scoresheets[1].total)")
         }
