@@ -17,11 +17,11 @@ class Brewery {
     // ...
     
     init?(data: [String: AnyObject]) {
-        guard let url = data["url"] as? String, let beer_name = data["beer_name"] as? String else {
+        guard let url = data["url"] as? String, let brewery_name = data["brewery_name"] as? String else {
             return nil
         }
         
         id = url
-        name = beer_name
+        name = brewery_name
     }
 }
