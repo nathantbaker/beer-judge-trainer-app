@@ -39,8 +39,19 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             print(beerData.categories[2].name)
             print("")
             print("SCORESHEETS")
-            print("Scoresheet 1 aroma: \(beerData.scoresheets[0].aroma)")
-            print("Scoresheet 2 aroma: \(beerData.scoresheets[1].aroma)")
+            print("Scoresheet 1 total: \(beerData.scoresheets[0].total)")
+            print("Scoresheet 2 total: \(beerData.scoresheets[1].total)")
+            print("Scoresheet 3 total: \(beerData.scoresheets[2].total)")
+            print("")
+            print("BEERS")
+            print("Beer 1 Name: \(beerData.beers[0].name)")
+            print("Beer 2 Name: \(beerData.beers[1].name)")
+            print("Beer 3 Name: \(beerData.beers[2].name)")
+            print("")
+            print("BREWERIES")
+            print("Brewery 1 Name: \(beerData.breweries[0].name)")
+            print("Brewery 2 Name: \(beerData.breweries[1].name)")
+            print("Brewery 3 Name: \(beerData.breweries[2].name)")
         }
     
     }

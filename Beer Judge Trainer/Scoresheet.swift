@@ -7,31 +7,16 @@
 //
 //  API endpoint: http://api.cancanawards.com/scoresheets/
 
-
-// This is the class that glues together the other classes.
-//        [
-//              "score_overall_impression": 5.0,
-//              "idBeers": http://api.cancanawards.com/beers/39/,
-//              "score_mouthfeel": 3.0,
-//              "idCategories": http://api.cancanawards.com/categories/1/,
-//              "score_total": 26.5,
-//              "score_aroma": 7.0,
-//              "score_appearance": 1.5,
-//              "url": http://api.cancanawards.com/scoresheets/114/,
-//              "score_flavor": 10.0
-//        ]
-
 import Foundation
 
 public class Scoresheet {
     
     // scores
-    var aroma = ""
-    var appearance = ""
-    var flavor = ""
-    var mouthfeel = ""
-    var impression = ""
-    var total = ""
+    var aroma = 0.0
+    var appearance = 0.0
+    var flavor = 0.0
+    var mouthfeel = 0.0
+    var impression = 0.0
     
     // relationships
     var id = ""
@@ -39,7 +24,7 @@ public class Scoresheet {
     var categoryId = ""
     
     // computed
-//    var total: Double { return aroma + appearance + flavor + mouthfeel + impression }
+    var total: Double { return aroma + appearance + flavor + mouthfeel + impression }
     var beer = ""
     var category = ""
 
@@ -57,11 +42,11 @@ public class Scoresheet {
         }
         
         //scores
-        aroma = score_aroma
-        appearance = score_appearance
-        flavor = score_flavor
-        mouthfeel = score_mouthfeel
-        impression = score_overall_impression
+        aroma = Double(score_aroma)!
+        appearance = Double(score_appearance)!
+        flavor = Double(score_flavor)!
+        mouthfeel = Double(score_mouthfeel)!
+        impression = Double(score_overall_impression)!
         
         // relationships
         id = url

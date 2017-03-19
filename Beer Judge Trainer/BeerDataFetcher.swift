@@ -52,11 +52,10 @@ public class BeerDataFetcher {
         task.resume()
     }
     
-
     // pull down all data from api
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {
         
-        let numberOfResourcesToFetch = 2
+        let numberOfResourcesToFetch = 4
         var fetchCounter = 0
 
         // send mesage DONE after all data is parsed
@@ -81,21 +80,38 @@ public class BeerDataFetcher {
             self.categories = tempCategories
             checkIfAllDataFetched()
         }
-
+        
         // scoresheets: parse into objects
         getResource(endpoint: "scoresheets") { arrayOfDictionaries in
             var tempScoresheets = [Scoresheet]()
             for dictionary in arrayOfDictionaries {
-                // instantiate new object with a dictionary
-                // item example: ["url": "http...", "category_name": "IPA"]
-                if let scoresheet = Scoresheet(data: dictionary) {
-                    tempScoresheets.append(scoresheet)
-                }
+                if let scoresheet = Scoresheet(data: dictionary) { tempScoresheets.append(scoresheet) }
             }
-            // push array to local property
             self.scoresheets = tempScoresheets
             checkIfAllDataFetched()
         }
+        
+        // beers: parse into objects
+        getResource(endpoint: "beers") { arrayOfDictionaries in
+            var tempBeers = [Beer]()
+            for dictionary in arrayOfDictionaries {
+                if let beer = Beer(data: dictionary) { tempBeers.append(beer) }
+            }
+            self.beers = tempBeers
+            checkIfAllDataFetched()
+        }
+        
+        // breweries: parse into objects
+        getResource(endpoint: "breweries") { arrayOfDictionaries in
+            var tempBreweries = [Brewery]()
+            for dictionary in arrayOfDictionaries {
+                if let brewery = Brewery(data: dictionary) { tempBreweries.append(brewery) }
+            }
+            self.breweries = tempBreweries
+            checkIfAllDataFetched()
+        }
+        
+        
         
         
     }
