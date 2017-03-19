@@ -14,7 +14,7 @@ var userSelectedBeer = "none"
 
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let apiData = BeerDataFetcher.sharedData
+    let beerData = BeerDataFetcher.sharedData
     let helperBot = HelperFunctions()
     
     // intial data shown for pickers
@@ -27,9 +27,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // populate brewery picker with data
     func loadBreweryPickerData() {
         // gather brewery data
-        apiData.getResource(endpoint: "breweries") { [weak self](data) in
+        beerData.getResource(endpoint: "breweries") { [weak self](data) in
             // store it for later
-            self?.apiData.setBreweryData(breweryData: data)
+//            self?.beerData.setBreweryData(breweryData: data)
             // format data for picker and store it for later
             self?.breweryNames = (self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "brewery_name"))!
             self?.brewerySelectOptions = (self!.breweryNames)
@@ -40,9 +40,9 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // populate beer picker with data
     func loadBeerPickerData() {
         // gather beer data
-        apiData.getResource(endpoint: "beers") { [weak self](data) in
+        beerData.getResource(endpoint: "beers") { [weak self](data) in
             // store it for later
-            self?.apiData.setBeerData(beerData: data)
+//            self?.beerData.setBeerData(beerData: data)
             // format data for picker and store it for later
             self?.beerNames = (self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name"))!
             self?.beerSelectOptions = (self!.beerNames)
@@ -111,27 +111,29 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             setTextofRateButton() // dynamically change Rate button
             
-            let breweries = apiData.getBreweryData()
-            let beer = apiData.getBeerData()
+//            let breweries = beerData.getBreweryData()
+//            let beer = beerData.getBeerData()
             
-            return helperBot.returnAllBeersFromBrewery(
-                beerData: beer,
-                breweryData: breweries,
-                filterWord: userSelectedBrewery
-            )
+//            return helperBot.returnAllBeersFromBrewery(
+//                beerData: beer,
+//                breweryData: breweries,
+//                filterWord: userSelectedBrewery
+//            )
+            return [""]
         }
     
         // function to filter brewery picker by beer selected
         func filterBreweryBasedOnBeer() -> [String] {
             
-            let breweries = apiData.getBreweryData()
-            let beer = apiData.getBeerData()
-            
-            return helperBot.returnBreweryOfBeer(
-                beerData: beer,
-                breweryData: breweries,
-                filterWord: userSelectedBeer
-            )
+//            let breweries = beerData.getBreweryData()
+//            let beer = beerData.getBeerData()
+//            
+//            return helperBot.returnBreweryOfBeer(
+//                beerData: beer,
+//                breweryData: breweries,
+//                filterWord: userSelectedBeer
+//            )
+            return [""]
         }
     
         // reset brewery picker
@@ -179,11 +181,11 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.viewDidLoad()
         
         // fetch resources needed for pickers
-        loadBreweryPickerData()
-        loadBeerPickerData()
+//        loadBreweryPickerData()
+//        loadBeerPickerData()
         // get the rest of it, except what we already have
-        apiData.fetchAllBeerResources()
-        
+        beerData.FetchAllBeerResources()
+
         // set picker data and settings on load of home view
             self.SelectBrewery.dataSource = self
             self.SelectBrewery.delegate = self

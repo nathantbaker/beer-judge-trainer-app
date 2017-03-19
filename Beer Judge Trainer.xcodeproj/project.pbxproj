@@ -79,12 +79,11 @@
 		CD0DC6BE1E78398C007F6A63 /* Beer Judge Trainer */ = {
 			isa = PBXGroup;
 			children = (
-				CD5129F91E7EC497000388E4 /* Helper Bots */,
-				CD5129F81E7EC468000388E4 /* Beer Data Types */,
-				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
-				CD85E0B81E7845B200FD1C62 /* Controllers */,
 				CDE646771E7848330056050F /* Models */,
 				CD5129FA1E7EC506000388E4 /* Views */,
+				CD85E0B81E7845B200FD1C62 /* Controllers */,
+				CD5129F91E7EC497000388E4 /* Helper Bots */,
+				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
 			);
 			path = "Beer Judge Trainer";
 			sourceTree = "<group>";
@@ -100,16 +99,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CD5129F81E7EC468000388E4 /* Beer Data Types */ = {
+		CD5129F81E7EC468000388E4 /* Object Types */ = {
 			isa = PBXGroup;
 			children = (
+				CD5129FB1E7EC708000388E4 /* Beer.swift */,
+				CDADDE321E7C766D00200292 /* Brewery.swift */,
+				CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */,
 				CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */,
 				CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */,
-				CDADDE321E7C766D00200292 /* Brewery.swift */,
-				CD5129FB1E7EC708000388E4 /* Beer.swift */,
-				CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */,
 			);
-			name = "Beer Data Types";
+			name = "Object Types";
 			sourceTree = "<group>";
 		};
 		CD5129F91E7EC497000388E4 /* Helper Bots */ = {
@@ -144,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
+				CD5129F81E7EC468000388E4 /* Object Types */,
 			);
 			name = Models;
 			sourceTree = "<group>";

@@ -14,6 +14,9 @@ class Beer {
     var name = ""
     var breweryId = ""
     
+    // computed
+    // ...
+    
     init?(data: [String: AnyObject]) {
         guard let url = data["url"] as? String, let beer_name = data["beer_name"] as? String, let idBreweries = data["idBreweries"] as? String else {
             return nil

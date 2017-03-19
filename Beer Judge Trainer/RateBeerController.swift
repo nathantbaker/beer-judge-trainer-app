@@ -9,17 +9,17 @@
 import UIKit
 
 //create user scoresheet to store inputs
-var trainerScores = TrainerScoreSheet (
-    beer: userSelectedBeer,
-    brewery: userSelectedBrewery
-)
+//var trainerScores = ScoresheetTrainer (
+//    beer: userSelectedBeer,
+//    brewery: userSelectedBrewery
+//)
 
 class RateBeerController: UIViewController  {
     
     let firstRatedBeer = userSelectedBeer // constant
     
     func testStuff() {
-        print("current user scoresheet: \(trainerScores.beer_name)")
+//        print("current user scoresheet: \(trainerScores.beer_name)")
     }
 
     override func viewDidLoad() {
@@ -27,10 +27,10 @@ class RateBeerController: UIViewController  {
         self.title = "Rate \(userSelectedBeer)"
         // reset trainer scoresheet if it's a new beer
         if firstRatedBeer != userSelectedBeer {
-            trainerScores = TrainerScoreSheet (
-                beer: userSelectedBeer,
-                brewery: userSelectedBrewery
-            )
+//            trainerScores = ScoresheetTrainer (
+//                beer: userSelectedBeer,
+//                brewery: userSelectedBrewery
+//            )
         }
         testStuff()
     }
