@@ -23,10 +23,9 @@ class RateBeerController: UIViewController  {
     }
 
     override func viewDidLoad() {
-        // currently selected beer is the title of view
+        // set view title to beer being rated
         self.title = "Rate \(userSelectedBeer)"
-        // reset trainer scoresheet if it's a new beer on view load
-        // this allows you to go back from results and see your ratings sliders
+        // reset trainer scoresheet if it's a new beer
         if firstRatedBeer != userSelectedBeer {
             trainerScores = TrainerScoreSheet (
                 beer: userSelectedBeer,

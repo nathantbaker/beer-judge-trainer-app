@@ -15,6 +15,9 @@ var resourcesFetchedCounter = 0
 
 // The BeerDataFetcher gathers data from the API and stores it locally
 public class BeerDataFetcher {
+    
+//    static let sharedData: BeerDataFetcher = BeerDataFetcher()
+//    usage: BeerDataFetcher.sharedData
 
     // properies on the class where beer resources are stored
     var beers = [[String: AnyObject]]()

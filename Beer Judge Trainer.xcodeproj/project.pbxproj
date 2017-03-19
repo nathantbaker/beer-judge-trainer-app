@@ -76,6 +76,11 @@
 			isa = PBXGroup;
 			children = (
 				CDADDE361E7C905D00200292 /* HelperFunctions.swift */,
+				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
+				CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */,
+				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
+				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
+				CDADDE321E7C766D00200292 /* Breweries.swift */,
 				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
 				CD85E0B81E7845B200FD1C62 /* Controllers */,
 				CDE646771E7848330056050F /* Models */,
@@ -109,11 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
-				CDADDE321E7C766D00200292 /* Breweries.swift */,
-				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
-				CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */,
-				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
-				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
