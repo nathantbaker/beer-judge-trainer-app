@@ -67,7 +67,7 @@ class RateBeerController: UIViewController  {
         
         if functionHasRunOnce == false {
             functionHasRunOnce = true
-            compareExpertScoresButton.setTitle("✓ Compare Expert Scores", for: .normal)
+            compareExpertScoresButton.setTitle("✓ Compare Expert Scores ", for: .normal)
             let darkgreen = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
             compareExpertScoresButton.backgroundColor = darkgreen
             scoreOutputTotal.textColor = darkgreen
@@ -136,7 +136,12 @@ class RateBeerController: UIViewController  {
         //        brewery: userSelectedBrewery
         //    )
         }
+        
         testStuff()
+        
+        // round button corners
+        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
+        compareExpertScoresButton.clipsToBounds = true
     }
     
 }

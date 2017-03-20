@@ -28,19 +28,25 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.loadBreweryPicker()
             self.loadBeerPicker()
         }
+
         
         // set picker data and settings on load of home view
         self.SelectBrewery.dataSource = self
         self.SelectBrewery.delegate = self
         self.SelectBeer.dataSource = self
         self.SelectBeer.delegate = self
+        
+        // round button corners
+        rateBeerButton.layer.cornerRadius = 0.02 * rateBeerButton.bounds.size.width
+        rateBeerButton.clipsToBounds = true
+        
     }
     
     // dynamically set Rate button and helper info at bottom
     // by the time this runs, there is a default selected beer and brewery
     func setTextofRateButton() {
         // set text of Rate button
-        rateBeerButton.setTitle( "✓ Rate \(beerData.userSelectedBeer)" , for: .normal )
+        rateBeerButton.setTitle( "✓ Rate \(beerData.userSelectedBeer) " , for: .normal )
         rateBeerButton.backgroundColor = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
         // give full beeer name under Rate button
         fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
