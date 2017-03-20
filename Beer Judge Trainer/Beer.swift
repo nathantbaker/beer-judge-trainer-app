@@ -10,19 +10,41 @@
 import Foundation
 
 class Beer {
-    
+
     var id = ""
     var name = ""
     var breweryId = ""
     
     // computed values
+    let beerData = BeerDataFetcher.sharedData
     
+    // return the brewery object tied to a beer
     var brewery: Brewery {
-        let beerData = BeerDataFetcher.sharedData
         var target: Brewery = beerData.breweries[0]
         for brewery in beerData.breweries {
             if brewery.id == self.breweryId {
-                target = brewery
+                target = brewery; break
+            }
+        }
+        return target
+    }
+    
+    // return the category name tied to a beer
+    var category: String {
+        
+        var target = ""
+        
+        for scoresheet in beerData.scoresheets {
+        
+            if self.id == scoresheet.beerId {
+            
+                let targetCategoryId = scoresheet.categoryId
+                for categoryObject in beerData.categories {
+                
+                    if targetCategoryId == categoryObject.id {
+                        target = categoryObject.name; break
+                    }
+                }
             }
         }
         return target

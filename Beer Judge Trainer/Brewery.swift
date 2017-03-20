@@ -16,6 +16,7 @@ class Brewery {
     
     // computed values
     
+    // return array of all beer names tied to a brewery  
     var beers: [String] {
         let beerData = BeerDataFetcher.sharedData
         var tempArray = [String]()

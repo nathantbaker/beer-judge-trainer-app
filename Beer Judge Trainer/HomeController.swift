@@ -152,7 +152,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         rateBeerButton.setTitle( "Rate \(beerData.userSelectedBeer)" , for: .normal )
         fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
         fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
-        beerCategoryLabel.text = "Red Ale" // need to make this dynamic still
+        let targetBeerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+        beerCategoryLabel.text = targetBeerObject.category
     }
 
     //  don't allow users to click Rate Beer if they didn't select anything

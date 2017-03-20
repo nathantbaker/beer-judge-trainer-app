@@ -20,11 +20,16 @@ class RateBeerController: UIViewController  {
         // print("current user scoresheet: \(trainerScores.beer_name)")
     }
 
+    @IBOutlet weak var topInfoText: UILabel!
+    
     override func viewDidLoad() {
         let beerData = BeerDataFetcher.sharedData
+        let helperBot = HelperFunctions()
         let firstRatedBeer = beerData.userSelectedBeer // constant
         
         self.title = "Rate \(beerData.userSelectedBeer)"
+        let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+        topInfoText.text = "Assign up to 50 points for this \(beerObject.category)."
         // reset trainer scoresheet if it's a new beer
         if firstRatedBeer != beerData.userSelectedBeer {
         //    trainerScores = ScoresheetTrainer (
