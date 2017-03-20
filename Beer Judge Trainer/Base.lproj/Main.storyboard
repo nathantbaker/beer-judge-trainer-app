@@ -190,8 +190,9 @@
                                 <rect key="frame" x="40" y="223" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="allSlidersTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="kzm-ch-gQK"/>
+                                    <action selector="allSlidersTouchUpOutside:" destination="AKn-c2-0U0" eventType="touchUpOutside" id="Sk5-V0-tQu"/>
                                     <action selector="scoreInputAroma:" destination="AKn-c2-0U0" eventType="valueChanged" id="HOj-Vh-RZ4"/>
-                                    <action selector="scoreInputAromaTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="QLW-Xq-V6K"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aroma:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKE-pM-oPW">
@@ -238,8 +239,9 @@
                                 <rect key="frame" x="41" y="294" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="allSlidersTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="vCm-HX-p8M"/>
+                                    <action selector="allSlidersTouchUpOutside:" destination="AKn-c2-0U0" eventType="touchUpOutside" id="tSL-mI-fZc"/>
                                     <action selector="scoreInputAppearance:" destination="AKn-c2-0U0" eventType="valueChanged" id="H7s-jn-Z2F"/>
-                                    <action selector="scoreInputAppearanceTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="RcY-Kl-Af4"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Appearance:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hJ-07-e16">
@@ -274,8 +276,9 @@
                                 <rect key="frame" x="41" y="366" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="allSlidersTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="h3t-ih-hkd"/>
+                                    <action selector="allSlidersTouchUpOutside:" destination="AKn-c2-0U0" eventType="touchUpOutside" id="Ndh-cq-GpZ"/>
                                     <action selector="scoreInputFlavor:" destination="AKn-c2-0U0" eventType="valueChanged" id="VJD-Ek-H11"/>
-                                    <action selector="scoreInputFlavorTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="abE-vs-7aG"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flavor:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1Q-wh-8oi">
@@ -310,8 +313,9 @@
                                 <rect key="frame" x="41" y="439" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="allSlidersTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="0lE-M2-tGs"/>
+                                    <action selector="allSlidersTouchUpOutside:" destination="AKn-c2-0U0" eventType="touchUpOutside" id="dKK-ZB-7TK"/>
                                     <action selector="scoreInputMouthfeel:" destination="AKn-c2-0U0" eventType="valueChanged" id="0x4-6w-yaM"/>
-                                    <action selector="scoreInputMouthfeelTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="jlC-0z-4jc"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mouthfeel:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGx-9r-q4o">
@@ -346,9 +350,9 @@
                                 <rect key="frame" x="41" y="513" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
+                                    <action selector="allSlidersTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="WLj-2K-A6J"/>
+                                    <action selector="allSlidersTouchUpOutside:" destination="AKn-c2-0U0" eventType="touchUpOutside" id="uPL-c5-L9j"/>
                                     <action selector="scoreInputImpression:" destination="AKn-c2-0U0" eventType="valueChanged" id="6uL-op-pnE"/>
-                                    <action selector="scoreInputImpressionTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="EDc-2L-GjU"/>
-                                    <action selector="scoreInputMouthfeelTouchUpInside:" destination="AKn-c2-0U0" eventType="touchUpInside" id="632-DT-32K"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Overall Impression:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdR-f5-yGN">

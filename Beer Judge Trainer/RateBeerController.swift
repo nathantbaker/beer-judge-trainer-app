@@ -80,29 +80,10 @@ class RateBeerController: UIViewController  {
         self.scoreOutputImpression.text = "\(sliderValue) of 10"
     }
     
-    // things to reload on slider
-    
-    @IBAction func scoreInputAromaTouchUpInside(_ sender: UISlider) {
-        resetTotal()
-    }
-    
-    @IBAction func scoreInputAppearanceTouchUpInside(_ sender: UISlider) {
-        resetTotal()
-    }
-    
-    @IBAction func scoreInputFlavorTouchUpInside(_ sender: UISlider) {
-        resetTotal()
-    }
-    
-    @IBAction func scoreInputMouthfeelTouchUpInside(_ sender: UISlider) {
-        resetTotal()
-    }
+    // set score total on slider touch up inside/outside
+    @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { resetTotal() }
+    @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) { resetTotal() }
 
-    @IBAction func scoreInputImpressionTouchUpInside(_ sender: UISlider) {
-        resetTotal()
-    }
-    
-    
     
     func testStuff() {
         // print("current user scoresheet: \(trainerScores.beer_name)")
