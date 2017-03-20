@@ -127,21 +127,29 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     //picker functions
     
+    // populate brewery picker with brewery names
     func loadBreweryPicker() {
-        // populate brewery picker with brewery names
-        self.brewerySelectOptions = [] // clear default value
+        var tempArray = [String]()
         for brewery in beerData.breweries {
-            self.brewerySelectOptions.append(brewery.name)
+            tempArray.append(brewery.name)
         }
+        
+        let alphebeticalArray = tempArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending}
+        brewerySelectOptions = alphebeticalArray
+        
         self.SelectBrewery.reloadAllComponents() // reload picker interface
     }
     
+    // populate beer picker with beer names
     func loadBeerPicker() {
-        // populate beer picker with beer names
-        self.beerSelectOptions = [] // clear default value
+        var tempArray = [String]()
         for beer in beerData.beers {
-            self.beerSelectOptions.append(beer.name)
+            tempArray.append(beer.name)
         }
+        
+        let alphebeticalArray = tempArray.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending}
+        beerSelectOptions = alphebeticalArray
+        
         self.SelectBeer.reloadAllComponents() // reload picker interface
     }
     
