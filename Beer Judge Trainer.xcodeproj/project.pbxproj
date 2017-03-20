@@ -14,10 +14,12 @@
 		CD0DC6C71E78398C007F6A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C61E78398C007F6A63 /* Assets.xcassets */; };
 		CD0DC6CA1E78398C007F6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */; };
 		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
-		CD5129F71E7DDB4F000388E4 /* ExpertScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */; };
-		CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */; };
+		CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */; };
+		CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FB1E7EC708000388E4 /* Beer.swift */; };
+		CD5129FE1E7EDACB000388E4 /* BeerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */; };
+		CD85E0B51E78454200FD1C62 /* ScoresheetExpert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */; };
 		CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */; };
-		CDADDE331E7C766D00200292 /* Breweries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE321E7C766D00200292 /* Breweries.swift */; };
+		CDADDE331E7C766D00200292 /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE321E7C766D00200292 /* Brewery.swift */; };
 		CDADDE371E7C905D00200292 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE361E7C905D00200292 /* HelperFunctions.swift */; };
 		CDADDE391E7CF5A500200292 /* RateBeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADDE381E7CF5A500200292 /* RateBeerController.swift */; };
 		CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE646751E7847EB0056050F /* BeerDataFetcher.swift */; };
@@ -34,10 +36,12 @@
 		CD0DC6C91E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD0DC6CB1E78398C007F6A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
-		CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpertScoresheet.swift; sourceTree = "<group>"; };
-		CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerScoresheet.swift; sourceTree = "<group>"; };
+		CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetTrainer.swift; sourceTree = "<group>"; };
+		CD5129FB1E7EC708000388E4 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
+		CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCategory.swift; sourceTree = "<group>"; };
+		CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetExpert.swift; sourceTree = "<group>"; };
 		CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparisonBot.swift; sourceTree = "<group>"; };
-		CDADDE321E7C766D00200292 /* Breweries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breweries.swift; sourceTree = "<group>"; };
+		CDADDE321E7C766D00200292 /* Brewery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
 		CDADDE361E7C905D00200292 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		CDADDE381E7CF5A500200292 /* RateBeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateBeerController.swift; sourceTree = "<group>"; };
 		CDE646751E7847EB0056050F /* BeerDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerDataFetcher.swift; sourceTree = "<group>"; };
@@ -75,16 +79,11 @@
 		CD0DC6BE1E78398C007F6A63 /* Beer Judge Trainer */ = {
 			isa = PBXGroup;
 			children = (
-				CDADDE361E7C905D00200292 /* HelperFunctions.swift */,
-				CD85E0B41E78454200FD1C62 /* TrainerScoresheet.swift */,
-				CD5129F61E7DDB4F000388E4 /* ExpertScoresheet.swift */,
-				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
-				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
-				CDADDE321E7C766D00200292 /* Breweries.swift */,
-				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
-				CD85E0B81E7845B200FD1C62 /* Controllers */,
 				CDE646771E7848330056050F /* Models */,
-				CD0DC6C31E78398C007F6A63 /* Main.storyboard */,
+				CD5129FA1E7EC506000388E4 /* Views */,
+				CD85E0B81E7845B200FD1C62 /* Controllers */,
+				CD5129F91E7EC497000388E4 /* Helper Bots */,
+				CD0DC6D11E7839EE007F6A63 /* Supporting Files */,
 			);
 			path = "Beer Judge Trainer";
 			sourceTree = "<group>";
@@ -98,6 +97,36 @@
 				CD0DC6CB1E78398C007F6A63 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD5129F81E7EC468000388E4 /* Object Types */ = {
+			isa = PBXGroup;
+			children = (
+				CD5129FB1E7EC708000388E4 /* Beer.swift */,
+				CDADDE321E7C766D00200292 /* Brewery.swift */,
+				CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */,
+				CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */,
+				CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */,
+			);
+			name = "Object Types";
+			sourceTree = "<group>";
+		};
+		CD5129F91E7EC497000388E4 /* Helper Bots */ = {
+			isa = PBXGroup;
+			children = (
+				CDADDE361E7C905D00200292 /* HelperFunctions.swift */,
+				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
+				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
+			);
+			name = "Helper Bots";
+			sourceTree = "<group>";
+		};
+		CD5129FA1E7EC506000388E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD0DC6C31E78398C007F6A63 /* Main.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		CD85E0B81E7845B200FD1C62 /* Controllers */ = {
@@ -114,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE646751E7847EB0056050F /* BeerDataFetcher.swift */,
+				CD5129F81E7EC468000388E4 /* Object Types */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -193,16 +223,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */,
-				CD85E0B51E78454200FD1C62 /* TrainerScoresheet.swift in Sources */,
-				CDADDE331E7C766D00200292 /* Breweries.swift in Sources */,
+				CD85E0B51E78454200FD1C62 /* ScoresheetExpert.swift in Sources */,
+				CDADDE331E7C766D00200292 /* Brewery.swift in Sources */,
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
 				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
 				CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */,
+				CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */,
 				CDADDE391E7CF5A500200292 /* RateBeerController.swift in Sources */,
 				CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */,
-				CD5129F71E7DDB4F000388E4 /* ExpertScoresheet.swift in Sources */,
+				CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */,
 				CDADDE371E7C905D00200292 /* HelperFunctions.swift in Sources */,
+				CD5129FE1E7EDACB000388E4 /* BeerCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,35 +8,77 @@
 
 import Foundation
 
-// boolean to track when all resources are fetched
-var allResourcesFetched = false
-var resourcesFetchedCounter = 0
-
-
-// The BeerDataFetcher gathers data from the API and stores it locally
+// The BeerDataFetcher gathers data from http://api.cancanawards.com/
 public class BeerDataFetcher {
     
-//    static let sharedData: BeerDataFetcher = BeerDataFetcher()
-//    usage: BeerDataFetcher.sharedData
+    // singleton to instanciate a single, shared class
+    // so all classes have access to the same data
+    static let sharedData: BeerDataFetcher = BeerDataFetcher()
 
-    // properies on the class where beer resources are stored
-    var beers = [[String: AnyObject]]()
-    var breweries = [[String: AnyObject]]()
-    var scoresheets = [[String: AnyObject]]()
-    var categories = [[String: AnyObject]]()
+    // class properies where beer objects are stored
+    var beers = [Beer]()
+    var breweries = [Brewery]()
+    var scoresheets = [ScoresheetExpert]()
+    var categories = [BeerCategory]()
+    var userSelectedBrewery = "none"
+    var userSelectedBeer = "none"
     
-    // setters and getters
-    func setBreweryData (breweryData: [[String: AnyObject]]) {
-        breweries = breweryData
-    }
-    func getBreweryData () -> [[String: AnyObject]] {
-        return breweries
-    }
-    func setBeerData (beerData: [[String: AnyObject]]) {
-        beers = beerData
-    }
-    func getBeerData () -> [[String: AnyObject]] {
-        return beers
+    // pull down all data from api
+    func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {
+        
+        let numberOfResourcesToFetch = 4
+        var fetchCounter = 0
+
+        // send mesage DONE after all data is parsed
+        func checkIfAllDataFetched() {
+            fetchCounter += 1
+            if fetchCounter == numberOfResourcesToFetch {
+                completionHandler("✔ done")
+            }
+        }
+        
+        // categories: parse into objects
+        getResource(endpoint: "categories") { arrayOfDictionaries in
+            var tempCategories = [BeerCategory]()
+            for dictionary in arrayOfDictionaries {
+                // instantiate new object with a dictionary
+                // item example: ["url": "http...", "category_name": "IPA"]
+                if let category = BeerCategory(data: dictionary) { tempCategories.append(category) }
+            }
+            // push array to local property
+            self.categories = tempCategories
+            checkIfAllDataFetched()
+        }
+        
+        // scoresheets: parse into objects
+        getResource(endpoint: "scoresheets") { arrayOfDictionaries in
+            var tempScoresheets = [ScoresheetExpert]()
+            for dictionary in arrayOfDictionaries {
+                if let scoresheet = ScoresheetExpert(data: dictionary) { tempScoresheets.append(scoresheet) }
+            }
+            self.scoresheets = tempScoresheets
+            checkIfAllDataFetched()
+        }
+        
+        // beers: parse into objects
+        getResource(endpoint: "beers") { arrayOfDictionaries in
+            var tempBeers = [Beer]()
+            for dictionary in arrayOfDictionaries {
+                if let beer = Beer(data: dictionary) { tempBeers.append(beer) }
+            }
+            self.beers = tempBeers
+            checkIfAllDataFetched()
+        }
+        
+        // breweries: parse into objects
+        getResource(endpoint: "breweries") { arrayOfDictionaries in
+            var tempBreweries = [Brewery]()
+            for dictionary in arrayOfDictionaries {
+                if let brewery = Brewery(data: dictionary) { tempBreweries.append(brewery) }
+            }
+            self.breweries = tempBreweries
+            checkIfAllDataFetched()
+        }
     }
     
     // function to get a resource from the API
@@ -62,24 +104,12 @@ public class BeerDataFetcher {
             let resultString = results as! String
             let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
             let numberOfKeys = dataDictionary?.count
-            print(" • The \(endpoint) dictionary has \(numberOfKeys!) items")
+            print(" • The \(endpoint) table has \(numberOfKeys!) items")
             
             // return data
             completionHandler(dataDictionary! as [[String: AnyObject]])
-        
+            
         }
         task.resume()
-    }
-    
-    // get scoresheet and categories data.
-    // beers and breweries initially fetched in home view controller
-    func fetchAllBeerResources() {
-        getResource(endpoint: "scoresheets") {
-            // using weak self to reduce likelihood of memory leaks
-            [weak self](data) in self?.scoresheets = data
-        }
-        getResource(endpoint: "categories") {
-            [weak self](data) in self?.categories = data
-        }
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class ResultsController: UIViewController {
     
+    let apiData = BeerDataFetcher.sharedData
+    
     // BUG https://forums.developer.apple.com/thread/63189
     @IBAction func takeScreenshot(_ sender: Any) {
         //Create the UIImage
