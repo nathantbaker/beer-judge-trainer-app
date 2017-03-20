@@ -129,7 +129,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    
     // reset brewery picker
     @IBAction func resetBreweryPicker(_ sender: UIButton) {
         self.loadBreweryPicker()

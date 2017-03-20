@@ -29,7 +29,10 @@ class RateBeerController: UIViewController  {
         
         self.title = "Rate \(beerData.userSelectedBeer)"
         let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
-        topInfoText.text = "Assign up to 50 points for this \(beerObject.category)."
+        if beerObject.category != "" { // fixes bug in which you error then go to results screen
+            topInfoText.text = "Assign up to 50 points for this \(beerObject.category)."
+        }
+        
         // reset trainer scoresheet if it's a new beer
         if firstRatedBeer != beerData.userSelectedBeer {
         //    trainerScores = ScoresheetTrainer (
