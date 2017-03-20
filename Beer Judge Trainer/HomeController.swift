@@ -40,7 +40,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // by the time this runs, there is a default selected beer and brewery
     func setTextofRateButton() {
         // set text of Rate button
-        rateBeerButton.setTitle( "Rate \(beerData.userSelectedBeer)" , for: .normal )
+        rateBeerButton.setTitle( "✓ Rate \(beerData.userSelectedBeer)" , for: .normal )
+        rateBeerButton.backgroundColor = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
         // give full beeer name under Rate button
         fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
         fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
@@ -153,8 +154,17 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.SelectBeer.reloadAllComponents() // reload picker interface
     }
     
+    // picker header elements
+    @IBOutlet weak var BreweryPickerHeader: UILabel!
+    @IBOutlet weak var BeerPickerHeader: UILabel!
+    @IBOutlet weak var ViewAllBreweriesButton: UIButton!
+    @IBOutlet weak var ViewAllBeersButton: UIButton!
+    
     func filterBeerBasedOnBrewery() -> [String] {
+ 
         setTextofRateButton() // dynamically change Rate button
+        BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
+        ViewAllBeersButton.isHidden = false
         if beerData.userSelectedBrewery != "none" { // dont' crash if still loading data
             let breweryObject = helperBot.getBreweryObjectFromName(brewery: beerData.userSelectedBrewery)
             return breweryObject.beers // return beers on a brewery
@@ -164,7 +174,10 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func filterBreweryBasedOnBeer() -> [String] {
+
         setTextofRateButton() // dynamically change Rate button
+        BreweryPickerHeader.text = "Beer's Brewery"
+        ViewAllBreweriesButton.isHidden = false
         if beerData.userSelectedBeer != "none" { // dont' crash if still loading data
             let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
             let breweryOfBeer = beerObject.brewery.name
@@ -174,12 +187,16 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
+    // reset pickers functions
     @IBAction func resetBreweryPicker(_ sender: UIButton) {
+        BreweryPickerHeader.text = "Filter By Brewery"
+        ViewAllBreweriesButton.isHidden = true
         self.loadBreweryPicker()
         print("reset brewery picker")
     }
-
     @IBAction func resetBeerPicker(_ sender: UIButton) {
+        BeerPickerHeader.text = "Find Beer Name"
+        ViewAllBeersButton.isHidden = true
         self.loadBeerPicker()
         print("reset brewery picker")
     }
