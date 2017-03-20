@@ -20,6 +20,7 @@ class RateBeerController: UIViewController  {
     @IBOutlet weak var topInfoText: UILabel!
     @IBOutlet weak var scoreRangeTitle: UILabel!
     @IBOutlet weak var scoreRangeDescription: UILabel!
+    @IBOutlet weak var totalScoreBackgroundColor: UILabel!
     
     // slider elements
     @IBOutlet weak var sliderAroma: UISlider!
@@ -36,6 +37,12 @@ class RateBeerController: UIViewController  {
     @IBOutlet weak var scoreOutputMouthfeel: UILabel!
     @IBOutlet weak var scoreOutputImpression: UILabel!
     @IBOutlet weak var scoreOutputTotal: UILabel!
+    @IBOutlet weak var scoreYourScoreHeader: UILabel!
+    
+    //compare expert scores button
+    @IBOutlet weak var compareExpertScoresButton: UIButton!
+    
+    
     
     
     // slider functions
@@ -51,6 +58,21 @@ class RateBeerController: UIViewController  {
         let roundedValue = round(Double(scores) / step) * step
         let totalNoTrailingZero = String(format: "%g", roundedValue)
         self.scoreOutputTotal.text = "\(totalNoTrailingZero) of 50"
+    }
+    
+    func highlightScoreTotal() {
+        // if this is the first slider action, highlight your score total
+        // and button to continue
+        var functionHasRunOnce = false
+        
+        if functionHasRunOnce == false {
+            functionHasRunOnce = true
+            compareExpertScoresButton.setTitle("✓ Compare Expert Scores ", for: .normal)
+            let darkgreen = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
+            compareExpertScoresButton.backgroundColor = darkgreen
+            scoreOutputTotal.textColor = darkgreen
+            
+        }
     }
     
     // things to reload on slider drag
@@ -81,8 +103,13 @@ class RateBeerController: UIViewController  {
     }
     
     // set score total on slider touch up inside/outside
-    @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { resetTotal() }
-    @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) { resetTotal() }
+    @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { resetTotal()
+        highlightScoreTotal()
+    }
+    @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) {
+        resetTotal()
+        highlightScoreTotal()
+    }
 
     
     func testStuff() {
@@ -109,7 +136,12 @@ class RateBeerController: UIViewController  {
         //        brewery: userSelectedBrewery
         //    )
         }
+        
         testStuff()
+        
+        // round button corners
+        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
+        compareExpertScoresButton.clipsToBounds = true
     }
     
 }

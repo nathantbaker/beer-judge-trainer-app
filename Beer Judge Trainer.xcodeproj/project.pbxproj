@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */; };
+		CD0445CF1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0445CE1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift */; };
 		CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */; };
 		CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6C11E78398C007F6A63 /* HomeController.swift */; };
 		CD0DC6C51E78398C007F6A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C31E78398C007F6A63 /* Main.storyboard */; };
 		CD0DC6C71E78398C007F6A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C61E78398C007F6A63 /* Assets.xcassets */; };
 		CD0DC6CA1E78398C007F6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */; };
 		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
+		CD29660E1E8087220089B6D9 /* BeerRangeInfoBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */; };
 		CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */; };
 		CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FB1E7EC708000388E4 /* Beer.swift */; };
 		CD5129FE1E7EDACB000388E4 /* BeerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */; };
@@ -27,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsLanguageBot.swift; sourceTree = "<group>"; };
+		CD0445CE1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerSuccessLevelBot.swift; sourceTree = "<group>"; };
 		CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Judge Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD0DC6C11E78398C007F6A63 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -36,6 +37,7 @@
 		CD0DC6C91E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD0DC6CB1E78398C007F6A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerRangeInfoBot.swift; sourceTree = "<group>"; };
 		CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetTrainer.swift; sourceTree = "<group>"; };
 		CD5129FB1E7EC708000388E4 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerCategory.swift; sourceTree = "<group>"; };
@@ -116,7 +118,8 @@
 			children = (
 				CDADDE361E7C905D00200292 /* HelperFunctions.swift */,
 				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
-				CD0445CE1E7A44F30073BBE1 /* ResultsLanguageBot.swift */,
+				CD0445CE1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift */,
+				CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */,
 			);
 			name = "Helper Bots";
 			sourceTree = "<group>";
@@ -228,13 +231,14 @@
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
 				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
-				CD0445CF1E7A44F30073BBE1 /* ResultsLanguageBot.swift in Sources */,
+				CD0445CF1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift in Sources */,
 				CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */,
 				CDADDE391E7CF5A500200292 /* RateBeerController.swift in Sources */,
 				CD0DC6C01E78398C007F6A63 /* AppDelegate.swift in Sources */,
 				CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */,
 				CDADDE371E7C905D00200292 /* HelperFunctions.swift in Sources */,
 				CD5129FE1E7EDACB000388E4 /* BeerCategory.swift in Sources */,
+				CD29660E1E8087220089B6D9 /* BeerRangeInfoBot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

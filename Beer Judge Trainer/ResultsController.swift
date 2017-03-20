@@ -11,23 +11,18 @@ import UIKit
 class ResultsController: UIViewController {
     
     let apiData = BeerDataFetcher.sharedData
-    
-    // BUG https://forums.developer.apple.com/thread/63189
-    @IBAction func takeScreenshot(_ sender: Any) {
-        //Create the UIImage
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        //Save it to the camera roll
-        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-    }
 
+    // view elements
+    @IBOutlet weak var RateAnotherBeer: UIButton!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // round button corners
+        RateAnotherBeer.layer.cornerRadius = 0.02 * RateAnotherBeer.bounds.size.width
+        RateAnotherBeer.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
