@@ -16,11 +16,45 @@ import UIKit
 
 class RateBeerController: UIViewController  {
     
+    
+    // element reference outlets
+    
+    // informative text
+    @IBOutlet weak var topInfoText: UILabel!
+    @IBOutlet weak var scoreRangeTitle: UILabel!
+    @IBOutlet weak var scoreRangeDescription: UILabel!
+    // score input
+    
+    // score outputs
+    @IBOutlet weak var scoreOutputAroma: UILabel!
+    @IBOutlet weak var scoreOutputAppearance: UILabel!
+    @IBOutlet weak var scoreOutputFlavor: UILabel!
+    @IBOutlet weak var scoreOutputMouthfeel: UILabel!
+    @IBOutlet weak var scoreOutputImpression: UILabel!
+    @IBOutlet weak var scoreOutputTotal: UILabel!
+    
+    @IBAction func scoreInputAroma(_ sender: Any) {
+    }
+
+    @IBAction func scoreInputAppearance(_ sender: Any) {
+    }
+    
+    
+    @IBAction func scoreInputFlavor(_ sender: Any) {
+    }
+    
+    @IBAction func scoreInputMouthfeel(_ sender: Any) {
+    }
+    
+    
+    @IBAction func scoreInputImpression(_ sender: Any) {
+    }
+    
     func testStuff() {
         // print("current user scoresheet: \(trainerScores.beer_name)")
     }
+    
 
-    @IBOutlet weak var topInfoText: UILabel!
     
     override func viewDidLoad() {
         let beerData = BeerDataFetcher.sharedData

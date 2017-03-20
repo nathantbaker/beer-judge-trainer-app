@@ -166,6 +166,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="Lhc-Yb-WRR">
                                 <rect key="frame" x="40" y="144" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scoreInputAroma:" destination="AKn-c2-0U0" eventType="valueChanged" id="HOj-Vh-RZ4"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aroma:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKE-pM-oPW">
                                 <rect key="frame" x="19" y="112" width="60" height="23"/>
@@ -210,6 +213,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="wag-kp-O2V">
                                 <rect key="frame" x="41" y="215" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scoreInputAppearance:" destination="AKn-c2-0U0" eventType="valueChanged" id="H7s-jn-Z2F"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Appearance:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hJ-07-e16">
                                 <rect key="frame" x="19" y="182" width="102" height="23"/>
@@ -242,6 +248,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="KUj-tt-Jg4">
                                 <rect key="frame" x="41" y="287" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scoreInputFlavor:" destination="AKn-c2-0U0" eventType="valueChanged" id="VJD-Ek-H11"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flavor:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1Q-wh-8oi">
                                 <rect key="frame" x="19" y="253" width="102" height="23"/>
@@ -274,6 +283,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="yT7-M6-7Cx">
                                 <rect key="frame" x="41" y="360" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scoreInputMouthfeel:" destination="AKn-c2-0U0" eventType="valueChanged" id="0x4-6w-yaM"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mouthfeel:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGx-9r-q4o">
                                 <rect key="frame" x="19" y="325" width="102" height="23"/>
@@ -306,6 +318,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="tHk-5R-BLL">
                                 <rect key="frame" x="41" y="434" width="292" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scoreInputImpression:" destination="AKn-c2-0U0" eventType="valueChanged" id="6uL-op-pnE"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Overall Impression:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdR-f5-yGN">
                                 <rect key="frame" x="19" y="398" width="154" height="23"/>
@@ -377,6 +392,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="V2r-XL-hik"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="scoreOutputAppearance" destination="rhh-EO-pM8" id="jmY-9J-4gV"/>
+                        <outlet property="scoreOutputAroma" destination="tbI-VX-nnX" id="aTh-1A-t2k"/>
+                        <outlet property="scoreOutputFlavor" destination="ePw-5b-qIr" id="AmX-pl-O6u"/>
+                        <outlet property="scoreOutputImpression" destination="g0p-rt-RDq" id="26Z-fw-Ujh"/>
+                        <outlet property="scoreOutputMouthfeel" destination="pGn-dc-LoO" id="2p9-Vu-epN"/>
+                        <outlet property="scoreOutputTotal" destination="YpA-1q-28J" id="WBI-1s-ioy"/>
+                        <outlet property="scoreRangeDescription" destination="ROo-Ia-FCj" id="dSz-UA-CZg"/>
+                        <outlet property="scoreRangeTitle" destination="hl9-Uu-y0B" id="6HD-zH-hJJ"/>
                         <outlet property="topInfoText" destination="INh-By-k8A" id="bhk-kA-q4Y"/>
                     </connections>
                 </viewController>
