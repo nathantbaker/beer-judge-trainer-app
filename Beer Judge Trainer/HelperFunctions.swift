@@ -47,43 +47,22 @@ class HelperFunctions {
         return nil
     }
     
-    // function to return an array of all beers from a specific brewery
-    public func returnAllBeersFromBrewery(brewery: String) -> [String] {
-
-        var ArrayOfBeers = [String]()
-        // find id of beer
+    // function to return brewery object from brewery name
+    public func getBreweryObjectFromName(brewery: String) -> Brewery {
+        var target = beerData.breweries[0] // set target to first brewery
         if let indexNumber = beerData.breweries.index(where: { $0.name == brewery}) {
-            let targetBrewery = beerData.breweries[indexNumber]
-            print("targetBrewery")
-            print(targetBrewery.name)
-            print(targetBrewery.id)
-            print(targetBrewery.beers)
-            
-            ArrayOfBeers = targetBrewery.beers
-            
-
+            target = beerData.breweries[indexNumber] // change value of target
         }
-
-//        
-//        // target dictionary with the id
-//        for brewery in breweryData {
-//            for (_, value) in brewery {                 // loop over brewery array
-//                if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
-//                    targetBreweryId = brewery["url"] as! String   // capture brewery id for the brewery
-//                }
-//            }
-//        }
-//      
-//        // find all beers dictionaries with that id
-//        for beer in beerData {
-//            for (_, value) in beer {                 // loop over beer array
-//                if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
-//                    ArrayOfBeers.append(beer["beer_name"] as! String)
-//                }
-//            }
-//        }
-        print(ArrayOfBeers)
-        return ArrayOfBeers
+        return target
+    }
+    
+    // function to return beer object from beer name
+    public func getBeerObjectFromName(beer: String) -> Beer {
+        var target = beerData.beers[0] // set target to first brewery
+        if let indexNumber = beerData.beers.index(where: { $0.name == beer}) {
+            target = beerData.beers[indexNumber] // change value of target
+        }
+        return target
     }
     
     // function to return an array of the brewery associated with a beer

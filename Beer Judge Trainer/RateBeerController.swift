@@ -16,21 +16,21 @@ import UIKit
 
 class RateBeerController: UIViewController  {
     
-    let firstRatedBeer = userSelectedBeer // constant
-    
     func testStuff() {
-//        print("current user scoresheet: \(trainerScores.beer_name)")
+        // print("current user scoresheet: \(trainerScores.beer_name)")
     }
 
     override func viewDidLoad() {
-        // set view title to beer being rated
-        self.title = "Rate \(userSelectedBeer)"
+        let beerData = BeerDataFetcher.sharedData
+        let firstRatedBeer = beerData.userSelectedBeer // constant
+        
+        self.title = "Rate \(beerData.userSelectedBeer)"
         // reset trainer scoresheet if it's a new beer
-        if firstRatedBeer != userSelectedBeer {
-//            trainerScores = ScoresheetTrainer (
-//                beer: userSelectedBeer,
-//                brewery: userSelectedBrewery
-//            )
+        if firstRatedBeer != beerData.userSelectedBeer {
+        //    trainerScores = ScoresheetTrainer (
+        //        beer: userSelectedBeer,
+        //        brewery: userSelectedBrewery
+        //    )
         }
         testStuff()
     }

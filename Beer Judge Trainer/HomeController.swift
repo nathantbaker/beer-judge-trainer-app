@@ -8,10 +8,6 @@
 
 import UIKit
 
-//global variables available to other controllers
-var userSelectedBrewery = "none"
-var userSelectedBeer = "none"
-
 class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let beerData = BeerDataFetcher.sharedData
@@ -20,19 +16,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // intial data shown for pickers
     var brewerySelectOptions = ["Select Brewery"]
     var beerSelectOptions = ["Select Beer"]
-    
-    // load view
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        fetchDataAndBuildInterface()
-        
-        // set picker data and settings on load of home view
-        self.SelectBrewery.dataSource = self
-        self.SelectBrewery.delegate = self
-        self.SelectBeer.dataSource = self
-        self.SelectBeer.delegate = self
-    }
     
     // build view
     func fetchDataAndBuildInterface() {
@@ -44,29 +27,10 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             print("Status of Parsing API Data: \(completeMessage)")
             
-            // populate brewery picker with brewery names
-            self.brewerySelectOptions = [] // clear default value
-            for brewery in beerData.breweries {
-                self.brewerySelectOptions.append(brewery.name)
-            }
-            self.SelectBrewery.reloadAllComponents() // reload picker interface
-            
-            // populate beer picker with beer names
-            self.beerSelectOptions = [] // clear default value
-            for beer in beerData.beers {
-                self.beerSelectOptions.append(beer.name)
-            }
-            self.SelectBeer.reloadAllComponents() // reload picker interface
-            
-            
-
-//            // populate beer picker with data
-//            self?.beerNames = (self?.helperBot.convertArrayOfDictionariesToArray(rawData: data, filterKey: "beer_name"))!
-//            self?.beerSelectOptions = (self!.beerNames)
-//            self?.SelectBeer.reloadAllComponents()  // reload picker interface
+            self.loadBreweryPicker()
+            self.loadBeerPicker()
             
         }
-    
     }
 
     
@@ -99,65 +63,84 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             
             if( pickerView == SelectBrewery ) {
-                userSelectedBrewery = brewerySelectOptions[row] as String
+                beerData.userSelectedBrewery = brewerySelectOptions[row] as String
                 beerSelectOptions = filterBeerBasedOnBrewery()
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
                 // store current beer row as user select in case users presses Rate before selecting the auto selected beer
-                if userSelectedBrewery != "none" { // dont' crash if still loading data
-                    userSelectedBeer = beerSelectOptions[0] as String
+                if beerData.userSelectedBrewery != "none" { // dont' crash if still loading data
+                    beerData.userSelectedBeer = beerSelectOptions[0] as String
                     setTextofRateButton()
-                    print("User selected brewery: \(userSelectedBrewery)")
+                    print("User selected brewery: \(beerData.userSelectedBrewery)")
                 }
 
             }
             
             if( pickerView == SelectBeer ) {
-                userSelectedBeer = beerSelectOptions[row] as String
+                beerData.userSelectedBeer = beerSelectOptions[row] as String
                 brewerySelectOptions = filterBreweryBasedOnBeer()
                 self.SelectBrewery.reloadAllComponents() // redraw beer picker
                 // store current brewery row as user select in case users presses Rate before selecting the auto selected brewery
-                if userSelectedBeer != "none" { // dont' crash if still loading data
-                    userSelectedBrewery = brewerySelectOptions[0] as String
+                if beerData.userSelectedBeer != "none" { // dont' crash if still loading data
+                    beerData.userSelectedBrewery = brewerySelectOptions[0] as String
                     setTextofRateButton() // dynamically change Rate button
-                    print("User selected beer: \(userSelectedBeer)")
+                    print("User selected beer: \(beerData.userSelectedBeer)")
                 }
             }
         }
     
-    //picker filtering functions
+    //picker functions
     
-        // function to filter beer picker by brewery selected
+    func loadBreweryPicker() {
+        // populate brewery picker with brewery names
+        self.brewerySelectOptions = [] // clear default value
+        for brewery in beerData.breweries {
+            self.brewerySelectOptions.append(brewery.name)
+        }
+        self.SelectBrewery.reloadAllComponents() // reload picker interface
+    }
+    
+    func loadBeerPicker() {
+        // populate beer picker with beer names
+        self.beerSelectOptions = [] // clear default value
+        for beer in beerData.beers {
+            self.beerSelectOptions.append(beer.name)
+        }
+        self.SelectBeer.reloadAllComponents() // reload picker interface
+    }
+    
     func filterBeerBasedOnBrewery() -> [String] {
-            
-            setTextofRateButton() // dynamically change Rate button
-            return helperBot.returnAllBeersFromBrewery(brewery: userSelectedBrewery)
+        setTextofRateButton() // dynamically change Rate button
+        if beerData.userSelectedBrewery != "none" { // dont' crash if still loading data
+            let breweryObject = helperBot.getBreweryObjectFromName(brewery: beerData.userSelectedBrewery)
+            return breweryObject.beers // return beers on a brewery
+        } else {
+            return ["Select Beer"]
         }
+    }
     
-        // function to filter brewery picker by beer selected
-        func filterBreweryBasedOnBeer() -> [String] {
-            
-//            let breweries = beerData.getBreweryData()
-//            let beer = beerData.getBeerData()
-//            
-//            return helperBot.returnBreweryOfBeer(
-//                beerData: beer,
-//                breweryData: breweries,
-//                filterWord: userSelectedBeer
-//            )
-            return [""]
+    func filterBreweryBasedOnBeer() -> [String] {
+        setTextofRateButton() // dynamically change Rate button
+        if beerData.userSelectedBeer != "none" { // dont' crash if still loading data
+            let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+            let breweryOfBeer = beerObject.brewery.name
+            return [breweryOfBeer] // return brewery name within array for picker
+        } else {
+            return ["Select Beer"]
         }
+    }
     
-        // reset brewery picker
-        @IBAction func resetBreweryPicker(_ sender: UIButton) {
-            self.SelectBrewery.reloadAllComponents() // redraw brewery picker
-            print("reset brewery picker")
-        }
+    
+    // reset brewery picker
+    @IBAction func resetBreweryPicker(_ sender: UIButton) {
+        self.loadBreweryPicker()
+        print("reset brewery picker")
+    }
 
-        // reset beer picker
-        @IBAction func resetBeerPicker(_ sender: UIButton) {
-            self.SelectBeer.reloadAllComponents() // redraw beer picker
-            print("reset beer picker")
-        }
+    // reset beer picker
+    @IBAction func resetBeerPicker(_ sender: UIButton) {
+        self.loadBeerPicker()
+        print("reset brewery picker")
+    }
     
     // dynamically set Rate button and helper info
     @IBOutlet weak var rateBeerButton: UIButton!
@@ -166,16 +149,16 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // by the time this runs, there is a default selected beer and brewery
     func setTextofRateButton() {
-        rateBeerButton.setTitle( "Rate \(userSelectedBeer)" , for: .normal )
+        rateBeerButton.setTitle( "Rate \(beerData.userSelectedBeer)" , for: .normal )
         fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
-        fullBeerNameLabel.text = "\(userSelectedBrewery)'s \(userSelectedBeer)"
+        fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
         beerCategoryLabel.text = "Red Ale" // need to make this dynamic still
     }
 
     //  don't allow users to click Rate Beer if they didn't select anything
     @IBAction func rateBeerOrError(_ sender: UIButton) {
         // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
-        if userSelectedBrewery == "none" && userSelectedBeer == "none" {
+        if beerData.userSelectedBrewery == "none" && beerData.userSelectedBeer == "none" {
             fullBeerNameLabel.textColor = UIColor.red
             fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
         } else {
@@ -183,6 +166,20 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.performSegue(withIdentifier: "RateBeerSegue", sender: self)
         }
     }
+    
+    // load view
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        fetchDataAndBuildInterface()
+        
+        // set picker data and settings on load of home view
+        self.SelectBrewery.dataSource = self
+        self.SelectBrewery.delegate = self
+        self.SelectBeer.dataSource = self
+        self.SelectBeer.delegate = self
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
