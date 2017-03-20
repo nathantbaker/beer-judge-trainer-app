@@ -11,13 +11,14 @@ import Foundation
 // The BeerDataFetcher gathers data from http://api.cancanawards.com/
 public class BeerDataFetcher {
     
-    // singleton to instanciate a single, shared class so all controllers have access to the same data
+    // singleton to instanciate a single, shared class
+    // so all classes have access to the same data
     static let sharedData: BeerDataFetcher = BeerDataFetcher()
 
     // class properies where beer objects are stored
     var beers = [Beer]()
     var breweries = [Brewery]()
-    var scoresheets = [Scoresheet]()
+    var scoresheets = [ScoresheetExpert]()
     var categories = [BeerCategory]()
     var userSelectedBrewery = "none"
     var userSelectedBeer = "none"
@@ -51,9 +52,9 @@ public class BeerDataFetcher {
         
         // scoresheets: parse into objects
         getResource(endpoint: "scoresheets") { arrayOfDictionaries in
-            var tempScoresheets = [Scoresheet]()
+            var tempScoresheets = [ScoresheetExpert]()
             for dictionary in arrayOfDictionaries {
-                if let scoresheet = Scoresheet(data: dictionary) { tempScoresheets.append(scoresheet) }
+                if let scoresheet = ScoresheetExpert(data: dictionary) { tempScoresheets.append(scoresheet) }
             }
             self.scoresheets = tempScoresheets
             checkIfAllDataFetched()
@@ -111,5 +112,4 @@ public class BeerDataFetcher {
         }
         task.resume()
     }
-    
 }

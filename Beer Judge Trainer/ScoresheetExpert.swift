@@ -9,7 +9,7 @@
 
 import Foundation
 
-public class Scoresheet {
+public class ScoresheetExpert {
     
     // scores
     var aroma = 0.0

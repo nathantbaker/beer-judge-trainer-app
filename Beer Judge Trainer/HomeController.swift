@@ -17,22 +17,59 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var brewerySelectOptions = ["Select Brewery"]
     var beerSelectOptions = ["Select Beer"]
     
-    // build view
-    func fetchDataAndBuildInterface() {
+    // load view
+    override func viewDidLoad() {
         
-        let beerData = BeerDataFetcher.sharedData
+        super.viewDidLoad()
         
-        // all api data has been parsed into objects within closure
+        // all api data has been parsed into objects within this closure
         beerData.FetchAllBeerResources() { completeMessage in
-            
             print("Status of Parsing API Data: \(completeMessage)")
-            
             self.loadBreweryPicker()
             self.loadBeerPicker()
-            
+        }
+        
+        // set picker data and settings on load of home view
+        self.SelectBrewery.dataSource = self
+        self.SelectBrewery.delegate = self
+        self.SelectBeer.dataSource = self
+        self.SelectBeer.delegate = self
+    }
+    
+    // dynamically set Rate button and helper info at bottom
+    // by the time this runs, there is a default selected beer and brewery
+    func setTextofRateButton() {
+        // set text of Rate button
+        rateBeerButton.setTitle( "Rate \(beerData.userSelectedBeer)" , for: .normal )
+        // give full beeer name under Rate button
+        fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
+        fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
+        // set beer category under Rate button
+        let targetBeerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+        beerCategoryLabel.text = targetBeerObject.category
+    }
+    @IBOutlet weak var rateBeerButton: UIButton!
+    @IBOutlet weak var fullBeerNameLabel: UILabel!
+    @IBOutlet weak var beerCategoryLabel: UILabel!
+    
+    // error handling
+    // don't allow users to click Rate Beer if they didn't select anything
+    @IBAction func rateBeerOrError(_ sender: UIButton) {
+        // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
+        if beerData.userSelectedBrewery == "none" && beerData.userSelectedBeer == "none" {
+            fullBeerNameLabel.textColor = UIColor.red
+            fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
+        } else {
+            // send them to the rating view
+            self.performSegue(withIdentifier: "RateBeerSegue", sender: self)
         }
     }
-
+    
+    // memory shiz
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     // picker settings
     
@@ -129,63 +166,14 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    // reset brewery picker
     @IBAction func resetBreweryPicker(_ sender: UIButton) {
         self.loadBreweryPicker()
         print("reset brewery picker")
     }
 
-    // reset beer picker
     @IBAction func resetBeerPicker(_ sender: UIButton) {
         self.loadBeerPicker()
         print("reset brewery picker")
     }
-    
-    // dynamically set Rate button and helper info
-    @IBOutlet weak var rateBeerButton: UIButton!
-    @IBOutlet weak var fullBeerNameLabel: UILabel!
-    @IBOutlet weak var beerCategoryLabel: UILabel!
-    
-    // by the time this runs, there is a default selected beer and brewery
-    func setTextofRateButton() {
-        rateBeerButton.setTitle( "Rate \(beerData.userSelectedBeer)" , for: .normal )
-        fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
-        fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
-        let targetBeerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
-        beerCategoryLabel.text = targetBeerObject.category
-    }
-
-    //  don't allow users to click Rate Beer if they didn't select anything
-    @IBAction func rateBeerOrError(_ sender: UIButton) {
-        // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
-        if beerData.userSelectedBrewery == "none" && beerData.userSelectedBeer == "none" {
-            fullBeerNameLabel.textColor = UIColor.red
-            fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
-        } else {
-            // send them to the rating view
-            self.performSegue(withIdentifier: "RateBeerSegue", sender: self)
-        }
-    }
-    
-    // load view
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        fetchDataAndBuildInterface()
-        
-        // set picker data and settings on load of home view
-        self.SelectBrewery.dataSource = self
-        self.SelectBrewery.delegate = self
-        self.SelectBeer.dataSource = self
-        self.SelectBeer.delegate = self
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
