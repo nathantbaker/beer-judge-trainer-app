@@ -16,14 +16,18 @@ import UIKit
 
 class RateBeerController: UIViewController  {
     
-    
-    // element reference outlets
-    
     // informative text
     @IBOutlet weak var topInfoText: UILabel!
     @IBOutlet weak var scoreRangeTitle: UILabel!
     @IBOutlet weak var scoreRangeDescription: UILabel!
-    // score input
+    
+    // slider elements
+    @IBOutlet weak var sliderAroma: UISlider!
+    @IBOutlet weak var sliderAppearance: UISlider!
+    @IBOutlet weak var sliderFlavor: UISlider!
+    @IBOutlet weak var sliderMouthfeel: UISlider!
+    @IBOutlet weak var sliderImpression: UISlider!
+    
     
     // score outputs
     @IBOutlet weak var scoreOutputAroma: UILabel!
@@ -33,22 +37,72 @@ class RateBeerController: UIViewController  {
     @IBOutlet weak var scoreOutputImpression: UILabel!
     @IBOutlet weak var scoreOutputTotal: UILabel!
     
-    @IBAction func scoreInputAroma(_ sender: Any) {
+    
+    // slider functions
+    let step = 0.5
+    func getHalfStep(value: Float) -> String {
+        let roundedValue = round(Double(value) / step) * step
+        let numberWithOneDecimal = (Double(roundedValue))
+        return String(numberWithOneDecimal)
+    }
+    
+    func resetTotal() {
+        let scores = sliderAroma.value + sliderAppearance.value + sliderFlavor.value + sliderMouthfeel.value + sliderImpression.value
+        let roundedValue = round(Double(scores) / step) * step
+        let totalNoTrailingZero = String(format: "%g", roundedValue)
+        self.scoreOutputTotal.text = "\(totalNoTrailingZero) of 50"
+    }
+    
+    // things to reload on slider drag
+    
+    @IBAction func scoreInputAroma(_ sender: UISlider) {
+        let sliderValue = getHalfStep(value: sender.value)
+        self.scoreOutputAroma.text = "\(sliderValue) of 12"
     }
 
-    @IBAction func scoreInputAppearance(_ sender: Any) {
+    @IBAction func scoreInputAppearance(_ sender: UISlider) {
+        let sliderValue = getHalfStep(value: sender.value)
+        self.scoreOutputAppearance.text = "\(sliderValue) of 3"
+    }
+    
+    @IBAction func scoreInputFlavor(_ sender: UISlider) {
+        let sliderValue = getHalfStep(value: sender.value)
+        self.scoreOutputFlavor.text = "\(sliderValue) of 20"
+    }
+    
+    @IBAction func scoreInputMouthfeel(_ sender: UISlider) {
+        let sliderValue = getHalfStep(value: sender.value)
+        self.scoreOutputMouthfeel.text = "\(sliderValue) of 5"
+    }
+    
+    @IBAction func scoreInputImpression(_ sender: UISlider) {
+        let sliderValue = getHalfStep(value: sender.value)
+        self.scoreOutputImpression.text = "\(sliderValue) of 10"
+    }
+    
+    // things to reload on slider
+    
+    @IBAction func scoreInputAromaTouchUpInside(_ sender: UISlider) {
+        resetTotal()
+    }
+    
+    @IBAction func scoreInputAppearanceTouchUpInside(_ sender: UISlider) {
+        resetTotal()
+    }
+    
+    @IBAction func scoreInputFlavorTouchUpInside(_ sender: UISlider) {
+        resetTotal()
+    }
+    
+    @IBAction func scoreInputMouthfeelTouchUpInside(_ sender: UISlider) {
+        resetTotal()
+    }
+
+    @IBAction func scoreInputImpressionTouchUpInside(_ sender: UISlider) {
+        resetTotal()
     }
     
     
-    @IBAction func scoreInputFlavor(_ sender: Any) {
-    }
-    
-    @IBAction func scoreInputMouthfeel(_ sender: Any) {
-    }
-    
-    
-    @IBAction func scoreInputImpression(_ sender: Any) {
-    }
     
     func testStuff() {
         // print("current user scoresheet: \(trainerScores.beer_name)")
