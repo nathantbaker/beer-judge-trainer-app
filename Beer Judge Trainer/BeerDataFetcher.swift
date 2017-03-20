@@ -19,38 +19,6 @@ public class BeerDataFetcher {
     var breweries = [Brewery]()
     var scoresheets = [Scoresheet]()
     var categories = [BeerCategory]()
-
-    // function to get a resource from the API
-    func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
-        
-        //  build url
-        let myUrl = NSURL(string: "http://api.cancanawards.com/\(endpoint)/")
-        
-        // build request
-        let request = NSMutableURLRequest(url:myUrl! as URL)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            data, response, error in
-            
-            // error handling
-            if let error = error {
-                print("error=\(error)")
-                return
-            }
-            
-            // parse results into dictionary
-            let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            let resultString = results as! String
-            let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
-            let numberOfKeys = dataDictionary?.count
-            print(" • The \(endpoint) table has \(numberOfKeys!) items")
-            
-            // return data
-            completionHandler(dataDictionary! as [[String: AnyObject]])
-        
-        }
-        task.resume()
-    }
     
     // pull down all data from api
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {
@@ -62,7 +30,7 @@ public class BeerDataFetcher {
         func checkIfAllDataFetched() {
             fetchCounter += 1
             if fetchCounter == numberOfResourcesToFetch {
-                completionHandler("done")
+                completionHandler("✔ done")
             }
         }
         
@@ -72,9 +40,7 @@ public class BeerDataFetcher {
             for dictionary in arrayOfDictionaries {
                 // instantiate new object with a dictionary
                 // item example: ["url": "http...", "category_name": "IPA"]
-                if let category = BeerCategory(data: dictionary) {
-                    tempCategories.append(category)
-                }
+                if let category = BeerCategory(data: dictionary) { tempCategories.append(category) }
             }
             // push array to local property
             self.categories = tempCategories
@@ -110,12 +76,38 @@ public class BeerDataFetcher {
             self.breweries = tempBreweries
             checkIfAllDataFetched()
         }
-        
-        
-        
-        
     }
-
     
+    // function to get a resource from the API
+    func getResource(endpoint: String, completionHandler: @escaping (_ responseData: [[String: AnyObject]]) -> ()) {
+        
+        //  build url
+        let myUrl = NSURL(string: "http://api.cancanawards.com/\(endpoint)/")
+        
+        // build request
+        let request = NSMutableURLRequest(url:myUrl! as URL)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // error handling
+            if let error = error {
+                print("error=\(error)")
+                return
+            }
+            
+            // parse results into dictionary
+            let results = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            let resultString = results as! String
+            let dataDictionary = HelperFunctions().convertStringToDictionaryOfDictionaries(text: resultString)
+            let numberOfKeys = dataDictionary?.count
+            print(" • The \(endpoint) table has \(numberOfKeys!) items")
+            
+            // return data
+            completionHandler(dataDictionary! as [[String: AnyObject]])
+            
+        }
+        task.resume()
+    }
     
 }

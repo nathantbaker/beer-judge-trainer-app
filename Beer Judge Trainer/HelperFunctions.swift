@@ -10,6 +10,8 @@ import Foundation
 
 class HelperFunctions {
     
+    let beerData = BeerDataFetcher.sharedData
+    
     // function to convert array of dictionarys to one array based on a key 
     public func convertArrayOfDictionariesToArray( rawData:[[String: AnyObject]], filterKey: String ) -> [String] {
     
@@ -46,30 +48,41 @@ class HelperFunctions {
     }
     
     // function to return an array of all beers from a specific brewery
-    public func returnAllBeersFromBrewery(beerData: [[String:AnyObject]], breweryData: [[String:AnyObject]], filterWord: String) -> [String] {
-        
-        // placeholders
-        var targetBreweryId = String()
+    public func returnAllBeersFromBrewery(brewery: String) -> [String] {
+
         var ArrayOfBeers = [String]()
-        
-        // target dictionary with the id
-        for brewery in breweryData {
-            for (_, value) in brewery {                 // loop over brewery array
-                if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
-                    targetBreweryId = brewery["url"] as! String   // capture brewery id for the brewery
-                }
-            }
+        // find id of beer
+        if let indexNumber = beerData.breweries.index(where: { $0.name == brewery}) {
+            let targetBrewery = beerData.breweries[indexNumber]
+            print("targetBrewery")
+            print(targetBrewery.name)
+            print(targetBrewery.id)
+            print(targetBrewery.beers)
+            
+            ArrayOfBeers = targetBrewery.beers
+            
+
         }
-      
-        // find all beers dictionaries with that id
-        for beer in beerData {
-            for (_, value) in beer {                 // loop over beer array
-                if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
-                    ArrayOfBeers.append(beer["beer_name"] as! String)
-                }
-            }
-        }
-        
+
+//        
+//        // target dictionary with the id
+//        for brewery in breweryData {
+//            for (_, value) in brewery {                 // loop over brewery array
+//                if value as! String == filterWord {     // find dictionaries with a brewery_name etc of the filter word
+//                    targetBreweryId = brewery["url"] as! String   // capture brewery id for the brewery
+//                }
+//            }
+//        }
+//      
+//        // find all beers dictionaries with that id
+//        for beer in beerData {
+//            for (_, value) in beer {                 // loop over beer array
+//                if value as! String == targetBreweryId {     // find dictionaries with a brewery_name etc of the filter word
+//                    ArrayOfBeers.append(beer["beer_name"] as! String)
+//                }
+//            }
+//        }
+        print(ArrayOfBeers)
         return ArrayOfBeers
     }
     
