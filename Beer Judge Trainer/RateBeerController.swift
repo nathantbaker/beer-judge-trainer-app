@@ -8,13 +8,12 @@
 
 import UIKit
 
-//create user scoresheet to store inputs
-//var trainerScores = ScoresheetTrainer (
-//    beer: userSelectedBeer,
-//    brewery: userSelectedBrewery
-//)
-
 class RateBeerController: UIViewController  {
+    
+    let beerData = BeerDataFetcher.sharedData
+    let helperBot = HelperFunctions()
+    
+    // ui elements
     
     // informative text
     @IBOutlet weak var topInfoText: UILabel!
@@ -29,7 +28,6 @@ class RateBeerController: UIViewController  {
     @IBOutlet weak var sliderMouthfeel: UISlider!
     @IBOutlet weak var sliderImpression: UISlider!
     
-    
     // score outputs
     @IBOutlet weak var scoreOutputAroma: UILabel!
     @IBOutlet weak var scoreOutputAppearance: UILabel!
@@ -42,15 +40,30 @@ class RateBeerController: UIViewController  {
     //compare expert scores button
     @IBOutlet weak var compareExpertScoresButton: UIButton!
     
+    // load/reload logic
+    override func viewDidLoad() {
+
+        // set beer title to the view
+        self.title = "Rate \(beerData.userSelectedBeer)"
+        
+        // reset beer category info if view is navigated back to
+        let category = helperBot.getCategoryFromSelectedBeer()
+        if category != "" { // fixes bug in which you error then go to results screen
+            topInfoText.text = "Assign up to 50 points for this \(category)."
+        }
+        
+        // round button corners
+        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
+        compareExpertScoresButton.clipsToBounds = true
+    }
     
-    
-    
-    // slider functions
+    // score total math
     let step = 0.5
-    func getHalfStep(value: Float) -> String {
+    
+    func getHalfStep(value: Float) -> Double {
         let roundedValue = round(Double(value) / step) * step
         let numberWithOneDecimal = (Double(roundedValue))
-        return String(numberWithOneDecimal)
+        return numberWithOneDecimal
     }
     
     func getTotalScore() -> Float {
@@ -64,22 +77,7 @@ class RateBeerController: UIViewController  {
         self.scoreOutputTotal.text = "\(totalNoTrailingZero) of 50"
     }
     
-    func highlightScoreTotal() {
-        // if this is the first slider action, highlight your score total
-        // and button to continue
-        var functionHasRunOnce = false
-        
-        if functionHasRunOnce == false {
-            functionHasRunOnce = true
-            compareExpertScoresButton.setTitle("✓ Compare Expert Scores ", for: .normal)
-            let darkgreen = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
-            compareExpertScoresButton.backgroundColor = darkgreen
-            scoreOutputTotal.textColor = darkgreen
-            
-        }
-    }
-    
-    // things to reload on slider drag
+    // update category scores on live slider change
     
     @IBAction func scoreInputAroma(_ sender: UISlider) {
         let sliderValue = getHalfStep(value: sender.value)
@@ -106,7 +104,8 @@ class RateBeerController: UIViewController  {
         self.scoreOutputImpression.text = "\(sliderValue) of 10"
     }
     
-    // actions on slider touch up inside/outside
+    // only update total and score range on slider touch up
+    
     @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { actionsOnSliderTouchUp() }
     @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) { actionsOnSliderTouchUp() }
     
@@ -118,34 +117,33 @@ class RateBeerController: UIViewController  {
         scoreRangeDescription.text = BeerRangeInfoBot().rangeDescription(total: trainerTotal)
     }
     
-    func testStuff() {
-        // print("current user scoresheet: \(trainerScores.beer_name)")
+    // the first time a slider is moved, highlight score total and button to help user
+    func highlightScoreTotal() {
+        var functionHasRunOnce = false
+        if functionHasRunOnce == false {
+            functionHasRunOnce = true
+            compareExpertScoresButton.setTitle("✓ Compare Expert Scores ", for: .normal)
+            let darkgreen = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
+            compareExpertScoresButton.backgroundColor = darkgreen
+            scoreOutputTotal.textColor = darkgreen
+        }
     }
     
-    override func viewDidLoad() {
-        let beerData = BeerDataFetcher.sharedData
-        let helperBot = HelperFunctions()
-        let firstRatedBeer = beerData.userSelectedBeer // constant
+    // store user intputs when clicking Compare Expert Scores button
+    @IBAction func storeTrainerScoresheet(_ sender: UIButton) {
         
-        self.title = "Rate \(beerData.userSelectedBeer)"
-        let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
-        if beerObject.category != "" { // fixes bug in which you error then go to results screen
-            topInfoText.text = "Assign up to 50 points for this \(beerObject.category)."
-        }
+        // scores
+        beerData.userScoresheet.aroma       =   getHalfStep(value: sliderAroma.value)
+        beerData.userScoresheet.appearance  =   getHalfStep(value: sliderAppearance.value)
+        beerData.userScoresheet.flavor      =   getHalfStep(value: sliderFlavor.value)
+        beerData.userScoresheet.mouthfeel   =   getHalfStep(value: sliderMouthfeel.value)
+        beerData.userScoresheet.impression  =   getHalfStep(value: sliderImpression.value)
+        beerData.userScoresheet.total       =   getHalfStep(value: getTotalScore()) // total
         
-        // reset trainer scoresheet if it's a new beer
-        if firstRatedBeer != beerData.userSelectedBeer {
-        //    trainerScores = ScoresheetTrainer (
-        //        beer: userSelectedBeer,
-        //        brewery: userSelectedBrewery
-        //    )
-        }
-        
-        testStuff()
-        
-        // round button corners
-        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
-        compareExpertScoresButton.clipsToBounds = true
+        // capture beer data from current rating sessions
+        beerData.userScoresheet.beer        =   beerData.userSelectedBeer
+        beerData.userScoresheet.brewery     =   beerData.userSelectedBrewery
+        beerData.userScoresheet.category    =   helperBot.getCategoryFromSelectedBeer()
+
     }
-    
 }

@@ -42,17 +42,17 @@ class BeerRangeInfoBot {
     func rangeDescription(total: Float) -> String {
         
         if total <= 13 {
-            return "Beers scored between 0-13 have major off flavors and aromas dominate. Hard to drink."
+            return "Beers scored between 0-13 have major off flavors and aromas dominate. They are hard to drink."
         } else if total <= 20 {
-            return "Beers scored between 14-20 have off flavors/aromas or major style deficiencies. Unpleasant."
+            return "Beers scored between 14-20 have off flavors/aromas or major style deficiencies. They are unpleasant."
         } else if total <= 29 {
             return "Beers scored between 21-29 miss the mark on style and/or have minor flaws."
         } else if total <= 37 {
-            return "Beers scored between 30-37 are generally within style parameters, some minor flaws."
+            return "Beers scored between 30-37 are generally within style parameters, and may have some minor flaws."
         } else if total <= 44 {
-            return "Beers scored between 38-44 exemplifies style well, requires minor fine-tuning."
+            return "Beers scored between 38-44 exemplifies the style well, and only require minor fine-tuning."
         } else if total <= 50 {
-            return "Beers scored between 45-50 are world-class example of the style"
+            return "Beers scored between 45-50 are world-class examples of the style"
         } else {
             return ""
         }

@@ -400,6 +400,7 @@
                                     <color key="titleColor" red="0.98958333330000003" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="storeTrainerScoresheet:" destination="AKn-c2-0U0" eventType="touchUpInside" id="jXe-XD-D1f"/>
                                     <segue destination="JBh-1w-cDD" kind="show" id="W23-dQ-a7p"/>
                                 </connections>
                             </button>

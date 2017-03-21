@@ -44,4 +44,10 @@ class HelperFunctions {
         }
         return target
     }
+    
+    // function to return category of currently selected beer
+    public func getCategoryFromSelectedBeer() -> String {
+        let beerObject = self.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+        return beerObject.category
+    }
 }

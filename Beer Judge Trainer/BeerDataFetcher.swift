@@ -15,14 +15,18 @@ public class BeerDataFetcher {
     // so all classes have access to the same data
     static let sharedData: BeerDataFetcher = BeerDataFetcher()
 
-    // class properies where beer objects are stored
-    var beers = [Beer]()
-    var breweries = [Brewery]()
-    var scoresheets = [ScoresheetExpert]()
-    var categories = [BeerCategory]()
-    var userSelectedBrewery = "none"
-    var userSelectedBeer = "none"
-    var completeMessage = "loading"
+    // class properies on singleton
+    
+        // beer data from api
+        var allDataFetched = false
+        var beers = [Beer]()
+        var breweries = [Brewery]()
+        var scoresheets = [ScoresheetExpert]()
+        var categories = [BeerCategory]()
+        // user inputs
+        var userSelectedBrewery = "none"
+        var userSelectedBeer = "none"
+        var userScoresheet = ScoresheetTrainer()
     
     // pull down all data from api
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {
