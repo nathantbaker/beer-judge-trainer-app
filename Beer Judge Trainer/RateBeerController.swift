@@ -53,9 +53,13 @@ class RateBeerController: UIViewController  {
         return String(numberWithOneDecimal)
     }
     
-    func resetTotal() {
+    func getTotalScore() -> Float {
         let scores = sliderAroma.value + sliderAppearance.value + sliderFlavor.value + sliderMouthfeel.value + sliderImpression.value
-        let roundedValue = round(Double(scores) / step) * step
+        return scores
+    }
+    
+    func resetTotal(total: Float) {
+        let roundedValue = round(Double(total) / step) * step
         let totalNoTrailingZero = String(format: "%g", roundedValue)
         self.scoreOutputTotal.text = "\(totalNoTrailingZero) of 50"
     }
@@ -102,21 +106,21 @@ class RateBeerController: UIViewController  {
         self.scoreOutputImpression.text = "\(sliderValue) of 10"
     }
     
-    // set score total on slider touch up inside/outside
-    @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { resetTotal()
+    // actions on slider touch up inside/outside
+    @IBAction func allSlidersTouchUpInside(_ sender: UISlider) { actionsOnSliderTouchUp() }
+    @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) { actionsOnSliderTouchUp() }
+    
+    func actionsOnSliderTouchUp() {
+        let trainerTotal = getTotalScore()
+        resetTotal(total: trainerTotal)
         highlightScoreTotal()
+        scoreRangeTitle.text = BeerRangeInfoBot().rangeTitle(total: trainerTotal)
+        scoreRangeDescription.text = BeerRangeInfoBot().rangeDescription(total: trainerTotal)
     }
-    @IBAction func allSlidersTouchUpOutside(_ sender: UISlider) {
-        resetTotal()
-        highlightScoreTotal()
-    }
-
     
     func testStuff() {
         // print("current user scoresheet: \(trainerScores.beer_name)")
     }
-    
-
     
     override func viewDidLoad() {
         let beerData = BeerDataFetcher.sharedData
