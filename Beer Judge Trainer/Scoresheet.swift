@@ -8,8 +8,6 @@
 
 import Foundation
 
-// Base for scoresheet object
-
 public class Scoresheet {
     
     // scores

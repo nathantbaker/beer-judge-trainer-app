@@ -1,5 +1,5 @@
 //
-//  AverageExpertScoresBot.swift
+//  AverageScoresBot.swift
 //  BrewJudge
 //
 //  Created by Nate on 3/21/17.
@@ -8,8 +8,12 @@
 
 import Foundation
 
-// This class has a function uses the user selected beer to set the ScoresheetExpertAvg object
+// This class has a function that uses the user selected beer to build the scoresheetExpert scoresheet based on averaging all expert scoresheets tied to a beer
 
 class AverageExpertScoresBot {
+    
+    func createExpertScoresheet() {
+    
+    }
 
 }

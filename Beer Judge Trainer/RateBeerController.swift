@@ -133,17 +133,17 @@ class RateBeerController: UIViewController  {
     @IBAction func storeTrainerScoresheet(_ sender: UIButton) {
         
         // scores
-        beerData.userScoresheet.aroma       =   getHalfStep(value: sliderAroma.value)
-        beerData.userScoresheet.appearance  =   getHalfStep(value: sliderAppearance.value)
-        beerData.userScoresheet.flavor      =   getHalfStep(value: sliderFlavor.value)
-        beerData.userScoresheet.mouthfeel   =   getHalfStep(value: sliderMouthfeel.value)
-        beerData.userScoresheet.impression  =   getHalfStep(value: sliderImpression.value)
-        beerData.userScoresheet.total       =   getHalfStep(value: getTotalScore()) // total
+        beerData.scoresheetTrainer.aroma       =   getHalfStep(value: sliderAroma.value)
+        beerData.scoresheetTrainer.appearance  =   getHalfStep(value: sliderAppearance.value)
+        beerData.scoresheetTrainer.flavor      =   getHalfStep(value: sliderFlavor.value)
+        beerData.scoresheetTrainer.mouthfeel   =   getHalfStep(value: sliderMouthfeel.value)
+        beerData.scoresheetTrainer.impression  =   getHalfStep(value: sliderImpression.value)
+        beerData.scoresheetTrainer.total       =   getHalfStep(value: getTotalScore()) // total
         
         // capture beer data from current rating sessions
-        beerData.userScoresheet.beer        =   beerData.userSelectedBeer
-        beerData.userScoresheet.brewery     =   beerData.userSelectedBrewery
-        beerData.userScoresheet.category    =   helperBot.getCategoryFromSelectedBeer()
+        beerData.scoresheetTrainer.beer        =   beerData.userSelectedBeer
+        beerData.scoresheetTrainer.brewery     =   beerData.userSelectedBrewery
+        beerData.scoresheetTrainer.category    =   helperBot.getCategoryFromSelectedBeer()
 
     }
 }

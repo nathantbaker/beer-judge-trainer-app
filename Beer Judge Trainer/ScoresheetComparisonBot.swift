@@ -13,5 +13,7 @@ import Foundation
 
 class ScoresheetComparisonBot {
     
+    let thing = "hi"
+    
 }
 
