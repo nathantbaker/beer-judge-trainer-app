@@ -26,10 +26,14 @@ class ResultsController: UIViewController {
     // Rate Another Beer button
     @IBOutlet weak var RateAnotherBeer: UIButton!
     
-    
-
+    // load view
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        // set feedback text to view title
+        self.title = "👍 Nailed it!"
+        
         // Do any additional setup after loading the view, typically from a nib.
         print("results view loaded!")
         print("")
