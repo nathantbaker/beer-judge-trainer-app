@@ -156,8 +156,8 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             let indexOfTarget = brewerySelectOptions.index(of: targetBreweryName)
             // first number is the index of target brewery on brewerySelectOptions array
             self.SelectBrewery.selectRow(indexOfTarget!, inComponent: 0, animated: true)
+            //select beer and set info at bottom
             beerData.userSelectedBrewery = targetBreweryName
-            BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
             // give full beeer name under Rate button
             fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
             fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
