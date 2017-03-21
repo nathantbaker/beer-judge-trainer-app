@@ -8,6 +8,8 @@
 
 import Foundation
 
+// class for returning dynamic language about how a beer is rated and how close a rater gets
+
 class DynamicLanguageBot {
 
     // BJCP SCORE RANGES

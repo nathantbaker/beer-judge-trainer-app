@@ -39,6 +39,7 @@ class ResultsController: UIViewController {
         print(beerData.scoresheetTrainer.category)
     
         resultsBot.averageExpertScoresheets()
+        
         print("")
         print("expert scoresheet averages")
         print(beerData.scoresheetExpert.aroma)
@@ -48,6 +49,15 @@ class ResultsController: UIViewController {
         print(beerData.scoresheetExpert.impression)
         print(beerData.scoresheetExpert.total)
         
+        resultsBot.getScoresheetDifference()
+        print("")
+        print("expert scoresheet differences")
+        print(beerData.scoresheetComparison.aroma)
+        print(beerData.scoresheetComparison.appearance)
+        print(beerData.scoresheetComparison.flavor)
+        print(beerData.scoresheetComparison.mouthfeel)
+        print(beerData.scoresheetComparison.impression)
+        print(beerData.scoresheetComparison.total)
         
         
         // round button corners

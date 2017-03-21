@@ -10,6 +10,7 @@
 import Foundation
 
 // class for calculating results math
+
 class ScoresheetComparisonBot {
     
     let beerData = BeerDataFetcher.sharedData
@@ -62,5 +63,27 @@ class ScoresheetComparisonBot {
     }
 
     
+    // function to get difference between averaged expert scoresheet and trainer scoresheet
+    func getScoresheetDifference() {
+        
+        let expertScores = beerData.scoresheetExpert
+        let trainerScores = beerData.scoresheetTrainer
+        
+        if expertScores.beer == trainerScores.beer && expertScores.brewery == trainerScores.brewery {
+            print("calculating same beer")
+            
+            beerData.scoresheetComparison.aroma       =   trainerScores.aroma - expertScores.aroma
+            beerData.scoresheetComparison.appearance  =   trainerScores.appearance - expertScores.appearance
+            beerData.scoresheetComparison.flavor      =   trainerScores.flavor - expertScores.flavor
+            beerData.scoresheetComparison.mouthfeel   =   trainerScores.mouthfeel - expertScores.mouthfeel
+            beerData.scoresheetComparison.impression  =   trainerScores.impression - expertScores.impression
+            beerData.scoresheetComparison.total       =   trainerScores.total - expertScores.total
+            
+        } else {
+            print("ERROR: didn't calculate differnce. comparison scores aren't same beer and/or brewery")
+        }
+        
+
+    }
 }
 
