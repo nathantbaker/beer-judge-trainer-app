@@ -118,7 +118,7 @@ class RateBeerController: UIViewController  {
         scoreRangeDescription.text = languageBot.rangeDescription(total: trainerTotal)
     }
     
-    // the first time a slider is moved, highlight score total and button to help user
+    // the first time a slider is moved, highlight score total and button to assist user
     func highlightScoreTotal() {
         var functionHasRunOnce = false
         if functionHasRunOnce == false {

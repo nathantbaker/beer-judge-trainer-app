@@ -14,9 +14,19 @@ class ResultsController: UIViewController {
     let resultsBot = ScoresheetComparisonBot()
 
     // view elements
+    
+    // comparison numbers
+    @IBOutlet weak var comparisonTotalString: UILabel!
+    
+    // ui elements
+    @IBOutlet weak var backgroundColorBox: UILabel!
+    @IBOutlet weak var resultsBox1: UITextView!
+    @IBOutlet weak var resultsBox2: UITextView!
+    
+    // Rate Another Beer button
     @IBOutlet weak var RateAnotherBeer: UIButton!
     
-
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +73,13 @@ class ResultsController: UIViewController {
         // round button corners
         RateAnotherBeer.layer.cornerRadius = 0.02 * RateAnotherBeer.bounds.size.width
         RateAnotherBeer.clipsToBounds = true
+        
+        // round results boxes
+        resultsBox1.layer.cornerRadius = 0.09 * resultsBox1.bounds.size.width
+        resultsBox1.clipsToBounds = true
+        
+        resultsBox2.layer.cornerRadius = 0.09 * resultsBox2.bounds.size.width
+        resultsBox2.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
