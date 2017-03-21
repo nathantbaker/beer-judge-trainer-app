@@ -22,6 +22,7 @@ public class BeerDataFetcher {
     var categories = [BeerCategory]()
     var userSelectedBrewery = "none"
     var userSelectedBeer = "none"
+    var completeMessage = "loading"
     
     // pull down all data from api
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {

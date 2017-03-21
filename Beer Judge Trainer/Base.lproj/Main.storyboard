@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wgO-cL-ZmG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,7 +12,7 @@
         <!--BrewJudge-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeController" customModule="Beer_Judge_Trainer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeController" customModule="BrewJudge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -56,7 +60,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Find Beer Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajc-ep-PBU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Find By Beer Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajc-ep-PBU">
                                 <rect key="frame" x="9" y="335" width="366" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -78,17 +82,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-cS-mRX">
-                                <rect key="frame" x="253" y="127" width="112" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <state key="normal" title="View All Breweries">
-                                    <color key="titleColor" red="0.20000000000000001" green="0.50980392159999999" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetBreweryPicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p5E-sX-dR7"/>
-                                </connections>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoZ-7B-YFj">
                                 <rect key="frame" x="278" y="342" width="87" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -138,7 +131,6 @@
                         <outlet property="SelectBeer" destination="ty4-R1-dAX" id="DGH-ws-AGv"/>
                         <outlet property="SelectBrewery" destination="ggv-wn-IJs" id="8OT-PA-SAj"/>
                         <outlet property="ViewAllBeersButton" destination="YoZ-7B-YFj" id="e7h-0e-PdM"/>
-                        <outlet property="ViewAllBreweriesButton" destination="D7C-cS-mRX" id="aHu-1c-Jne"/>
                         <outlet property="beerCategoryLabel" destination="iNv-t1-aDe" id="u28-7N-gzR"/>
                         <outlet property="fullBeerNameLabel" destination="gmc-ZS-6ED" id="0wI-bW-CI5"/>
                         <outlet property="rateBeerButton" destination="wfM-oC-mSl" id="f69-jG-2lg"/>
@@ -168,7 +160,7 @@
         <!--Rate Beer-->
         <scene sceneID="aG0-h5-kwN">
             <objects>
-                <viewController id="AKn-c2-0U0" customClass="RateBeerController" customModule="Beer_Judge_Trainer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AKn-c2-0U0" customClass="RateBeerController" customModule="BrewJudge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VsH-JL-SwY"/>
                         <viewControllerLayoutGuide type="bottom" id="f26-Rz-GMC"/>
@@ -458,7 +450,7 @@
         <!--Results-->
         <scene sceneID="Cel-g1-OkH">
             <objects>
-                <viewController id="JBh-1w-cDD" customClass="ResultsController" customModule="Beer_Judge_Trainer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JBh-1w-cDD" customClass="ResultsController" customModule="BrewJudge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y5b-uJ-eDn"/>
                         <viewControllerLayoutGuide type="bottom" id="bCw-QZ-5Si"/>
