@@ -36,6 +36,16 @@ class ResultsController: UIViewController {
         print(beerData.scoresheetTrainer.brewery)
         print(beerData.scoresheetTrainer.category)
         
+        AverageExpertScoresBot().createExpertScoresheet()
+        print("")
+        print("expert scoresheet averages")
+        print(beerData.scoresheetExpert.aroma)
+        print(beerData.scoresheetExpert.appearance)
+        print(beerData.scoresheetExpert.flavor)
+        print(beerData.scoresheetExpert.mouthfeel)
+        print(beerData.scoresheetExpert.impression)
+        
+        
         
         // round button corners
         RateAnotherBeer.layer.cornerRadius = 0.02 * RateAnotherBeer.bounds.size.width
