@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		CD0445CE1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerSuccessLevelBot.swift; sourceTree = "<group>"; };
-		CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer Judge Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD0DC6BC1E78398C007F6A63 /* BrewJudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrewJudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0DC6BF1E78398C007F6A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD0DC6C11E78398C007F6A63 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CD0DC6C41E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		CD0DC6BD1E78398C007F6A63 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */,
+				CD0DC6BC1E78398C007F6A63 /* BrewJudge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CD0DC6BB1E78398B007F6A63 /* Beer Judge Trainer */ = {
+		CD0DC6BB1E78398B007F6A63 /* BrewJudge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD0DC6CE1E78398C007F6A63 /* Build configuration list for PBXNativeTarget "Beer Judge Trainer" */;
+			buildConfigurationList = CD0DC6CE1E78398C007F6A63 /* Build configuration list for PBXNativeTarget "BrewJudge" */;
 			buildPhases = (
 				CD0DC6B81E78398B007F6A63 /* Sources */,
 				CD0DC6B91E78398B007F6A63 /* Frameworks */,
@@ -166,9 +166,9 @@
 			);
 			dependencies = (
 			);
-			name = "Beer Judge Trainer";
+			name = BrewJudge;
 			productName = "Beer Judge Trainer";
-			productReference = CD0DC6BC1E78398C007F6A63 /* Beer Judge Trainer.app */;
+			productReference = CD0DC6BC1E78398C007F6A63 /* BrewJudge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CD0DC6B71E78398B007F6A63 /* Build configuration list for PBXProject "Beer Judge Trainer" */;
+			buildConfigurationList = CD0DC6B71E78398B007F6A63 /* Build configuration list for PBXProject "BrewJudge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -201,7 +201,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD0DC6BB1E78398B007F6A63 /* Beer Judge Trainer */,
+				CD0DC6BB1E78398B007F6A63 /* BrewJudge */,
 			);
 		};
 /* End PBXProject section */
@@ -386,7 +386,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CD0DC6B71E78398B007F6A63 /* Build configuration list for PBXProject "Beer Judge Trainer" */ = {
+		CD0DC6B71E78398B007F6A63 /* Build configuration list for PBXProject "BrewJudge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD0DC6CC1E78398C007F6A63 /* Debug */,
@@ -395,7 +395,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD0DC6CE1E78398C007F6A63 /* Build configuration list for PBXNativeTarget "Beer Judge Trainer" */ = {
+		CD0DC6CE1E78398C007F6A63 /* Build configuration list for PBXNativeTarget "BrewJudge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD0DC6CF1E78398C007F6A63 /* Debug */,
