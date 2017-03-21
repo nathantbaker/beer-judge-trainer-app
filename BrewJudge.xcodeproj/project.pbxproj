@@ -14,6 +14,10 @@
 		CD0DC6C71E78398C007F6A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C61E78398C007F6A63 /* Assets.xcassets */; };
 		CD0DC6CA1E78398C007F6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC6C81E78398C007F6A63 /* LaunchScreen.storyboard */; };
 		CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC6D41E783F80007F6A63 /* ResultsController.swift */; };
+		CD1227FB1E818F9B00F21686 /* ScoresheetExpertAvg.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1227FA1E818F9B00F21686 /* ScoresheetExpertAvg.swift */; };
+		CD1227FD1E818FEC00F21686 /* ScoresheetComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1227FC1E818FEC00F21686 /* ScoresheetComparison.swift */; };
+		CD1227FF1E81905000F21686 /* Scoresheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1227FE1E81905000F21686 /* Scoresheet.swift */; };
+		CD1228021E8191D400F21686 /* AverageExpertScoresBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1228011E8191D400F21686 /* AverageExpertScoresBot.swift */; };
 		CD29660E1E8087220089B6D9 /* BeerRangeInfoBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */; };
 		CD5129F71E7DDB4F000388E4 /* ScoresheetTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */; };
 		CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5129FB1E7EC708000388E4 /* Beer.swift */; };
@@ -37,6 +41,10 @@
 		CD0DC6C91E78398C007F6A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD0DC6CB1E78398C007F6A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD0DC6D41E783F80007F6A63 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		CD1227FA1E818F9B00F21686 /* ScoresheetExpertAvg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetExpertAvg.swift; sourceTree = "<group>"; };
+		CD1227FC1E818FEC00F21686 /* ScoresheetComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetComparison.swift; sourceTree = "<group>"; };
+		CD1227FE1E81905000F21686 /* Scoresheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scoresheet.swift; sourceTree = "<group>"; };
+		CD1228011E8191D400F21686 /* AverageExpertScoresBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageExpertScoresBot.swift; sourceTree = "<group>"; };
 		CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerRangeInfoBot.swift; sourceTree = "<group>"; };
 		CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresheetTrainer.swift; sourceTree = "<group>"; };
 		CD5129FB1E7EC708000388E4 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
@@ -101,14 +109,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CD1228001E81908B00F21686 /* Scoresheet Objects */ = {
+			isa = PBXGroup;
+			children = (
+				CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */,
+				CD1227FE1E81905000F21686 /* Scoresheet.swift */,
+				CD1227FC1E818FEC00F21686 /* ScoresheetComparison.swift */,
+				CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */,
+				CD1227FA1E818F9B00F21686 /* ScoresheetExpertAvg.swift */,
+			);
+			name = "Scoresheet Objects";
+			sourceTree = "<group>";
+		};
 		CD5129F81E7EC468000388E4 /* Object Types */ = {
 			isa = PBXGroup;
 			children = (
 				CD5129FB1E7EC708000388E4 /* Beer.swift */,
 				CDADDE321E7C766D00200292 /* Brewery.swift */,
 				CD5129FD1E7EDACB000388E4 /* BeerCategory.swift */,
-				CD85E0B41E78454200FD1C62 /* ScoresheetExpert.swift */,
-				CD5129F61E7DDB4F000388E4 /* ScoresheetTrainer.swift */,
+				CD1228001E81908B00F21686 /* Scoresheet Objects */,
 			);
 			name = "Object Types";
 			sourceTree = "<group>";
@@ -118,6 +137,7 @@
 			children = (
 				CDADDE361E7C905D00200292 /* HelperFunctions.swift */,
 				CD85E0B61E7845A200FD1C62 /* ScoresheetComparisonBot.swift */,
+				CD1228011E8191D400F21686 /* AverageExpertScoresBot.swift */,
 				CD0445CE1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift */,
 				CD29660D1E8087220089B6D9 /* BeerRangeInfoBot.swift */,
 			);
@@ -227,10 +247,14 @@
 			files = (
 				CD0DC6D51E783F80007F6A63 /* ResultsController.swift in Sources */,
 				CD85E0B51E78454200FD1C62 /* ScoresheetExpert.swift in Sources */,
+				CD1228021E8191D400F21686 /* AverageExpertScoresBot.swift in Sources */,
 				CDADDE331E7C766D00200292 /* Brewery.swift in Sources */,
 				CD0DC6C21E78398C007F6A63 /* HomeController.swift in Sources */,
 				CDE646761E7847EB0056050F /* BeerDataFetcher.swift in Sources */,
+				CD1227FD1E818FEC00F21686 /* ScoresheetComparison.swift in Sources */,
+				CD1227FF1E81905000F21686 /* Scoresheet.swift in Sources */,
 				CD85E0B71E7845A200FD1C62 /* ScoresheetComparisonBot.swift in Sources */,
+				CD1227FB1E818F9B00F21686 /* ScoresheetExpertAvg.swift in Sources */,
 				CD0445CF1E7A44F30073BBE1 /* TrainerSuccessLevelBot.swift in Sources */,
 				CD5129FC1E7EC708000388E4 /* Beer.swift in Sources */,
 				CDADDE391E7CF5A500200292 /* RateBeerController.swift in Sources */,

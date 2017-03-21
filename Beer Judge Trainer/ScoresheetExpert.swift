@@ -9,6 +9,7 @@
 
 import Foundation
 
+// doesn't inherit becuase it's got unique instansiation and properties
 public class ScoresheetExpert {
     
     // scores

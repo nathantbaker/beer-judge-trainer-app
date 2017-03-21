@@ -10,23 +10,6 @@ import Foundation
 
 //mimicks ScoresheetExpert class, but it's instantiated manually without needing API data
 
-public class ScoresheetTrainer {
+public class ScoresheetTrainer: Scoresheet {
     
-    // scores
-    var aroma = 0.0
-    var appearance = 0.0
-    var flavor = 0.0
-    var mouthfeel = 0.0
-    var impression = 0.0
-    var total = 0.0
-    
-    // relationships
-    var id = ""
-    var beerId = ""
-    var categoryId = ""
-    
-    // beer data
-    var beer = ""
-    var brewery = ""
-    var category = ""
 }

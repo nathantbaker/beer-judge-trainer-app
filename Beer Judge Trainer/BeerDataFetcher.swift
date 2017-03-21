@@ -27,6 +27,9 @@ public class BeerDataFetcher {
         var userSelectedBrewery = "none"
         var userSelectedBeer = "none"
         var userScoresheet = ScoresheetTrainer()
+        // computed properties
+        var expertScoresheet = ScoresheetExpertAvg()
+        var scoresheetComparison = ScoresheetComparison()
     
     // pull down all data from api
     func FetchAllBeerResources(completionHandler: @escaping (_ responseData: String) -> ()) {

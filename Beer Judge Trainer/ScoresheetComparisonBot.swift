@@ -9,4 +9,9 @@
 
 import Foundation
 
-// class to take two dictionaries of scores and return a single dictionary of point differences
+// This class has a function that takes the current ScoresheetTrainer object and the current ScoresheetExpertAvg object and sets the ScoresheetComparison object
+
+class ScoresheetComparisonBot {
+    
+}
+
