@@ -25,11 +25,10 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // all api data has been parsed into objects within this closure
         beerData.FetchAllBeerResources() { completeMessage in
             print("Status of Parsing API Data: \(completeMessage)")
-            self.beerData.completeMessage = completeMessage
+            self.beerData.allDataFetched = true
             self.loadBreweryPicker()
             self.loadBeerPicker()
         }
-        
         
         // set picker data and settings on load of home view
         self.SelectBrewery.dataSource = self
@@ -111,7 +110,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         if( pickerView == SelectBrewery ) {
             
             // handle if data isn't loaded and someone selects picker
-            if beerData.completeMessage == "✔ done" {
+            if beerData.allDataFetched == true {
                 
                 beerData.userSelectedBrewery = brewerySelectOptions[row] as String // row - selected beer
                 beerSelectOptions = filterBeerBasedOnBrewery()
@@ -128,7 +127,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         if( pickerView == SelectBeer ) {
             
             // handle if data isn't loaded and someone selects picker
-            if beerData.completeMessage == "✔ done" {
+            if beerData.allDataFetched == true {
             
                 beerData.userSelectedBeer = beerSelectOptions[row] as String
                 print("User selected beer: \(beerData.userSelectedBeer)")

@@ -10,7 +10,7 @@ import UIKit
 
 class ResultsController: UIViewController {
     
-    let apiData = BeerDataFetcher.sharedData
+    let beerData = BeerDataFetcher.sharedData
 
     // view elements
     @IBOutlet weak var RateAnotherBeer: UIButton!
@@ -19,6 +19,23 @@ class ResultsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("results view loaded!")
+        print("")
+        print("category scores")
+        print(beerData.userScoresheet.aroma)
+        print(beerData.userScoresheet.appearance)
+        print(beerData.userScoresheet.flavor)
+        print(beerData.userScoresheet.mouthfeel)
+        print(beerData.userScoresheet.impression)
+        print("")
+        print("total for scoresheet")
+        print(beerData.userScoresheet.total)
+        print("")
+        print("beer data for scoresheet")
+        print(beerData.userScoresheet.beer)
+        print(beerData.userScoresheet.brewery)
+        print(beerData.userScoresheet.category)
+        
         
         // round button corners
         RateAnotherBeer.layer.cornerRadius = 0.02 * RateAnotherBeer.bounds.size.width
