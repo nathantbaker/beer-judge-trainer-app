@@ -25,10 +25,11 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // all api data has been parsed into objects within this closure
         beerData.FetchAllBeerResources() { completeMessage in
             print("Status of Parsing API Data: \(completeMessage)")
+            self.beerData.completeMessage = completeMessage
             self.loadBreweryPicker()
             self.loadBeerPicker()
         }
-
+        
         
         // set picker data and settings on load of home view
         self.SelectBrewery.dataSource = self
@@ -46,6 +47,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // by the time this runs, there is a default selected beer and brewery
     func setTextofRateButton() {
         // set text of Rate button
+        print("selected beer IN setTextofRateButton function: \(beerData.userSelectedBeer)")
         rateBeerButton.setTitle( "✓ Rate \(beerData.userSelectedBeer) " , for: .normal )
         rateBeerButton.backgroundColor = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
         // give full beeer name under Rate button
@@ -80,59 +82,90 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // picker settings
     
-        // pickers on home view
-        @IBOutlet weak var SelectBrewery: UIPickerView!
-        @IBOutlet weak var SelectBeer: UIPickerView!
-
-        // picker column number
-        public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
-        
-        // show number of items based on current picker
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            if pickerView == SelectBrewery { return brewerySelectOptions.count }
-            if pickerView == SelectBeer { return beerSelectOptions.count }
-            return 0
-        }
-        
-        // get the values to display based on picker
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            if pickerView == SelectBrewery { return brewerySelectOptions[row] }
-            if pickerView == SelectBeer { return beerSelectOptions[row] }
-            return nil
-        }
+    // pickers on home view
+    @IBOutlet weak var SelectBrewery: UIPickerView!
+    @IBOutlet weak var SelectBeer: UIPickerView!
     
-        // store selected picker data
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    // picker column number
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // show number of items based on current picker
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == SelectBrewery { return brewerySelectOptions.count }
+        if pickerView == SelectBeer { return beerSelectOptions.count }
+        return 0
+    }
+    
+    // get the values to display based on picker
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == SelectBrewery { return brewerySelectOptions[row] }
+        if pickerView == SelectBeer { return beerSelectOptions[row] }
+        return nil
+    }
+    
+    // store selected picker data
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if( pickerView == SelectBrewery ) {
             
-            if( pickerView == SelectBrewery ) {
-                beerData.userSelectedBrewery = brewerySelectOptions[row] as String
+            // handle if data isn't loaded and someone selects picker
+            if beerData.completeMessage == "✔ done" {
+                
+                beerData.userSelectedBrewery = brewerySelectOptions[row] as String // row - selected beer
                 beerSelectOptions = filterBeerBasedOnBrewery()
+                
                 self.SelectBeer.reloadAllComponents() // redraw beer picker
-                // store current beer row as user select in case users presses Rate before selecting the auto selected beer
-                if beerData.userSelectedBrewery != "none" { // dont' crash if still loading data
-                    beerData.userSelectedBeer = beerSelectOptions[0] as String
-                    setTextofRateButton()
-                    print("User selected brewery: \(beerData.userSelectedBrewery)")
-                }
+                beerData.userSelectedBeer = beerSelectOptions[0] as String
 
-            }
-            
-            if( pickerView == SelectBeer ) {
-                beerData.userSelectedBeer = beerSelectOptions[row] as String
-                brewerySelectOptions = filterBreweryBasedOnBeer()
-                self.SelectBrewery.reloadAllComponents() // redraw beer picker
-                // store current brewery row as user select in case users presses Rate before selecting the auto selected brewery
-                if beerData.userSelectedBeer != "none" { // dont' crash if still loading data
-                    beerData.userSelectedBrewery = brewerySelectOptions[0] as String
-                    setTextofRateButton() // dynamically change Rate button
-                    print("User selected beer: \(beerData.userSelectedBeer)")
-                }
+                
+                setTextofRateButton()
+                print("User selected brewery: \(beerData.userSelectedBrewery)")
             }
         }
+        
+        if( pickerView == SelectBeer ) {
+            
+            // handle if data isn't loaded and someone selects picker
+            if beerData.completeMessage == "✔ done" {
+            
+                beerData.userSelectedBeer = beerSelectOptions[row] as String
+                print("User selected beer: \(beerData.userSelectedBeer)")
+                setTextofRateButton() // dynamically change Rate button
+                scrollToBreweryBasedOnBeer() // issue
+            }
+        }
+    }
+    
+    
     
     //picker functions
+    
+    // picker header elements
+    @IBOutlet weak var BreweryPickerHeader: UILabel!
+    @IBOutlet weak var BeerPickerHeader: UILabel!
+    @IBOutlet weak var ViewAllBeersButton: UIButton!
+    
+    // scroll to brewery tied to a beer name
+    func scrollToBreweryBasedOnBeer() {
+        if beerData.userSelectedBeer != "none" { // don't crash if still loading data
+            let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+            let targetBreweryName = beerObject.brewery.name
+            // find index of target name on brewerySelectOptions array
+            let indexOfTarget = brewerySelectOptions.index(of: targetBreweryName)
+            // first number is the index of target brewery on brewerySelectOptions array
+            self.SelectBrewery.selectRow(indexOfTarget!, inComponent: 0, animated: true)
+            beerData.userSelectedBrewery = targetBreweryName
+            BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
+            // give full beeer name under Rate button
+            fullBeerNameLabel.text = "\(beerData.userSelectedBrewery)'s \(beerData.userSelectedBeer)"
+            fullBeerNameLabel.textColor = UIColor.black // it could be red from being an error message
+            // set beer category under Rate button
+            let targetBeerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
+            beerCategoryLabel.text = targetBeerObject.category
+        }
+    }
     
     // populate brewery picker with brewery names
     func loadBreweryPicker() {
@@ -160,46 +193,24 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.SelectBeer.reloadAllComponents() // reload picker interface
     }
     
-    // picker header elements
-    @IBOutlet weak var BreweryPickerHeader: UILabel!
-    @IBOutlet weak var BeerPickerHeader: UILabel!
-    @IBOutlet weak var ViewAllBreweriesButton: UIButton!
-    @IBOutlet weak var ViewAllBeersButton: UIButton!
-    
     func filterBeerBasedOnBrewery() -> [String] {
- 
-        setTextofRateButton() // dynamically change Rate button
-        BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
-        ViewAllBeersButton.isHidden = false
-        if beerData.userSelectedBrewery != "none" { // dont' crash if still loading data
+        
+        if beerData.userSelectedBrewery != "none" { // don't crash if still loading data
+            
+            setTextofRateButton() // dynamically change Rate button
+            BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
+            ViewAllBeersButton.isHidden = false
+            
             let breweryObject = helperBot.getBreweryObjectFromName(brewery: beerData.userSelectedBrewery)
             return breweryObject.beers // return beers on a brewery
+            
         } else {
             return ["Select Beer"]
         }
     }
     
-    func filterBreweryBasedOnBeer() -> [String] {
-
-        setTextofRateButton() // dynamically change Rate button
-        BreweryPickerHeader.text = "Beer's Brewery"
-        ViewAllBreweriesButton.isHidden = false
-        if beerData.userSelectedBeer != "none" { // dont' crash if still loading data
-            let beerObject = helperBot.getBeerObjectFromName(beer: beerData.userSelectedBeer)
-            let breweryOfBeer = beerObject.brewery.name
-            return [breweryOfBeer] // return brewery name within array for picker
-        } else {
-            return ["Select Beer"]
-        }
-    }
     
-    // reset pickers functions
-    @IBAction func resetBreweryPicker(_ sender: UIButton) {
-        BreweryPickerHeader.text = "Filter By Brewery"
-        ViewAllBreweriesButton.isHidden = true
-        self.loadBreweryPicker()
-        print("reset brewery picker")
-    }
+    // reset beer picker
     @IBAction func resetBeerPicker(_ sender: UIButton) {
         BeerPickerHeader.text = "Find Beer Name"
         ViewAllBeersButton.isHidden = true
