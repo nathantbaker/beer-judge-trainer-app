@@ -151,8 +151,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    
-    
     //picker functions
     
     // picker header elements
