@@ -22,12 +22,26 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         super.viewDidLoad()
         
-        // all api data has been parsed into objects within this closure
-        beerData.FetchAllBeerResources() { completeMessage in
-            print("Status of Parsing API Data: \(completeMessage)")
-            self.beerData.allDataFetched = true
+        // first time view loads, pull down data and build pickers
+        if beerData.allDataFetched == false {
+            
+            beerData.FetchAllBeerResources() { completeMessage in
+                
+                // data status
+                print("Status of Parsing API Data: \(completeMessage)")
+                self.beerData.allDataFetched = true
+                
+                // build pickers with new data
+                self.loadBreweryPicker()
+                self.loadBeerPicker()
+            }
+            
+        } else {
+            
+            // build pickers with old data
             self.loadBreweryPicker()
             self.loadBeerPicker()
+
         }
         
         // set picker data and settings on load of home view
@@ -136,8 +150,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }
         }
     }
-    
-    
     
     //picker functions
     

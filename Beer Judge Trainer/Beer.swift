@@ -50,6 +50,20 @@ class Beer {
         return target
     }
     
+    // return array of scoresheets tied to a beer
+    var scoresheets: [ScoresheetExpert] {
+        
+        var tempArray = [ScoresheetExpert]()
+        
+        for scoresheet in beerData.scoresheets {
+            
+            if self.id == scoresheet.beerId {
+                tempArray.append(scoresheet)
+            }
+        }
+        return tempArray
+    }
+    
     init?(data: [String: AnyObject]) {
         guard let url = data["url"] as? String, let beer_name = data["beer_name"] as? String, let idBreweries = data["idBreweries"] as? String else {
             return nil

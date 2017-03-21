@@ -11,10 +11,12 @@ import UIKit
 class ResultsController: UIViewController {
     
     let beerData = BeerDataFetcher.sharedData
+    let resultsBot = ScoresheetComparisonBot()
 
     // view elements
     @IBOutlet weak var RateAnotherBeer: UIButton!
     
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +24,40 @@ class ResultsController: UIViewController {
         print("results view loaded!")
         print("")
         print("category scores")
-        print(beerData.userScoresheet.aroma)
-        print(beerData.userScoresheet.appearance)
-        print(beerData.userScoresheet.flavor)
-        print(beerData.userScoresheet.mouthfeel)
-        print(beerData.userScoresheet.impression)
+        print(beerData.scoresheetTrainer.aroma)
+        print(beerData.scoresheetTrainer.appearance)
+        print(beerData.scoresheetTrainer.flavor)
+        print(beerData.scoresheetTrainer.mouthfeel)
+        print(beerData.scoresheetTrainer.impression)
         print("")
         print("total for scoresheet")
-        print(beerData.userScoresheet.total)
+        print(beerData.scoresheetTrainer.total)
         print("")
         print("beer data for scoresheet")
-        print(beerData.userScoresheet.beer)
-        print(beerData.userScoresheet.brewery)
-        print(beerData.userScoresheet.category)
+        print(beerData.scoresheetTrainer.beer)
+        print(beerData.scoresheetTrainer.brewery)
+        print(beerData.scoresheetTrainer.category)
+    
+        resultsBot.averageExpertScoresheets()
+        
+        print("")
+        print("expert scoresheet averages")
+        print(beerData.scoresheetExpert.aroma)
+        print(beerData.scoresheetExpert.appearance)
+        print(beerData.scoresheetExpert.flavor)
+        print(beerData.scoresheetExpert.mouthfeel)
+        print(beerData.scoresheetExpert.impression)
+        print(beerData.scoresheetExpert.total)
+        
+        resultsBot.getScoresheetDifference()
+        print("")
+        print("expert scoresheet differences")
+        print(beerData.scoresheetComparison.aroma)
+        print(beerData.scoresheetComparison.appearance)
+        print(beerData.scoresheetComparison.flavor)
+        print(beerData.scoresheetComparison.mouthfeel)
+        print(beerData.scoresheetComparison.impression)
+        print(beerData.scoresheetComparison.total)
         
         
         // round button corners

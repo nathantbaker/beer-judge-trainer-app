@@ -1,16 +1,14 @@
 //
-//  TrainerScoresheet.swift
-//  Beer Judge Trainer
+//  Scoresheet.swift
+//  BrewJudge
 //
-//  Created by Nate on 3/14/17.
+//  Created by Nate on 3/21/17.
 //  Copyright © 2017 Nathan T. Baker. All rights reserved.
 //
 
 import Foundation
 
-//mimicks ScoresheetExpert class, but it's instantiated manually without needing API data
-
-public class ScoresheetTrainer {
+public class Scoresheet {
     
     // scores
     var aroma = 0.0
