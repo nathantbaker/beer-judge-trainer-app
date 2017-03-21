@@ -11,10 +11,12 @@ import UIKit
 class ResultsController: UIViewController {
     
     let beerData = BeerDataFetcher.sharedData
+    let resultsBot = ScoresheetComparisonBot()
 
     // view elements
     @IBOutlet weak var RateAnotherBeer: UIButton!
     
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +37,8 @@ class ResultsController: UIViewController {
         print(beerData.scoresheetTrainer.beer)
         print(beerData.scoresheetTrainer.brewery)
         print(beerData.scoresheetTrainer.category)
-        
-        AverageExpertScoresBot().createExpertScoresheet()
+    
+        resultsBot.averageExpertScoresheets()
         print("")
         print("expert scoresheet averages")
         print(beerData.scoresheetExpert.aroma)
@@ -44,6 +46,7 @@ class ResultsController: UIViewController {
         print(beerData.scoresheetExpert.flavor)
         print(beerData.scoresheetExpert.mouthfeel)
         print(beerData.scoresheetExpert.impression)
+        print(beerData.scoresheetExpert.total)
         
         
         

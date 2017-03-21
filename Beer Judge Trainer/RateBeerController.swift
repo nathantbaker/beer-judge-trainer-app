@@ -12,6 +12,7 @@ class RateBeerController: UIViewController  {
     
     let beerData = BeerDataFetcher.sharedData
     let helperBot = HelperFunctions()
+    let languageBot = DynamicLanguageBot()
     
     // ui elements
     
@@ -113,8 +114,8 @@ class RateBeerController: UIViewController  {
         let trainerTotal = getTotalScore()
         resetTotal(total: trainerTotal)
         highlightScoreTotal()
-        scoreRangeTitle.text = BeerRangeInfoBot().rangeTitle(total: trainerTotal)
-        scoreRangeDescription.text = BeerRangeInfoBot().rangeDescription(total: trainerTotal)
+        scoreRangeTitle.text = languageBot.rangeTitle(total: trainerTotal)
+        scoreRangeDescription.text = languageBot.rangeDescription(total: trainerTotal)
     }
     
     // the first time a slider is moved, highlight score total and button to help user
