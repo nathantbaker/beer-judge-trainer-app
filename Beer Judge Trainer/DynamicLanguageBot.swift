@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit // for UIColor
 
 // class for returning dynamic language about how a beer is rated and how close a rater gets
 
@@ -94,47 +95,37 @@ class DynamicLanguageBot {
         }
     }
     
-    func trainerReviewDescription(pointDiff: Double) -> String {
-        
+    func scoreTotalRange(score: Double) -> String {
         // convert negatives to positive
-        let number = (abs(pointDiff))
+        let total = (abs(score))
         
-        
-        // "Your score was [optional only]...
-        var only = ""
-        if number <= 3 {
-            only = "only "
-        }
-        
-        // [2.2] points [lower/higher] than the experts."
-        var lowerOrHigher = ""
-        if pointDiff < 0.0 {
-            lowerOrHigher = "lower"
+        if total <= 13 {
+            return "Problematic Range"
+        } else if total <= 20 {
+            return "Fair Range"
+        } else if total <= 29 {
+            return "Good Range"
+        } else if total <= 37 {
+            return "Very Good Range"
+        } else if total <= 44 {
+            return "Excellent Range"
+        } else if total <= 50 {
+            return "Outstanding Range"
         } else {
-            lowerOrHigher = "higher"
+            return ""
         }
+    }
     
-        let string = "\(only)\(number) points \(lowerOrHigher)"
+    func trainerResultsBackgroundColor(pointDiff: Double) -> UIColor {
+        // convert negatives to positive
+        let test = (abs(pointDiff))
         
-        // impossible
-        if number == 0.0 {
-            return "Your score was exactly the same as the experts."
-        }
-        // amazing
-        else if number <= 1 {
-            return "Your score was \(string) than the experts."
-        // good
-        } else if number <= 3 {
-            return "Your score was \(string) than the experts."
-        // ok
-        } else if number <= 6 {
-            return "Your score was \(string) than the experts."
-        // no so close
-        } else if number <= 8 {
-            return "Your score was \(string) than the experts."
-        // bad
-        } else {
-            return "Your score was \(string) than the experts."
-        }
+        let green: UIColor = UIColor(red:0.82, green:0.96, blue:0.82, alpha:1.0)
+        let yellow: UIColor = UIColor(red:0.97, green:0.92, blue:0.75, alpha:1.0)
+        let red: UIColor = UIColor(red:0.96, green:0.82, blue:0.82, alpha:1.0)
+        
+        if test <= 3 { return green }       // good and better  green
+        else if test <= 6 { return yellow } // ok range         yellow
+        else { return red }                 // meh and below    red
     }
 }

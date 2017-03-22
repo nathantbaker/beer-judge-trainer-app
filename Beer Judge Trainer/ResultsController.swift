@@ -14,7 +14,6 @@ class ResultsController: UIViewController {
     let helperBot = HelperFunctions()
     let resultsBot = ScoresheetComparisonBot()
     let languageBot = DynamicLanguageBot()
-    
 
     // view elements
     
@@ -25,18 +24,19 @@ class ResultsController: UIViewController {
     
         // trainer info
         @IBOutlet weak var textTrainerReviewTitle: UILabel!
-        @IBOutlet weak var textTrainerReview: UILabel!
         
         // score numbers
         @IBOutlet weak var scoreTotalTrainer: UILabel!
         @IBOutlet weak var scoreTotalExpert: UILabel!
         @IBOutlet weak var scoreComparisonAroma: UILabel!
         @IBOutlet weak var scoreComparisonAppearance: UILabel!
-        
+        @IBOutlet weak var scoreTotalTrainerRange: UILabel!
+        @IBOutlet weak var scoreTotalExpertRange: UILabel!
+    
         // descriptive text
         @IBOutlet weak var comparisonTotalString: UILabel!
         @IBOutlet weak var comparisonAromaString: UILabel!
-        
+    
         // ui elements
         @IBOutlet weak var backgroundColorBox: UILabel!
         @IBOutlet weak var resultsBox1: UITextView!
@@ -73,8 +73,15 @@ class ResultsController: UIViewController {
         // set total for trainer
         scoreTotalTrainer.text = String(beerData.scoresheetTrainer.total)
 
+        // set total range for trainer
+        scoreTotalTrainerRange.text = languageBot.scoreTotalRange(score: beerData.scoresheetTrainer.total)
+
         // set total for expert
         scoreTotalExpert.text = String(beerData.scoresheetExpert.total)
+        
+        // set total range for expert
+        scoreTotalExpertRange.text = languageBot.scoreTotalRange(score: beerData.scoresheetExpert.total)
+
         
         // set difference in score text
         resultsBot.getScoresheetDifference()
@@ -98,11 +105,10 @@ class ResultsController: UIViewController {
         
         textTrainerReviewTitle.text = languageBot.trainerReviewTitle(pointDiff: testNumber)
         
-        // set trainer description
-        textTrainerReview.text = languageBot.trainerReviewDescription(pointDiff: testNumber)
         
         // set background color
-        
+        let newColor = languageBot.trainerResultsBackgroundColor(pointDiff: testNumber)
+        backgroundColorBox.backgroundColor = newColor
     }
     
     func setBeerInfo() {
