@@ -46,53 +46,76 @@ class ResultsController: UIViewController {
         
         super.viewDidLoad()
         
-        // set feedback text to view title
-        self.title = "👍 Nailed it!"
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        print("results view loaded!")
-        print("")
-        print("category scores")
-        print(beerData.scoresheetTrainer.aroma)
-        print(beerData.scoresheetTrainer.appearance)
-        print(beerData.scoresheetTrainer.flavor)
-        print(beerData.scoresheetTrainer.mouthfeel)
-        print(beerData.scoresheetTrainer.impression)
-        print("")
-        print("total for scoresheet")
-        print(beerData.scoresheetTrainer.total)
-        print("")
-        print("beer data for scoresheet")
-        print(beerData.scoresheetTrainer.beer)
-        print(beerData.scoresheetTrainer.brewery)
-        print(beerData.scoresheetTrainer.category)
-    
+        // gather expert scores
         resultsBot.averageExpertScoresheets()
         
-        print("")
-        print("expert scoresheet averages")
-        print(beerData.scoresheetExpert.aroma)
-        print(beerData.scoresheetExpert.appearance)
-        print(beerData.scoresheetExpert.flavor)
-        print(beerData.scoresheetExpert.mouthfeel)
-        print(beerData.scoresheetExpert.impression)
-        print(beerData.scoresheetExpert.total)
+        // gather scores comparison info
+        resultsBot.averageExpertScoresheets()
         
-        resultsBot.getScoresheetDifference()
-        print("")
-        print("expert scoresheet differences")
-        print(beerData.scoresheetComparison.aroma)
-        print(beerData.scoresheetComparison.appearance)
-        print(beerData.scoresheetComparison.flavor)
-        print(beerData.scoresheetComparison.mouthfeel)
-        print(beerData.scoresheetComparison.impression)
-        print(beerData.scoresheetComparison.total)
+        // add dynamic elements to view
+        setTotals(); setTrainerReview(); setBeerInfo(); setScoreCategoryInfo()
         
+        // stylin'
         styleElements()
+        
+        testing()
         
 
         
     }
+    
+    func setTotals() {
+    
+        // set total for trainer
+        scoreTotalTrainer.text = String(beerData.scoresheetTrainer.total)
+
+        // set total for expert
+        scoreTotalExpert.text = String(beerData.scoresheetExpert.total)
+        
+        // set difference in score text
+        resultsBot.getScoresheetDifference()
+        let totalDifference = beerData.scoresheetComparison.total
+        
+        if totalDifference == 0.0 {
+            comparisonTotalString.text = "Whhhhatt?? Exact same score."
+        } else {
+            // remove trailing zeros
+            let noTrailingZero = String(format: "%g", totalDifference)
+            // strip negative sign
+            let formattedNumber = noTrailingZero.replacingOccurrences(of: "-", with: "")
+            comparisonTotalString.text = "\(formattedNumber) point difference"
+        }
+    }
+    
+    func setTrainerReview() {
+        // set view title
+        self.title = "👍 Nailed it!"
+        
+        // set background color
+        
+        // set description
+        textTrainerReview.text = "It was this close: \(beerData.scoresheetComparison.total)"
+        
+    }
+    
+    func setBeerInfo() {
+        // set full beer name
+        
+        // set beer category
+        
+        // set about beer text
+    }
+    
+    func setScoreCategoryInfo() {
+        // set aroma description
+        // set aroma point differnce
+        
+        // etc
+    }
+
+    
+    
+
     
     func styleElements() {
         // round button corners
@@ -116,6 +139,46 @@ class ResultsController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func testing() {
+        print("results view loaded!")
+        print("")
+        print("category scores")
+        print(beerData.scoresheetTrainer.aroma)
+        print(beerData.scoresheetTrainer.appearance)
+        print(beerData.scoresheetTrainer.flavor)
+        print(beerData.scoresheetTrainer.mouthfeel)
+        print(beerData.scoresheetTrainer.impression)
+        print("")
+        print("total for scoresheet")
+        print(beerData.scoresheetTrainer.total)
+        print("")
+        print("beer data for scoresheet")
+        print(beerData.scoresheetTrainer.beer)
+        print(beerData.scoresheetTrainer.brewery)
+        print(beerData.scoresheetTrainer.category)
+        
+        resultsBot.averageExpertScoresheets()
+        
+        print("")
+        print("expert scoresheet averages")
+        print(beerData.scoresheetExpert.aroma)
+        print(beerData.scoresheetExpert.appearance)
+        print(beerData.scoresheetExpert.flavor)
+        print(beerData.scoresheetExpert.mouthfeel)
+        print(beerData.scoresheetExpert.impression)
+        print(beerData.scoresheetExpert.total)
+        
+        resultsBot.getScoresheetDifference()
+        print("")
+        print("expert scoresheet differences")
+        print(beerData.scoresheetComparison.aroma)
+        print(beerData.scoresheetComparison.appearance)
+        print(beerData.scoresheetComparison.flavor)
+        print(beerData.scoresheetComparison.mouthfeel)
+        print(beerData.scoresheetComparison.impression)
+        print(beerData.scoresheetComparison.total)
     }
     
     
