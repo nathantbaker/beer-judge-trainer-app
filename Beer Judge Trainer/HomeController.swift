@@ -51,7 +51,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.SelectBeer.delegate = self
         
         // round button corners
-        rateBeerButton.layer.cornerRadius = 0.02 * rateBeerButton.bounds.size.width
+        rateBeerButton.layer.cornerRadius = 5
         rateBeerButton.clipsToBounds = true
         
     }
@@ -80,7 +80,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // if nothing is select, error. If one thing is selected, the cooresponding thing is auto-selected
         if beerData.userSelectedBrewery == "none" && beerData.userSelectedBeer == "none" {
             fullBeerNameLabel.textColor = UIColor.red
-            fullBeerNameLabel.text = "Oops, you still need select a beer before rating it!"
+            fullBeerNameLabel.text = "Oops, you still need select a beer!"
         } else {
             // send them to the rating view
             self.performSegue(withIdentifier: "RateBeerSegue", sender: self)

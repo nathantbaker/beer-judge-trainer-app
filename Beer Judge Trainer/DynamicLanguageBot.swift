@@ -29,7 +29,7 @@ class DynamicLanguageBot {
         } else if total <= 20 {
             return "In the Fair range"
         } else if total <= 29 {
-            return "In the Good In range"
+            return "In the Good range"
         } else if total <= 37 {
             return "In the Very Good range"
         } else if total <= 44 {

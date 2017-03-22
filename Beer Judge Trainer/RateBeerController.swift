@@ -54,7 +54,7 @@ class RateBeerController: UIViewController  {
         }
         
         // round button corners
-        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
+        compareExpertScoresButton.layer.cornerRadius = 5
         compareExpertScoresButton.clipsToBounds = true
     }
     
