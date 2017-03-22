@@ -99,9 +99,16 @@ class ResultsController: UIViewController {
     }
     
     func setBeerInfo() {
-        // set full beer name
         
-        // set beer category
+        let beer = beerData.scoresheetTrainer.beer
+        let brewery = beerData.scoresheetTrainer.brewery
+        let category = beerData.scoresheetTrainer.category
+        
+        // set full beer name header
+        textBeerFullName.text = "\(brewery)'s \(beer)"
+
+        // set beer category header
+        textBeerCategory.text = category
         
         // set about beer text
     }
