@@ -127,6 +127,7 @@ class RateBeerController: UIViewController  {
             let darkgreen = UIColor(red:0.12, green:0.51, blue:0.24, alpha:1.0)
             compareExpertScoresButton.backgroundColor = darkgreen
             scoreOutputTotal.textColor = darkgreen
+            scoreRangeTitle.textColor = darkgreen
         }
     }
     
