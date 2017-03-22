@@ -93,4 +93,48 @@ class DynamicLanguageBot {
             return "💩 Way Off This Time Beer Fan "
         }
     }
+    
+    func trainerReviewDescription(pointDiff: Double) -> String {
+        
+        // convert negatives to positive
+        let number = (abs(pointDiff))
+        
+        
+        // "Your score was [optional only]...
+        var only = ""
+        if number <= 3 {
+            only = "only "
+        }
+        
+        // [2.2] points [lower/higher] than the experts."
+        var lowerOrHigher = ""
+        if pointDiff < 0.0 {
+            lowerOrHigher = "lower"
+        } else {
+            lowerOrHigher = "higher"
+        }
+    
+        let string = "\(only)\(number) points \(lowerOrHigher)"
+        
+        // impossible
+        if number == 0.0 {
+            return "Your score was exactly the same as the experts."
+        }
+        // amazing
+        else if number <= 1 {
+            return "Your score was \(string) than the experts."
+        // good
+        } else if number <= 3 {
+            return "Your score was \(string) than the experts."
+        // ok
+        } else if number <= 6 {
+            return "Your score was \(string) than the experts."
+        // no so close
+        } else if number <= 8 {
+            return "Your score was \(string) than the experts."
+        // bad
+        } else {
+            return "Your score was \(string) than the experts."
+        }
+    }
 }

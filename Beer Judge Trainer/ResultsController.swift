@@ -81,7 +81,7 @@ class ResultsController: UIViewController {
         let totalDifference = beerData.scoresheetComparison.total
         
         if totalDifference == 0.0 {
-            comparisonTotalString.text = "Whaaat? Exact same score."
+            comparisonTotalString.text = "Exact Match"
         } else {
             // strip negative sign
             let absoluteNum = (abs(totalDifference))
@@ -99,7 +99,7 @@ class ResultsController: UIViewController {
         textTrainerReviewTitle.text = languageBot.trainerReviewTitle(pointDiff: testNumber)
         
         // set trainer description
-        textTrainerReview.text = "Your score was only \(beerData.scoresheetComparison.total) points lower than the experts."
+        textTrainerReview.text = languageBot.trainerReviewDescription(pointDiff: testNumber)
         
         // set background color
         
