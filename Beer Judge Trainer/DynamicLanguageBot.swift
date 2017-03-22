@@ -71,5 +71,26 @@ class DynamicLanguageBot {
     //  6-8:  Not so close  orange
     //  8-*:  Way off       red
     //
-
+    
+    func trainerReviewTitle(pointDiff: Double) -> String {
+        // convert negatives to positive
+        let test = (abs(pointDiff))
+        
+        // amazing
+        if test <= 1 {
+            return "👍 Impressive Beer Jedi!"
+        // good
+        } else if test <= 3 {
+            return "good"
+        // ok
+        } else if test <= 6 {
+            return "ok"
+        // no so close
+        } else if test <= 8 {
+            return "not so close."
+        // bad
+        } else {
+            return "bad"
+        }
+    }
 }

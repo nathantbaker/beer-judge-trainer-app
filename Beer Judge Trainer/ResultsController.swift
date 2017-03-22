@@ -13,6 +13,7 @@ class ResultsController: UIViewController {
     let beerData = BeerDataFetcher.sharedData
     let helperBot = HelperFunctions()
     let resultsBot = ScoresheetComparisonBot()
+    let languageBot = DynamicLanguageBot()
     
 
     // view elements
@@ -21,8 +22,9 @@ class ResultsController: UIViewController {
         @IBOutlet weak var textBeerFullName: UILabel!
         @IBOutlet weak var textBeerCategory: UILabel!
         @IBOutlet weak var textAboutTheData: UILabel!
-        
+    
         // trainer info
+        @IBOutlet weak var textTrainerReviewTitle: UILabel!
         @IBOutlet weak var textTrainerReview: UILabel!
         
         // score numbers
@@ -79,7 +81,7 @@ class ResultsController: UIViewController {
         let totalDifference = beerData.scoresheetComparison.total
         
         if totalDifference == 0.0 {
-            comparisonTotalString.text = "Whhhhatt?? Exact same score."
+            comparisonTotalString.text = "Whaaat? Exact same score."
         } else {
             // remove trailing zeros
             let noTrailingZero = String(format: "%g", totalDifference)
@@ -90,13 +92,16 @@ class ResultsController: UIViewController {
     }
     
     func setTrainerReview() {
-        // set view title
-        self.title = "👍 Nailed it!"
+        
+        // set trainer review title
+        let testNumber = beerData.scoresheetComparison.total
+        
+        textTrainerReviewTitle.text = languageBot.trainerReviewTitle(pointDiff: testNumber)
+        
+        // set trainer description
+        textTrainerReview.text = "Your score was only \(beerData.scoresheetComparison.total) points lower than the experts."
         
         // set background color
-        
-        // set description
-        textTrainerReview.text = "It was this close: \(beerData.scoresheetComparison.total)"
         
     }
     
