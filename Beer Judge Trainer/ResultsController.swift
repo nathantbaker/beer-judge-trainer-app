@@ -25,17 +25,21 @@ class ResultsController: UIViewController {
         // trainer info
         @IBOutlet weak var textTrainerReviewTitle: UILabel!
         
-        // score numbers
+        // score totals
         @IBOutlet weak var scoreTotalTrainer: UILabel!
         @IBOutlet weak var scoreTotalExpert: UILabel!
-        @IBOutlet weak var scoreComparisonAroma: UILabel!
-        @IBOutlet weak var scoreComparisonAppearance: UILabel!
         @IBOutlet weak var scoreTotalTrainerRange: UILabel!
         @IBOutlet weak var scoreTotalExpertRange: UILabel!
     
+        // score categories
+        @IBOutlet weak var scoreComparisonAroma: UILabel!
+        @IBOutlet weak var scoreComparisonAppearance: UILabel!
+        @IBOutlet weak var scoreComparisonFlavor: UILabel!
+        @IBOutlet weak var scoreComparisonMouthfeel: UILabel!
+        @IBOutlet weak var scoreComparisonImpression: UILabel!
+    
         // descriptive text
         @IBOutlet weak var comparisonTotalString: UILabel!
-        @IBOutlet weak var comparisonAromaString: UILabel!
     
         // ui elements
         @IBOutlet weak var backgroundColorBox: UILabel!
@@ -82,7 +86,6 @@ class ResultsController: UIViewController {
         // set total range for expert
         scoreTotalExpertRange.text = languageBot.scoreTotalRange(score: beerData.scoresheetExpert.total)
 
-        
         // set difference in score text
         resultsBot.getScoresheetDifference()
         let totalDifference = beerData.scoresheetComparison.total
@@ -125,11 +128,85 @@ class ResultsController: UIViewController {
     }
     
     func setScoreCategoryInfo() {
-        // set aroma description
-        // set aroma point differnce
         
-        // etc
-    }
+        // capture data
+        let aroma = beerData.scoresheetComparison.aroma
+        let appearance = beerData.scoresheetComparison.appearance
+        let flavor = beerData.scoresheetComparison.flavor
+        let mouthfeel = beerData.scoresheetComparison.mouthfeel
+        let impression = beerData.scoresheetComparison.impression
+        
+        let red: UIColor = UIColor(red:0.75, green:0.27, blue:0.00, alpha:1.0)
+        
+        if appearance < 0 { scoreComparisonAppearance.textColor = red }
+        if flavor < 0 { scoreComparisonFlavor.textColor = red }
+        if mouthfeel < 0 { scoreComparisonMouthfeel.textColor = red }
+        if impression < 0 { scoreComparisonImpression.textColor = red }
+        
+        //  - default is green. set to red if negative
+        //  - add "+ " to positive numbers
+        //  - format number to one decimal
+        
+        //aroma
+        if aroma < 0 {
+            scoreComparisonAroma.textColor = red
+            let string = String(format: "%g", aroma)
+            scoreComparisonAroma.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+        } else if aroma > 0 {
+            scoreComparisonAroma.text = "+ \(String(format: "%g", aroma))"
+        } else {
+            // default already 0.0
+            scoreComparisonAroma.textColor = UIColor.gray
+        }
+        
+        // appearance
+        if appearance < 0 {
+            scoreComparisonAppearance.textColor = red
+            let string = String(format: "%g", appearance)
+            scoreComparisonAppearance.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+        } else if appearance > 0 {
+            scoreComparisonAppearance.text = "+ \(String(format: "%g", appearance))"
+        } else {
+            // default already 0.0
+            scoreComparisonAppearance.textColor = UIColor.gray
+        }
+        
+        // flavor
+        if flavor < 0 {
+            scoreComparisonFlavor.textColor = red
+            let string = String(format: "%g", flavor)
+            scoreComparisonFlavor.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+        } else if flavor > 0 {
+            scoreComparisonFlavor.text = "+ \(String(format: "%g", flavor))"
+        } else {
+            // default already 0.0
+            scoreComparisonFlavor.textColor = UIColor.gray
+        }
+        
+        // mouthfeel
+        if mouthfeel < 0 {
+            scoreComparisonMouthfeel.textColor = red
+            let string = String(format: "%g", mouthfeel)
+            scoreComparisonMouthfeel.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+        } else if mouthfeel > 0 {
+            scoreComparisonMouthfeel.text = "+ \(String(format: "%g", mouthfeel))"
+        } else {
+            // default already 0.0
+            scoreComparisonMouthfeel.textColor = UIColor.gray
+        }
+        
+        // overall impression
+        if impression < 0 {
+            scoreComparisonImpression.textColor = red
+            let string = String(format: "%g", impression)
+            scoreComparisonImpression.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+        } else if impression > 0 {
+            scoreComparisonImpression.text = "+ \(String(format: "%g", impression))"
+        } else {
+            // default already 0.0
+            scoreComparisonImpression.textColor = UIColor.gray
+        }        
+}
 
     
     
