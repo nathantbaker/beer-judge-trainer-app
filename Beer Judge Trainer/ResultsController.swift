@@ -11,7 +11,9 @@ import UIKit
 class ResultsController: UIViewController {
     
     let beerData = BeerDataFetcher.sharedData
+    let helperBot = HelperFunctions()
     let resultsBot = ScoresheetComparisonBot()
+    
 
     // view elements
     
@@ -109,8 +111,6 @@ class ResultsController: UIViewController {
 
         // set beer category header
         textBeerCategory.text = category
-        
-        // set about beer text
     }
     
     func setScoreCategoryInfo() {
