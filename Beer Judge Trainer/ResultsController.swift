@@ -83,10 +83,10 @@ class ResultsController: UIViewController {
         if totalDifference == 0.0 {
             comparisonTotalString.text = "Whaaat? Exact same score."
         } else {
-            // remove trailing zeros
-            let noTrailingZero = String(format: "%g", totalDifference)
             // strip negative sign
-            let formattedNumber = noTrailingZero.replacingOccurrences(of: "-", with: "")
+            let absoluteNum = (abs(totalDifference))
+            // remove trailing zeros
+            let formattedNumber = String(format: "%g", absoluteNum)
             comparisonTotalString.text = "\(formattedNumber) point difference"
         }
     }

@@ -78,19 +78,19 @@ class DynamicLanguageBot {
         
         // amazing
         if test <= 1 {
-            return "👍 Impressive Beer Jedi!"
+            return "🏆 Amazing Work Beer Aficionado! "
         // good
         } else if test <= 3 {
-            return "good"
+            return "👍 Good Job Beer Connoisseur "
         // ok
         } else if test <= 6 {
-            return "ok"
+            return "👌 Okay Job Beer Enthusiast "
         // no so close
         } else if test <= 8 {
-            return "not so close."
+            return "👎 A Bit Out Of Range Beer Fan "
         // bad
         } else {
-            return "bad"
+            return "💩 Way Off This Time Beer Fan "
         }
     }
 }
