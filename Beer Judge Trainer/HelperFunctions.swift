@@ -50,4 +50,20 @@ class HelperFunctions {
         let beerObject = self.getBeerObjectFromName(beer: beerData.userSelectedBeer)
         return beerObject.category
     }
+    
+    // function to return category object based on category name string
+    public func getCategoryObjectFromSelectedBeer() -> BeerCategory {
+        
+        var targetCategory = beerData.categories[0]
+        let categoryName = self.getCategoryFromSelectedBeer()
+        
+        for category in beerData.categories {
+        
+            if categoryName == category.name {
+                targetCategory = category
+                break
+            }
+        }
+        return targetCategory
+    }
 }

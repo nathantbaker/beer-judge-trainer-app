@@ -54,7 +54,7 @@ class RateBeerController: UIViewController  {
         }
         
         // round button corners
-        compareExpertScoresButton.layer.cornerRadius = 0.02 * compareExpertScoresButton.bounds.size.width
+        compareExpertScoresButton.layer.cornerRadius = 5
         compareExpertScoresButton.clipsToBounds = true
     }
     
@@ -118,7 +118,7 @@ class RateBeerController: UIViewController  {
         scoreRangeDescription.text = languageBot.rangeDescription(total: trainerTotal)
     }
     
-    // the first time a slider is moved, highlight score total and button to help user
+    // the first time a slider is moved, highlight score total and button to assist user
     func highlightScoreTotal() {
         var functionHasRunOnce = false
         if functionHasRunOnce == false {

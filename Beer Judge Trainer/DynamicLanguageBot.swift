@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit // for UIColor
 
 // class for returning dynamic language about how a beer is rated and how close a rater gets
 
@@ -29,7 +30,7 @@ class DynamicLanguageBot {
         } else if total <= 20 {
             return "In the Fair range"
         } else if total <= 29 {
-            return "In the Good In range"
+            return "In the Good range"
         } else if total <= 37 {
             return "In the Very Good range"
         } else if total <= 44 {
@@ -71,5 +72,60 @@ class DynamicLanguageBot {
     //  6-8:  Not so close  orange
     //  8-*:  Way off       red
     //
-
+    
+    func trainerReviewTitle(pointDiff: Double) -> String {
+        // convert negatives to positive
+        let test = (abs(pointDiff))
+        
+        // amazing
+        if test <= 1 {
+            return "🏆 Amazing Work Beer Aficionado! "
+        // good
+        } else if test <= 3 {
+            return "👍 Good Job Beer Connoisseur "
+        // ok
+        } else if test <= 6 {
+            return "👌 Okay Job Beer Enthusiast "
+        // no so close
+        } else if test <= 8 {
+            return "👎 A Bit Out Of Range Beer Fan "
+        // bad
+        } else {
+            return "💩 Way Off This Time Beer Fan "
+        }
+    }
+    
+    func scoreTotalRange(score: Double) -> String {
+        // convert negatives to positive
+        let total = (abs(score))
+        
+        if total <= 13 {
+            return "Problematic Range"
+        } else if total <= 20 {
+            return "Fair Range"
+        } else if total <= 29 {
+            return "Good Range"
+        } else if total <= 37 {
+            return "Very Good Range"
+        } else if total <= 44 {
+            return "Excellent Range"
+        } else if total <= 50 {
+            return "Outstanding Range"
+        } else {
+            return ""
+        }
+    }
+    
+    func trainerResultsBackgroundColor(pointDiff: Double) -> UIColor {
+        // convert negatives to positive
+        let test = (abs(pointDiff))
+        
+        let green: UIColor = UIColor(red:0.82, green:0.96, blue:0.82, alpha:1.0)
+        let yellow: UIColor = UIColor(red:0.97, green:0.92, blue:0.75, alpha:1.0)
+        let red: UIColor = UIColor(red:0.96, green:0.82, blue:0.82, alpha:1.0)
+        
+        if test <= 3 { return green }       // good and better  green
+        else if test <= 6 { return yellow } // ok range         yellow
+        else { return red }                 // meh and below    red
+    }
 }
