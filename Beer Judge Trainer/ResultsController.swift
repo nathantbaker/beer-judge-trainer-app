@@ -25,17 +25,21 @@ class ResultsController: UIViewController {
         // trainer info
         @IBOutlet weak var textTrainerReviewTitle: UILabel!
         
-        // score numbers
+        // score totals
         @IBOutlet weak var scoreTotalTrainer: UILabel!
         @IBOutlet weak var scoreTotalExpert: UILabel!
-        @IBOutlet weak var scoreComparisonAroma: UILabel!
-        @IBOutlet weak var scoreComparisonAppearance: UILabel!
         @IBOutlet weak var scoreTotalTrainerRange: UILabel!
         @IBOutlet weak var scoreTotalExpertRange: UILabel!
     
+        // score categories
+        @IBOutlet weak var scoreComparisonAroma: UILabel!
+        @IBOutlet weak var scoreComparisonAppearance: UILabel!
+        @IBOutlet weak var scoreComparisonFlavor: UILabel!
+        @IBOutlet weak var scoreComparisonMouthfeel: UILabel!
+        @IBOutlet weak var scoreComparisonImpression: UILabel!
+    
         // descriptive text
         @IBOutlet weak var comparisonTotalString: UILabel!
-        @IBOutlet weak var comparisonAromaString: UILabel!
     
         // ui elements
         @IBOutlet weak var backgroundColorBox: UILabel!
@@ -61,11 +65,6 @@ class ResultsController: UIViewController {
         
         // stylin'
         styleElements()
-        
-        testing()
-        
-
-        
     }
     
     func setTotals() {
@@ -82,7 +81,6 @@ class ResultsController: UIViewController {
         // set total range for expert
         scoreTotalExpertRange.text = languageBot.scoreTotalRange(score: beerData.scoresheetExpert.total)
 
-        
         // set difference in score text
         resultsBot.getScoresheetDifference()
         let totalDifference = beerData.scoresheetComparison.total
@@ -102,9 +100,7 @@ class ResultsController: UIViewController {
         
         // set trainer review title
         let testNumber = beerData.scoresheetComparison.total
-        
         textTrainerReviewTitle.text = languageBot.trainerReviewTitle(pointDiff: testNumber)
-        
         
         // set background color
         let newColor = languageBot.trainerResultsBackgroundColor(pointDiff: testNumber)
@@ -125,16 +121,44 @@ class ResultsController: UIViewController {
     }
     
     func setScoreCategoryInfo() {
-        // set aroma description
-        // set aroma point differnce
         
-        // etc
+        // capture data
+        let aroma = beerData.scoresheetComparison.aroma
+        let appearance = beerData.scoresheetComparison.appearance
+        let flavor = beerData.scoresheetComparison.flavor
+        let mouthfeel = beerData.scoresheetComparison.mouthfeel
+        let impression = beerData.scoresheetComparison.impression
+
+        // function to format and set numbers
+        func setCategoryNumber(number: Double, uiElement: UILabel) {
+            
+            if number < 0 {
+                
+                // red, one decimal place, add a space after the minus sign
+                uiElement.textColor = UIColor(red:0.75, green:0.27, blue:0.00, alpha:1.0) // red
+                let string = String(format: "%g", number)
+                uiElement.text = string.replacingOccurrences(of: "-", with: "- ", options: .literal, range: nil)
+                
+            } else if number > 0 {
+                
+                // already green, one decimal place, space after +
+                uiElement.text = "+ \(String(format: "%g", number))"
+                
+            } else {
+                
+                // set to grey, default is 0.0 already
+                uiElement.textColor = UIColor.gray
+            }
+        }
+        
+        // set numbers
+        setCategoryNumber(number: aroma, uiElement: scoreComparisonAroma)
+        setCategoryNumber(number: appearance, uiElement: scoreComparisonAppearance)
+        setCategoryNumber(number: flavor, uiElement: scoreComparisonFlavor)
+        setCategoryNumber(number: mouthfeel, uiElement: scoreComparisonMouthfeel)
+        setCategoryNumber(number: impression, uiElement: scoreComparisonImpression)
     }
 
-    
-    
-
-    
     func styleElements() {
         // round button corners
         RateAnotherBeer.layer.cornerRadius = 5
@@ -158,47 +182,5 @@ class ResultsController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func testing() {
-        print("results view loaded!")
-        print("")
-        print("category scores")
-        print(beerData.scoresheetTrainer.aroma)
-        print(beerData.scoresheetTrainer.appearance)
-        print(beerData.scoresheetTrainer.flavor)
-        print(beerData.scoresheetTrainer.mouthfeel)
-        print(beerData.scoresheetTrainer.impression)
-        print("")
-        print("total for scoresheet")
-        print(beerData.scoresheetTrainer.total)
-        print("")
-        print("beer data for scoresheet")
-        print(beerData.scoresheetTrainer.beer)
-        print(beerData.scoresheetTrainer.brewery)
-        print(beerData.scoresheetTrainer.category)
-        
-        resultsBot.averageExpertScoresheets()
-        
-        print("")
-        print("expert scoresheet averages")
-        print(beerData.scoresheetExpert.aroma)
-        print(beerData.scoresheetExpert.appearance)
-        print(beerData.scoresheetExpert.flavor)
-        print(beerData.scoresheetExpert.mouthfeel)
-        print(beerData.scoresheetExpert.impression)
-        print(beerData.scoresheetExpert.total)
-        
-        resultsBot.getScoresheetDifference()
-        print("")
-        print("expert scoresheet differences")
-        print(beerData.scoresheetComparison.aroma)
-        print(beerData.scoresheetComparison.appearance)
-        print(beerData.scoresheetComparison.flavor)
-        print(beerData.scoresheetComparison.mouthfeel)
-        print(beerData.scoresheetComparison.impression)
-        print(beerData.scoresheetComparison.total)
-    }
-    
-    
 }
 
