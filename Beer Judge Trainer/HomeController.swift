@@ -34,7 +34,7 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 // build pickers with new data
                 self.loadBreweryPicker()
                 self.loadBeerPicker()
-            }
+        }
             
         } else {
             
@@ -156,7 +156,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // picker header elements
     @IBOutlet weak var BreweryPickerHeader: UILabel!
     @IBOutlet weak var BeerPickerHeader: UILabel!
-    @IBOutlet weak var ViewAllBeersButton: UIButton!
     
     // scroll to brewery tied to a beer name
     func scrollToBreweryBasedOnBeer() {
@@ -210,7 +209,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             setTextofRateButton() // dynamically change Rate button
             BeerPickerHeader.text = "\(beerData.userSelectedBrewery)'s Beers"
-            ViewAllBeersButton.isHidden = false
             
             let breweryObject = helperBot.getBreweryObjectFromName(brewery: beerData.userSelectedBrewery)
             return breweryObject.beers // return beers on a brewery
@@ -218,15 +216,6 @@ class HomeController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         } else {
             return ["Select Beer"]
         }
-    }
-    
-    
-    // reset beer picker
-    @IBAction func resetBeerPicker(_ sender: UIButton) {
-        BeerPickerHeader.text = "Find Beer Name"
-        ViewAllBeersButton.isHidden = true
-        self.loadBeerPicker()
-        print("reset brewery picker")
     }
 }
 
