@@ -4,6 +4,6 @@ The BrewJudge is a native iOS app built in Swift that allows you to train to bec
 
 First you select a beer and rate its in various categories such as aroma, appearance, and flavor. You assign up to 50 points.
 
-Then you see how closely your scores stack up against certified beer judges. The app is powered by an API built for this app using the Django REST Framework. It’s deployed at [api.cancanawards.com](http://api.cancanawards.com/). API data is sourced from a beer competition that I founded.
+Then you see how closely your scores stack up against certified beer judges. The app is powered by an API built for this app using the Django REST Framework.
 
 Author: [Nathan T. Baker](http://nathantbaker.com/)
