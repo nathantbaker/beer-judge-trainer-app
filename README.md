@@ -1,3 +1,5 @@
+![brewjudge iphone app](http://i.imgur.com/22XMEhG.png)
+
 # BrewJudge #
 
 The BrewJudge is a native iOS app built in Swift that allows you to train to become a [Beer Judge Certification Program](http://www.bjcp.org/) (BJCP) beer judge.
